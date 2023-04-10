@@ -1,0 +1,981 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html" class="active">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><script type="text/javascript" async="" 
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_PC_transistor_off.png" style="width: 168px; height: 145px;" /><br />
+					&nbsp;</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_PC_transistor_on.png" style="width: 168px; height: 146px;" /><br />
+					&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<h1>
+	Active Components</h1>
+<p>
+	This chapter is about active electronic components, such as diodes, LEDs, and transistors.&nbsp; We learn about the different type of diodes that there are and what they are used for.&nbsp; We get to know transistors, bipolar and field-effect, and how to use them as switches and as amplifiers.&nbsp; We get to see the multivibrators, especially the astable and the bistable, and learn why they are so important for computers.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_diode.png" style="margin-left: 10px; margin-right: 10px; width: 105px; height: 44px; float: right;" />Diode</h2>
+<p>
+	The diode [1] is the most basic active component. It is made of a semiconductor material with what is called a p-n junction [2].&nbsp; Diodes have the nice property, that they let current only go one way, from anode to cathode.&nbsp; Let&#39;s take a look at this in our simulator:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIYZJUI4lC1eADsyBNBKRk2HumOntSLCC4w4wt5EHMAJgaEGetggfD60AGYAhgCuADYALrLyAdqUAWpyqS7ChITCAYRJWUEheSH6hUA"><img alt="" src="images/diode_forward.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					diode forward</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIYZJUI4lC1dzix4ZuIXR8sILjDjD7kQcwAmBvdgNCQfV7QAzAEMAVwAbABdZeR9tSh81OTjbYUJCYR9CaOTPX3TffSygA"><img alt="" src="images/diode_blocking.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					diode blocking</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	You may notice this interesting voltage drop of 0.7 volts accross the diode.&nbsp; This is also known as the &quot;forward bias&quot; [1].&nbsp; This is typical for a silicon semiconductor, and we will see this a few more times in the future.&nbsp; Germanium diodes have a voltage drop of about 0.3 volts.</p>
+<p>
+	Diodes have many uses, such as</p>
+<ul>
+	<li>
+		constant voltage source,</li>
+	<li>
+		current steering,</li>
+	<li>
+		over-voltage protection,</li>
+	<li>
+		temperature sensor and</li>
+	<li>
+		rectifier.</li>
+</ul>
+<p>
+	We will not talk about the rectifier, since that has to do with AC, but we will see examples for all the other usages.</p>
+<p>
+	.</p>
+<h3>
+	Constant Voltage Source</h3>
+<p>
+	We just learned that a silicon diode has a voltage drop of 0.7 volts.&nbsp; This can actually be used to create a constant voltage source.&nbsp; If we connect three diodes in series, the voltage drop will be three times 0.7 volts, that is 2.1 volts.&nbsp; Depending on whether we have the diodes before or after the resistor, we can use them in two different ways:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR15yhCALJSxDKMBMwDu-brxCFCwhX0jMAJkpU7Vy-dmxKQm2gDMAhgFcANgBdZe58WMGlT9zz6u1Hue5gyJS+QSFazmEuunxmVnaO2u6CgcEmcTYOzABOzt4uRkJYGgG6KYUpToIpZVwlBW6FvoTMQA"><img alt="" src="images/diode_constant_voltage_high.png" style="margin-left: 10px; margin-right: 10px; width: 166px; height: 178px;" /></a><br />
+					diodes before a resistor</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR15yhCALJSxDKMBMwDu-brxCFCwhX0jMAJkpVLs2Hap58+m2gDMAhgFcANgBdZ3SEcX4DxpVsM-lq4gamFjYO3n4olOFRIGZWdo4ATj5gyJG6gmIacuGC7vKEToKCOVxZzqoplHmVXknoLmrlEUJYTuE19RWpUG26np2NGkA"><img alt="" src="images/diode_constant_voltage_low.png" style="margin-left: 10px; margin-right: 10px; width: 206px; height: 178px;" /></a><br />
+					diodes after a resistor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h3>
+	Current Steering</h3>
+<p>
+	Diodes are also very useful in protecting sensitive electic circuits from somebody accidentally switching plus and minus, i.e. they can be used to allow current to flow only in one, the intended, direction:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR14RxRhAFhrDKMBMwDu-brxCFCIhX0jMw2CMtWDsSlWuFgA7MgTQSkZNhwJsIkRfCUuMOKo+QRzACby+oZ6Qnx+tABmAIYArgA2AC6ywUqh2AZBhMm6xsQGPHxZQA"><img alt="" src="images/diode_protection_series.png" style="margin-left: 10px; margin-right: 10px; width: 166px; height: 122px;" /></a><br />
+					diode protection series</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR14RxRhAFhrDKMBMzDYIhQiJCDsyxd17CwAdhIwSJWYQPZ02sCKRYQ2qLEhKYcEcwAm4bVx58dAoX1daADMAQwBXABsAF2YAdzUlFWVsVSTCOISNPmJVb2VmMSVOZSFfEtVJWGQMEFRtdGFQiIBnWgyytPUkyAzivLK8nviBzQUlQeYgA"><img alt="" src="images/diode_protection_parallel.png" style="margin-left: 10px; margin-right: 10px; width: 166px; height: 122px;" /></a><br />
+					diode protection parallel with fuse</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Just so that you know, this last circuit, protects our multimeters when you happen to measure current in the wrong way.&nbsp; Meaning the way that &quot;breaks&quot; the multimeter.&nbsp; Lucky for you, most multimeters are protected by this circuit, and all you have to do is to replace the fuse, and your a good to go.&nbsp;</p>
+<p>
+	.</p>
+<h3>
+	Over-Voltage Protection</h3>
+<p>
+	They also can be used for over-voltage protection, especially when dealing with motors or relais (flyback diode):</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiACzYjoKGfdCOKCI40RlGAmYATEIUIcefeYvnD+M2gDMAhgFcANgBdmAd1VKhg7II3nLy-sW69nDsAHZk6wWutQHt5Ojm6BhuDBAV4+YZQQMJAcJCnICByE6CTIyJA53JDMAE4CvpE+AfFwzADOINiUYWAcSnEieoY1tA5cIQ0hhRbNrSoxAw79Yf1ikh4tIcOccIEAxvWUM+Dzm-Gw8PsHcGAMnhJ7LEA"><img alt="" src="images/diode_protecting_motor.png" style="margin-left: 10px; margin-right: 10px; width: 190px; height: 146px;" /></a><br />
+					diode protecting motor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h3>
+	Temperature Measurement</h3>
+<p>
+	The voltage drop of 0.7 volts that we already heard about, actually depends a little on temperature for most diodes.&nbsp; For silicon diodes it is usually -2 mV/˚C.&nbsp; So if we very carefully measure this voltage drop, we can measure the temperature.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_PC_diode_current_voltage.png" style="margin-left: 10px; margin-right: 10px; width: 369px; height: 325px; float: right;" />Current-Voltage Characteristic</h2>
+<p>
+	At this stage it is time to learn about what is called the current-voltage diagram, also called the &quot;I-V characteristic&quot;.&nbsp; Basically, we change the value of the voltage going through our diode from some negative voltage to some positive voltage, and measure the current.&nbsp; (Naturally, the current should not be to high, or our diode will start to go up in smoke.)&nbsp; When plotting the result in a graph, we will get something like the diagram to the right, which is called a current-voltage diagram.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciIQCyWchkPKCL7hKEqNATMA7hy5CUlJZDkLuYsMkq8JzdAHZK2lcNPge5kWvkWlhXoOGF1FvdycfXAE2WXzHU1dcAA5PkgeA2wRADEISnoKEzgQRhAANQB7ABsAFwBDAHNaZiA"><img alt="" src="images/diode_current_voltage_characteristic.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 138px;" /></a><br />
+					I-V Characteristic</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Usually, we will not measure these diagrams ourselves, but look them up in so-called data-sheets [4].&nbsp; The manufacturers of the components usually provide them.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_led.png" style="margin-left: 10px; margin-right: 10px; width: 105px; height: 47px; float: right;" />Light Emitting Diode (LED)</h2>
+<p>
+	LEDs are diodes that emit light [5], however, only if connected in the right direction, because like diodes, they let current only pass in one direction.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSLPlClITWrlhklTYULCj6-ZUI4Qx4Vew3mAJy2aLN6zQPN9fd-a0VGxAAE1oAMwBDAFcAGwAXeljaEPAJKFgWPQMFPltcxyA"><img alt="" src="images/led.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					led with current-limiting resistor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Most LEDs need to be protected, if the current through them gets to high, they break.&nbsp; This is why we usually use a current-limiting resistor to protect them.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_zener.png" style="margin-left: 10px; margin-right: 10px; width: 105px; height: 47px; float: right;" />Zener Diode</h2>
+<p>
+	.</p>
+<p>
+	<img alt="" src="images/BK8_PC_zener.png" style="margin-left: 10px; margin-right: 10px; width: 387px; height: 314px; float: right;" />We already saw how to use a normal diode to create a source of constant voltage.&nbsp; Only, that voltage wasn&#39;t quite as constant as we would have wanted it to be.&nbsp; That is why there is a special diode called the Zener diode [6]: its only purpose is to create a constant voltage.&nbsp; It is based on the Zener effect.&nbsp; Normal diodes will block any current, that goes in the wrong direction, i.e. from cathode to anode.&nbsp; But a Zener diode will block it only to a certain voltage, if the voltage, however, increases above that value, it will no longer block.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYMplKk6AmYB3ft14pKPPpDkKhykFvXywySlsKFhxjQcqEcIE8OvZbFw4r53XTgF7bV2h7ZAAE1oAMwBDAFcAGwAXek9aADtaACdmMAB2YUsdbJcwQWzweCl0SGsSyvgkACVaAGcAS3qYsMSAY1pnKxscnL1tHP9+jWGXYbA1CwyuJjdeyahmIA"><img alt="" src="images/zener.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					Zener diode</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	For us, Zener diodes are important, because our Arduino, the MKR1000, only likes 3.3 volts as its voltage.&nbsp; Most USB power supplies, however, produce 5 volts.&nbsp; So with a Zener diode, we can turn 5 volts into 3.3 volts.&nbsp; There are Zener diodes available for all kinds of voltages [7].</p>
+<p>
+	.</p>
+<h2>
+	Transistors</h2>
+<p>
+	Although diodes are already pretty neat, transistors are what we really want to learn about.&nbsp; Transistors can act as switches and as amplifiers.&nbsp; The simple diagram below, visualizes how they work: a small current of water, the pipe coming in from the left, controls the flow of the water in the big pipe.&nbsp; If there is no flow coming in from the left, the main water pipe is blocked.&nbsp; Only if water flows in from the left, will the gate open, and release the main stream.&nbsp; This is a very crude analogy, but a very helpful one.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_PC_transistor_off.png" style="width: 253px; height: 218px;" /><br />
+					&nbsp;</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_PC_transistor_on.png" style="width: 253px; height: 220px;" /><br />
+					&nbsp;</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_transistor.png" style="margin-left: 10px; margin-right: 10px; width: 105px; height: 111px; float: right;" />Bipolar Transistor</h2>
+<p>
+	The bipolar transistor was invented in 1947 by American physicists John Bardeen, Walter Brattain, and William Shockley at Bell Labs [9].&nbsp; It has transformed our lives like no other electronic device, and probably is on par with the invention of the fire and the wheel.&nbsp; It is surprisingly simple, made up of two semiconductor junctions (npn or pnp).</p>
+<p>
+	A transistor has three terminals, called base (B), collector (C) and emitter (E).&nbsp; The defining feature of a transistor is that a small current flowing into the base terminal, can control a much larger current flowing from the collector to the emitter terminal.&nbsp; Hence it can be used either as a switch or as an amplifier.</p>
+<p>
+	.</p>
+<h3>
+	Transistor as Switch</h3>
+<p>
+	If you want to use the transistor as a switch, all you have to do put a small voltage on the base terminal, usually a little more than 0.7 volts for a silicon transistor:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iCciOvipT10hs+IbJUKEALKPHCwycThATphJYTkLuvFdq4aATiLEi12KODjMALh30B2QqccWI9SdHQlC9sSQy4CGAI5jAI9paUACa0AGYAhgCuADbWmorm8uIIgunK2JlaAlDMAOYixVncCE6UQgBKylIyypKUJnUgbVSdYcyNnMouJoQ5FpTdYRG90AjM6JmUAGIQnW4QAGoA9qnxpbTMQA"><img alt="" src="images/transistor_switch_off.png" style="margin-left: 10px; margin-right: 10px; width: 150px; height: 186px;" /></a><br />
+					transistor switch off</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iCciOvipT10hs+IbJUKEALKPHCwycThATphJYTkLuvFdq4aATiLEi12KODjMALh30B2QqccWIMZIRKSw2X5EL2JJgBUND2lpQAJrQAZgCGAK4ANtaaiuby4giCacq+IgJQzADmBbyZ3AhOlEIASspSMsqSlCY1IC1U7TAIzPWcyi4mhNkWlJ0w4d3QvegZlABibq4gjCAAagD2KXHFtMxAA"><img alt="" src="images/transistor_switch_on.png" style="margin-left: 10px; margin-right: 10px; width: 150px; height: 186px;" /></a><br />
+					transistor switch on</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	If the base voltage is less than these 0.7 volts, the transistor is off, meaning no current is flowing between collector and emitter.&nbsp; However, if the base voltage is higher than about 0.7 volts, than the transistor is on, meaning a high current is flowing between collector and emitter.</p>
+<p>
+	.</p>
+<h3>
+	Transistor as Current Amplifier</h3>
+<p>
+	In addition, a transistor can be used as an amplifier, which is its most important application.&nbsp; There are three configuration to do that, and they are called</p>
+<ul>
+	<li>
+		common base,</li>
+	<li>
+		common emitter, and</li>
+	<li>
+		common collector.</li>
+</ul>
+<p>
+	Since the first one is hardly used, we will not talk about it.&nbsp; The second one is the most common one, and the last one is also used quite often.&nbsp;&nbsp;</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iMgCwjr4qW9kUNvxDZKhQt3EhCIsMgk5ZU2crnsFAvpO6DZzAE6iZWtdijg4zAC7hisgOyFRhZ5YgxkbhIQTISSHRIX05OT2gAkkdfEixAkhJMFyxKABNaADMAQwBXABsbeUVzV39hTRLiCzN9SGYAc1F9Wt9LeoAlFWkJTkoZSko+qkGoaARmLq4nF04LPyFR4bA0drGJ42m3FIdtj2t0GsoAMU9LJEYQADUAe0LshtpmIA"><img alt="" src="images/transistor_emitter.png" style="margin-left: 10px; margin-right: 10px; width: 206px; height: 186px;" /></a><br />
+					common emitter</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iCciOvipT10hs+IbJUKEALKPHCwycThATphJYTkLuvFdq4aATiLXYRAqODjMALuGLhJ0+ZTCOLEejEiSJmBMjV0AHZghGxTGGQSQnQxZCDIEh4wEnDLSgATWgAzAEMAVwAba01KMREweyF2ZwqtEyhmAHMzXlr0BEILIQAlZSkZZUkyylGQYaoxmARmPuQnN0lTSoiLCaQp6BmjeYcne1dpFytYyxAAMQgxpEYQADUAe2LcptpmIA"><img alt="" src="images/transistor_collector.png" style="margin-left: 10px; margin-right: 10px; width: 166px; height: 186px;" /></a><br />
+					common collector</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	You can remember which is which, by looking at the emitter of the transistor: if the emitter is connected to (common) ground, then it is common emitter.&nbsp; Although the diagrams look almost the same, the two amplifiers have somewhat different properties.&nbsp; We put those differences together in one table [10]:</p>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="width: 500px">
+	<tbody>
+		<tr>
+			<td>
+				&nbsp;</td>
+			<td style="text-align: center;">
+				<strong>common emitter</strong></td>
+			<td style="text-align: center;">
+				<strong>common collector</strong></td>
+		</tr>
+		<tr>
+			<td>
+				<strong>input impedance</strong></td>
+			<td style="text-align: center;">
+				medium</td>
+			<td style="text-align: center;">
+				high</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>output impedance</strong></td>
+			<td style="text-align: center;">
+				high</td>
+			<td style="text-align: center;">
+				low</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>voltage gain</strong></td>
+			<td style="text-align: center;">
+				medium</td>
+			<td style="text-align: center;">
+				low</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>current gain</strong></td>
+			<td style="text-align: center;">
+				medium</td>
+			<td style="text-align: center;">
+				high</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>power gain</strong></td>
+			<td style="text-align: center;">
+				very high</td>
+			<td style="text-align: center;">
+				medium</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>phase shift</strong></td>
+			<td style="text-align: center;">
+				180&ordm;</td>
+			<td style="text-align: center;">
+				0&ordm;</td>
+		</tr>
+		<tr>
+			<td>
+				<strong>typical use</strong></td>
+			<td style="text-align: center;">
+				switch, amplifier</td>
+			<td style="text-align: center;">
+				impedance matching</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	So depending on what you need, you pick one or the other.&nbsp; If you are not sure, go for the common emitter.</p>
+<p>
+	.</p>
+<h3>
+	Transistor as Voltage Amplifier</h3>
+<p>
+	First and foremost, bipolar transistors amplify <em>current</em>.&nbsp; But what if we want to amplify voltage?&nbsp; Well, with a resistor and Ohm&#39;s law we can turn voltages into currents:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7lCOvipV8lGx6duhQgBZh-QoLDJKhAOyEhfAQHMV3WbwTLKkZugWVs8pUMXKI+5gDcOqs3o5jKYWOg77oCZgCcOSxBTECCTOGgSaXZ6ZAkw0PNpdGwQfgAxa3BweEpGEAAlWgBnAEtigBcAQwA7AGNaQ1SkTK8fcHb8gDUAewAbarVGoA"><img alt="" src="images/transistor_turn_voltage_into_current.png" style="margin-left: 10px; margin-right: 10px; width: 214px; height: 90px;" /></a><br />
+					turn voltage into current</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	But, in addition we need to remember, that the voltage drop between base and emitter has to be around 0.7 volts.&nbsp; We can do this by adding something like 0.5 volts to our input signal with a voltage divider (that is two resistors).</p>
+<p>
+	Once we have that, we can amplify voltages.&nbsp; In the example below, we amplify an input voltage with a range of 0 to 0.9 volts into an output voltage of 0 to 9 volts, that is an amplification by a factor of 10.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7lCOvipV8lGx4hslQoQAsw0YLDJe3MZL4hCzAE5CRQsAHZ+lLJGYAXcMRU7CQwpY4R66aCR3iS6SMix704-dGRukOgkkDZyCISQ4hCGIAAmtABmAIYArgA2xjJyKtjYQspGAOYF3LK8ERxGAEoqElIq4pRalJRNIGStUNAIzOg6Bjm6-OUqCCNVfQMNNlZg5rPgk+yjw40GeirMAG4chRZWXe1gsJJdML0aorZai81wTqrs9MiSdwdb6PnzIABiEAZwPBKIwQNVaABnACWEOMyQAdgBjWh9b4Qf5VHrgLGggBqAHtMskiiigA"><img alt="" src="images/transistor_as_voltage_amplifier.png" style="margin-left: 10px; margin-right: 10px; width: 222px; height: 186px;" /></a><br />
+					voltage amplifier</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	You may notice the phase shift of the common emitter circuit: the 0V input voltage is turned into a 9V output voltage and the 0.9V input voltage is turned into the 0V output voltage.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_fet.png" style="margin-left: 10px; margin-right: 10px; width: 105px; height: 108px; float: right;" />Field-Effect Transistor (FET)</h2>
+<p>
+	Besides the bipolar transistors, there are also the field-effect transistors (FET) [11].&nbsp; In principle, they are quite similar.&nbsp; The main differences is, that one, the terminals of FETs are called source, drain, and gate (corresponding to emitter, collector, and base, respectively), and two, they are triggered by voltage and not by current.&nbsp; Meaning no current has to flow through the gate for the transistor to switch.&nbsp; It basically turns voltage into current:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iMgCwjr4qW9kUNvxDZKhQt3EhCIsMgF9J3QbOYAnUTIWUwAdiF648xbOzZRayMwDmVvrp4JCUYQCVZUsRM6UZlJR+VIFQ0AjMnlyy+q6cloQIRm7BoYHhzOj6lNGEseDEMa4QgZnZogZCTolVbjYAZgUJ+dX56MXhYZBy6Jb6IABiJW5IjCAAagD2ADYALgCGtrTMQA"><img alt="" src="images/transistor_fet.png" style="margin-left: 10px; margin-right: 10px; width: 166px; height: 186px;" /></a><br />
+					fet transistor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	This has an interesting consequence that you should be aware of:&nbsp; the bipolar transistor will only be &quot;on&quot;, when a current is flowing.&nbsp; Not so the FET.&nbsp; To see this, consider the following circuit:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iiOvipV8lGx5DChACzDBYZL24jxfEIWYAnIdkpSN0qODiTtmoWADs-SPsqEcQheYDmN7ofQJCO8wDNwxcCTeGwP05-aCQYSCUAYw5CY39+QLdKcPhIEnSMzKyyFLTs7OQEdChYSBZVKUU4jltdcwA3EHpRbE5uZtb1dxBRGm6YBGYAZw4uysSdCA8AQwAbIdoVDgmwHwmNeH0QMe0u83YO7a0jgQOWtoT+W2YgA"><img alt="" src="images/transistor_fet_switch.png" style="margin-left: 10px; margin-right: 10px; width: 214px; height: 186px;" /></a><br />
+					fet switch</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	If you replace the FET in the circuit above with a bipolar transistor, you will notice the difference.&nbsp; To see the effect in practice, watch video [12] starting at position 5:00 minutes.&nbsp; Also notice the different voltage it needs to be turned on and off.</p>
+<p>
+	Why are FETs, especially MOSFETs, so important?&nbsp; Because they can be fabricated much smaller then bipolar transistors, and therefore basically all integrated circuits are made with FETs.</p>
+<p>
+	It is not a book on</p>
+<p>
+	.</p>
+<h2>
+	Multivibrators</h2>
+<p>
+	Three very interesting circuits that we can build out of transistors, resistors and capacitors are the <em>multivibrators</em> [13].&nbsp; They are interesting because we need them to build a computer.&nbsp; The astable multivibrator generates the clock cycles for our computer, and the bistable multivibrator is the basic unit that stores the bits in the memory of our computer, i.e. the RAM.</p>
+<p>
+	.</p>
+<h3>
+	Monostable Multivibrator</h3>
+<p>
+	We start with the simplest, but also most useless of the multivibrators, the monostable multivibrator.&nbsp; When you close the switch in circuit below, the dark LED will lighten up, but after a while, the other LED will turn on again, and stay on.&nbsp; So one of the two LEDs (two states) is the stable state, hence mono-stable.&nbsp; It is not totally useless, and its usually used to turn a rather short signal, into a longer signal of a fixed time interval.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXFXXFAlIgspAciFRwUaKWSkKCBMgmQwWfuRmlSWCvjoZS+LPgq5q4OCAAmzAGYBDAK4AbbpwDuICgpC56UQEAqE4AJxExcAoKSPFIAXoSOC84lEI0rGR6SFTkfhFs8EssnM4wOTSQoOjYmjsnN25WV2YbaRyZNU4Ac0yimqxRKVyAJR8-EPN6EM6KegwRmQRwvniBGuzEq3hUjhoQsAwDsu8jk6qyipp9-yTLSjrbBxd3FraOkdguCNvH4poWykyVy3k2CTSyHmoV450EwluEmESRArAo0HwkHykAo+QwdEUxy6pjUGAwR3wFWouPwCOsDVeHjOlmQGVupVCZyJSLWKAhuQAxuBuRDEfyuvAyVLpTKyaj0ZBaXpydTcFlhjA4D9hYDRUTZjsUszdQJEdDQTq+eICjzcgBnXk8-IbIoo7hhZzMPIFDmDV2cIA"><img alt="" src="images/monostable_multivibrator.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 178px;" /></a><br />
+					monostable multivibrator</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h3>
+	Astable Multivibrator</h3>
+<p>
+	Next up is the astable multivibrator. Again, it has two states (or LEDs), but the interesting thing is, that it keeps on switching back and forth between the two states, i.e., none of the states is stable, that is astable.&nbsp; This is a frequency generator.&nbsp; It can be used to generate the clock-cycles for our computer.&nbsp; Depending on the values for the resistors and capacitors, basically any frequency can be generated.&nbsp; We can also use it to create a blinker or we can use it to create sound, if the frequency is high enough.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEBmaBOMAmLAOZa0cwFltkQFIKKqEBTAWjDACgAXETHHThANhR8emflHBRofZGFI5MAFjB80Adkgq+SGHyHScQsPMg4V8oeDggAJnQBmAQwCuAGzYsA7iDPyQOKsnM-KBYAJ0EeQx8A4WMxMHgPcM4VTCTSKkhE6JRMKmZU9OClAsD-c0jOazsnVwZnOitxDIlIVgBzNNy0gLFMgCUvPh8g+SCg5qMQNF6JBBYAYyTc4W5OWIzYeAJtnd2CCmgVNARMNHl5flVogRg4VjCuGJWecYsEz3zfPLRU8cTHr5JP7FcBYQGfCqpGwOFxsOoNJq9WD3UGpCqfZZxd5LWLZBQZdjgH68AQY0R5EAMNCHPgyHCUZAIVQ4eQKSkIQ4IPCQIxgFJ8XJKN5VGGuRIYlKonIEj7EkQCAGYzKLMBy2IY9YtLZ7HX7BioZDIeQaTCGlTIdQ6TAqLUo1WpTH2wF5eCZD5gx0eyZuokO2KK8ni4lBAF-IA"><img alt="" src="images/astable_multivibrator.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 178px;" /></a><br />
+					astable multivibrator</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h3>
+	Bistable Multivibrator</h3>
+<p>
+	Finally we come to the bistable multivibrator, also called <em>flip-flop</em>.&nbsp; Again, it has two states (or LEDs), but this time, both of the states are stable. When we close the &quot;reset&quot; switch, the LED is off.&nbsp; When we close the &quot;set&quot; switch, the LED turns on.&nbsp; And stays on, until the &quot;reset&quot; is closed again.&nbsp; And this is the type of circuit that your computer uses to store information, one bit to be exact.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXFXXFAlIgspAciFRwIVrmhh8CLBQlgElSBVwUosUkIT4Mx-CvU4kJegBNmAMwCGAVwA23TgHcQFUjtz1RAX8oTgAnETFwCh1AlEgBeitITwjxQlSRZHpkrzAMGiws8GpM7M4AcwzCgMisUSlkgCVvXxBgrXpg7O96DAbdBDC+cXiMrITweBzimmC82bLc-LaaoLKwUhoOBZmonRpbR1duVhdma2lumEgucO293fGpJJTYp7eKMt55wWF7iWEiQGuCUFCMyGiEP0+F0+isCG0alEGA2AisIEOzjcKX+6Xu1RCSxoAOGcQSOJKT3+n0J4GWT2Q-F+IQAzqSSYyBASgdxQk5mClOaUqkVkndKaMfk9ElNOGypZIftzpLz+TjlgShdzXpFgrFKDpkgAPOIQZBGFDEPg0HQlULMFnMdwm5DGFAW4gwxk28A0R3uIA"><img alt="" src="images/bistable_multivibrator.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 178px;" /></a><br />
+					bistable multivibrator</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	Logic Gates</h2>
+<p>
+	The other important application of transistors are the logic gates [14].&nbsp; In the second chapter, we have seen how to build them out of switches.&nbsp; Since transistors can act as switches, it is not surprising that we can build them also out of transistors.&nbsp; Below you see all the logic gates build with transistors, we start with NOT, AND and OR,</p>
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAncDG0hT41quKCmSROAcxQV6yXGOTyQWSEPpSASsJCC1G-ZvGqkWqOk5hSNFfVFyH-FCAAmzAGYBDAK4AbABdWf2Y3cHEtWC4AZRAKZUgxGxQk8QgffwBnZnFkHnjE5MVUsQd4KUDwEslk0gU0h0sEBAp8WwoKZAQlfnwsS1J2sAx6kgx8Ee7wOHcvPyDOAHcQdlIUJVWU5BUoZa31naFt3akVteMD6rL9i8c7lzOrqfB1l6f7a43i5VuUgxeBieNmcIhc732L0cUMekPqEmOLiOexWL2RaM2TwuimSSMxkPBNVUjg+xKRqhxKL0lM+lKkQA"><img alt="" src="images/transistor_NOT_gate.png" style="margin-left: 10px; margin-right: 10px; width: 230px; height: 170px;" /></a><br />
+					NOT gate</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXcZXcBQrhS9SsLEhWFaBjnyMFXItwcIrGFVzKw+BGFL5SqwkhL0AJswBmAQwCuAG26cATuAw1kyYWE8gsBBoxeE4AcxRCAKDImixjKChOACUPGlx6LEhhDMT6CiY8qHROAy8o-gFkKMCvECs7J25WR2YLcCKYSC53JUFffn7E8zhOAGUQPvERIfp6O0cAZ2ZE5HHJqsgBAxQt4ZAF5dW3Dd3tweQ9kNDeak3t0TP9mAR8SneCBGUsZFfir+wFB8OFeclIhnAcHqNgczk4AHcpD9ojRWMjvBIEUivD4Zhikoi0TjhESRHMsaSDGJSGSCVIdrl2DS7nSmXwHuzWTsWWy-MEKdz-IL+YjqsSApcULi1oSGWJ-LlIFiqVLfP58UrESrtULHprsSi0ob9XzDWLjSdzfirdpVpdlY8WaaWSbHUL3SKjTqaKaTQr5T7BvqrbjTRrOEA"><img alt="" src="images/transistor_AND_gate.png" style="margin-left: 10px; margin-right: 10px; width: 246px; height: 194px;" /></a><br />
+					AND gate</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXcZXcBQrhS9SsLEhWMChkjIEpOgkzJIGWVGikspUrmT4cFXHGQYaJegBNmAMwCGAVwA23TgCdwFlMmFgfLAQaMXhITgBzFEIQIJpDGl0BenCAJV9hU1jdECyUkAomKGKYBE4wUniY-gEE2OCUEFtHV25WF2ZrcBKtSC4vE0F-fiHiqzhOAGUCgXERUclHFwBnZmLkKZmUSFnSbeTupdX1zy21WZHzsbCePlqdkXoryWloWXlFZVUdvZgdPQMRg0pkgWFwECsTXszjcnAA7lIsIkGqwkRkoPDEfE-PNkDjwgjUdjhETHhjCWiKmI9lTyVIKrl6OwaSMCfSWbs7nTmVyeQEQpi+T4Gfy6XU8cIkU8cRtCQyshLGXTadRajjVcrRN5idqxerLuqfGzaYrRYrjVqVcKtcbrWIfObMYqFfrkoK0XFdZ7bTrxfjMaLPXVvac-cJxbgDnjwkA"><img alt="" src="images/transistor_OR_gate.png" style="margin-left: 10px; margin-right: 10px; width: 244px; height: 186px;" /></a><br />
+					OR gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	continue with NAND and the NOR,</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXcZXcBQrhS9SsLFR0pBPlwIEuCqXyysCLFJnZSyulQr5sSEvQAmzAGYBDAK4AbbpwBOKZMN1vh1AfWTJITgBzFEIUXAFkMKxICShOACUvEE8sLFIUuPoKJig8mAROMFIaKJofUPKMUpALGwduVntmM3B8qUguVwoBcT5eoTzTOE4AZRAewW8MvskbewBnZjzkMYnIyF6MgN82+aWVl3WUTf6T3eHA3gqdkT9TyQKZOQUlFVl+X2htdL1Yyjk+AgplqVjsjk4AHcQKwsKUIjC4clAtDYaV3CJkVDEejhGi7vFUUjimIZqJCTDiplKTN+BT2LStmcUTSzgzwNV6VSwJzuZyWWUznCxHTVqiqZ5-B4JNiSWcpczZeSebiOTQBRibpr+Uq-NrVSy5UbeeTDSaxJyFWbVSrwr5sfjPmq7RSFTcwhUBR7LWEndaXYK-ZwgA"><img alt="" src="images/transistor_NAND_gate.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 170px;" /></a><br />
+					NAND gate</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXcU+yhXAYagqOBCss0DBgpZIxSMlKksq0iAqw5CpWXzVcWLG1zg4IACbMAZgEMArgBtunAE4gFQ0kO-hkc3pkZEhOAHMvBBpA8yxor0ghejCAJUSfISpNX3F6CiY8qHROMFIaeNFAqNERFGs7J1dWZ2YrCRTiyC5PXAEKITL+5It4TgBlLXMxMvABoodnAGdmcWQJqZRIac1QoPFFlbWPYRjtlEIt-ZIx3mRLvYyr8QgpGV1FEhU1DS0deU+cFIhkCplY00sNgcLjcAHdNmI+nNkpx4UjEcEEJowvCwHUhqdnjjNo88WcgqiniE-EkUFioJT-Mh6UjmdjGbSyU8jAzcfjqv4ecTKihcOYpDExbzJFhJeLZShkCj4RLFYNdkrparqTLRPwtQqCbMCcLabl2DllZJZubjdViRaAjsnVq7eLjXUHR69YThQkeQUBNV1vDBQL-faTiKuSLYuI6GEgA"><img alt="" src="images/transistor_NOT_XOR_gate.png" style="margin-left: 10px; margin-right: 10px; width: 294px; height: 170px;" /></a><br />
+					NOT-XOR gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	and notice, that we can turn the NOT-XOR into an XOR by inverting its output with a NOT gate:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgAXcU+yhXAYagqOBCsK0DGRFYsCBBVIjSSBLDlFFWSFmT58uNrnBwQAE2YAzAIYBXADbdOAJxB6hpIV-DIzemRkSE4Ac08EGgCzRRo-elCAJRAKCjMfWmoQTMTUpnFE9E4wUho0sw5y9PB8UhQrW0cXVidmSwk8mEguD1wBNL4BoQF4UIBlVMrB0vBBvPsnAGdmcWROSZqQyvrtwpBFlbX3YWjIM0MzwPN4HhRCFHPPSCE9gUlpWVUdJRU1DS03wUCD0BiM+FMN0a9mcrgA7lM5kJ+kioJwESixCjkAh6qEEWARENTo9AujEXtCVc0Qi-MFfC8ULiac9Xszscz8aySX5qGSCUS+dyhVy4ihcGZWAZxfzJNKYnLosgRuSpUqhLN6Sy1ShlYriVydaUBPVjSy-Jl2PVcqrZpbZiLbaaAnx-LKrW7JA6iYbvaJTT7yRVwNkKBhTdl1h5eS6sLgNS7RrdeHGE2YqM7rhAYEosPwXtQcBRlRhs9BSHVSthqBxzoWodYYS5yWKFRmZSz22J2wqucHMu2bQjBwzvCqPCPUg7skEQkHp9VKjP57sJaktmu+zUwHV1xdN5wgA"><img alt="" src="images/transistor_XOR_gate.png" style="margin-left: 10px; margin-right: 10px; width: 342px; height: 170px;" /></a><br />
+					XOR gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	In the research section, we will talk a little more about the NAND gate and its profound philosophical implications.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Review</h1>
+<p>
+	In the lines above, we focused on active components, such as diodes and transistors.&nbsp; To be more exact, we saw silicon diodes, LEDs and Zener diodes, as well as bipolar and field-effect transistors.&nbsp; We learned that diodes can be used as constant voltage source, for current steering and over-voltage protection, even temperature measurement.&nbsp; We now know how to use transistors as switches and as amplifiers, with the common emitter and common collector circuits.&nbsp; Finally we learned about the multivibrators, and towards the end build all the logic gates out of transistors.&nbsp; Again, pretty amazing what we accomplished.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Labs</h1>
+<p>
+	In todays lab we will learn about active electronic components such as diodes, LEDs and transistors.</p>
+<p>
+	.</p>
+<h3>
+	Preparations</h3>
+<p>
+	Before attempting to perform any of the experiments in this lab, you need to have done the following preparations beforehand.&nbsp; You have to be able to</p>
+<ul>
+	<li>
+		measure current with a multimeter,</li>
+	<li>
+		find the direction of a diode and an LED,</li>
+	<li>
+		identify B, E, and C on a bipolar transistor.</li>
+</ul>
+<p>
+	.</p>
+<h3>
+	Note to Instructors</h3>
+<p>
+	Equipment: Alligator clips, Arduino box, multimeter, engineering paper,&nbsp; Zener diode 1N5226, bipolar transistor BC547.&nbsp; Experiment 2 should be done in groups of four students since two multimeter are needed.</p>
+<p>
+	.</p>
+<h2>
+	1. Diode</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	First, take a diode and measure its resistance.&nbsp; Notice, that a diode has an anode and a cathode.&nbsp; Identify each, and measure the resistance in both directions.</p>
+<p>
+	Second, diodes can be used to create a source of constant voltage.&nbsp; Use two diodes and a resistor (!) to create a voltage source of 1.4 volts.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciMdh151EEAWSmUrjoCZgHc+3bL0KEh83pGYATbspSUlK-d3AA5EZCGbtKgYbDI9JsxYBOV1W8OUscGXJs6BdQAHdxsFNwhxX0MY8M9ogK4eOXUAD3IVMGwIAHYkLJVM-gA1ZiA"><img alt="" src="images/diode_constant_voltage_source.png" style="margin-left: 10px; margin-right: 10px; width: 187px; height: 146px;" /></a><br />
+					diode constant voltage source</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Third, use a diode for current steering: build the circuit &quot;diode protection series&quot; from class.&nbsp; Instead of the light bulb use a motor.&nbsp; You should notice, that no current is flowing when you switch the poles of the battery.</p>
+<p>
+	TODO: not sure if the following circuit is really useful, since diode is in the wrong way</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR14RxRhAFkplKk6AmYB3ft14hChEYr6RmAEwWDsy1cqF8ttAGYBDAK4AbAC7MAHiGSVCyJNgjv9asFxIANWYbAzU9MPVhCBFoZFV8TA8AdgoSEWSoJ2URfXd0ZXTlZC4-LgBZAHs7SoAnZiA"><img alt="" src="images/diode_protection_motor.png" style="margin-left: 10px; margin-right: 10px; width: 188px; height: 122px;" /></a><br />
+					diode protection motor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_PC_diode_current_voltage.png" style="margin-left: 10px; margin-right: 10px; width: 369px; height: 325px; float: right;" />2. Current-Voltage Characteristic of a Diode</h2>
+<p>
+	<strong>NOTE:</strong> this experiment should be done in groups of four students.</p>
+<p>
+	Equipment: Arduino box, multimeter, engineering paper.</p>
+<p>
+	<strong>Important:</strong> If you destroyed a multimeter in the last lab, because you did not understand how to measure current, you should not attempt this experiment.</p>
+<p>
+	First take a look at the datasheet for the 1N4007 diode [16].&nbsp; Notice that on the 3rd page it shows several diagrams for the current-voltage characteristic of that diode.&nbsp; We want to repeat one of those measurements.&nbsp;</p>
+<p>
+	Before startung make sure you read reference [17].&nbsp; You need to be able to create voltages between +9 volts and -9 volts.&nbsp; In experiment 6 in lab 3, we created a continuous voltage source that can give us voltages between 0 and 9 volts.&nbsp;</p>
+<p>
+	Before attempting to do this experiment with a diode, we can do it with a simple resistor.&nbsp; Use maybe a 10 kOhm resistor.&nbsp; Change the voltage from +9 to -9 volts, in one volt increments, and measure the current flowing.&nbsp; Write down your measurements in a table, and the graph the table.&nbsp; You should get a straight line.</p>
+<p>
+	Next, use the diode instead of the resistor.&nbsp; Again modify the voltage, but this time, in the forward direction we need voltages between 0 and 1.0 volts, ideally in 0.1 volt increments, and in the blocking direction we need voltages between 0 and 9 volts, ideally in 1 volt increments.&nbsp; Again, write down your measurements in a table, and then graph it.&nbsp; You should get a graph like the one on the right.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciACzqEddCOKCO40RlGAmYB3ASCHYFhbguGRmAE2WrFOhdiX8wAOTGRuzAB4hkEdBZDZ+DgOw8UHAGrMATuFcuXmNAkHQEfkpCIWZ0V0owUOD5ZIhJZgAHAyNhYiNDcAlZfT08tSUNOWjdArKyjUTdFTCIkoKILHgoaBJsBE74QbgIACVaAGcAS3GAFwBDADsAY1prMLhlJTijTA8wLi8AewAbGYBbWhnaXzWsCG4EJUSkbjs9rgBBM4urm7lErjhEKAoRQYp6PgJUKQsFAA"><img alt="" src="images/diode_current_voltage_characteristic2.png" style="margin-left: 10px; margin-right: 10px; width: 228px; height: 176px;" /></a><br />
+					current voltage characteristic diode</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	3. Light Emitting Diode (LED)</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	An LED is a diode that emits light.&nbsp; Most LEDs (at least the ones we are using) need protection through a resistor.&nbsp; In experiment 3 of Lab 3 we calculated how much resistance is needed for a given voltage.&nbsp; In general, the current flowing through a LED should be less than 20 mA.&nbsp; &nbsp;</p>
+<p>
+	First, connect a red LED to the 9V battery in series with its protective resistor.&nbsp; The LED should light up.&nbsp; It will do this, only if connected in the correct way (cathode should be connected to minus).&nbsp; Next, use the multimeter to measure the voltage drop across the LED (should be something like 1.9 volts).&nbsp; Finally, replace the LED with a different color LED.&nbsp; Notice that the voltage drop depends on the color of the LED.&nbsp;</p>
+<p>
+	Second, LEDs can also act as light detectors.&nbsp; Measure the resistance of an LED in the forward direction.&nbsp; Now shine on it with a bright light (smartphone flashlight).&nbsp; You will notice, that the resistance increases, depending on the brightness of the light.</p>
+<p>
+	As an interesting side note, it is possible to measure Planck&#39;s constant measuring voltages and currents of differently colored LEDs [21].</p>
+<p>
+	.</p>
+<h2>
+	4. Zener Diode</h2>
+<p>
+	Equipment: Arduino box, multimeter, Zener diode 1N5226.</p>
+<p>
+	The Arduino we are using, uses 3.3V for its power.&nbsp; Most power supplies for Arduinos (like USB power supplies), and also many of the other Arduinos use 5V.&nbsp; As long as we stay in one world things are fine.&nbsp; But once we start connecting other Arduinos or sources to our Arduino, things might get problematic or rather deadly for our Arduino.&nbsp; Also, sometimes you find circuit diagrams on the internet that you might want to use with your Arduino.&nbsp; But before you do that, make sure you understand for which Arduino this circuit diagram was intended.&nbsp;</p>
+<p>
+	However, not all is lost.&nbsp; Because we can use a Zener diode to protect our Arduino.&nbsp; For example, the 1N5226 is a common 3.3V Zener diode which we can use to protect our Arduino. Check out reference [22] and read the &quot;Level Shifting With a Zener Diode&quot; paragraph.&nbsp; Then build the following circuit, and test if it works.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciPth14TihCALJTKUJ0BMwDufEAN6FCwhYMjMAHiGQRCAdgjZCC-atVguJAGrMATgpULsSp4qHL4GgA7OlLv25kXggJWUdVYn9oqHDlVR5AxI1tdDhuQXR9XkwICy5rAHsAGwAXAFtaUto7cM4g1wTg2PRVAC9WEtKAQwBzWgAdAEd0aHQhMGhDYXQEYjASefhCBn0PbjHYtoiGnaiFEA6uvsGRseYgA"><img alt="" src="images/Zener_diode_voltage.png" style="margin-left: 10px; margin-right: 10px; width: 229px; height: 130px;" /></a><br />
+					Zener diode voltage characteristic</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	What you want to measure is the voltage accross the Zener diode.&nbsp; You should change the value of the resistor (maybe 220 Ohm, 1kOhm, 10kOhm) and measure the voltage for each.&nbsp; You should notice that the voltage stays close to the 3.3 volts.&nbsp; Our Arduino input is protected!</p>
+<p>
+	.</p>
+<h2>
+	5. Bipolar Transistor</h2>
+<p>
+	Equipment: Arduino box, multimeter, transistor BC546.</p>
+<p>
+	First, you need to find the transistor&#39;s data sheet [23].&nbsp; Use it to identify base, emitter and collector of your transistor.</p>
+<p>
+	Second, make sure to always protect the base with a protective resistor.&nbsp; If you don&#39;t, your transistor goes ka-boom.</p>
+<p>
+	Third, find out how to use the multimeter to test if a transistor is NPN or PNP, and your transistor is fine or already broken.&nbsp; Note the hFE your multimeter displays. Find what the hFE should be for your transistor in the data sheet.</p>
+<p>
+	Fourth, to get started, connect the motor directly to the 1.5 volt battery.&nbsp; Notice, that it moves rather slowly. Then connect it directly to the 9 volt battery.&nbsp; It is going quite a bit faster.</p>
+<p>
+	Finally, build the circuit below.&nbsp; Notice, that the motor turns pretty fast.&nbsp; Change the resistor to 100 Ohms (put two 220 Ohms in parallel).&nbsp; The motor now should turn as fast as if it were directly connected to the 9 volt battery.&nbsp; DO NOT MAKE THE RESISTOR SMALLER THAN 100 OHM!</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iMgCwjr4qW9kUZgBdwxEIQDshfpJlRwIetmiEEmGQkKFIYTnrIwpnZAjDYwU5NnTZIMoVkoATWgDMAhgFcANiLY5Ymw5QWEAc1C+MGQBbUVIZgAncRDpWS55WUodRIAPcClKC1lCGPBsJG5ygFkAexE6pOZfOX1q2MkEIWKoaHROQk4SKzszaU5sbOYCwhJ0SUwefUXuDpASADVmADcsnj508E5uSkoDDYS+hBnxSWwQyckRkHWwaARtvcywzKOz17FD5XGA3dhHdptE7CcEKMIxAR8RJ2cCUABiEAB7yQjBAmzq-k84VozCAA"><img alt="" src="images/transistor_as_switch_motor.png" style="margin-left: 10px; margin-right: 10px; width: 221px; height: 154px;" /></a><br />
+					transistor as switch motor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	If you are good at using the ammeter (i.e. you haven&#39;t broken one yet), you can measure the current going through the motor (use the 10A setting).&nbsp; You can compare that to the current going into the base of the transistor (use the 200mA setting). I measured a current of 140 mA going through the motor and of 1.3 mA going into the base of the transistor.&nbsp; Hence the amplification is about:</p>
+<p>
+	$$amplifcation = {140 mA \over 1.3 mA} = 107.$$</p>
+<p>
+	Looking at the hFE we measured (or looked up) we would expect a little more, but close enough.</p>
+<p>
+	Question: What is the hFE of the Darlington transistor TIP120 [24]?</p>
+<p>
+	.</p>
+<h2>
+	6. FET as Switch</h2>
+<p>
+	Equipment: Arduino box, multimeter, FET IRF520</p>
+<p>
+	FETs are more robust than bipolar transistors, since they do not react to current but voltage instead. This means we can directly connect the gate to 9 volts of the battery without destroying it (a bipolar transistor would not survive this).&nbsp;</p>
+<p>
+	First, check out the datasheet [25,26] and use it to identify the gate, drain and source terminals of your FET.&nbsp; Then find out what the &quot;Gate-Source Threshold Voltage&quot; is.&nbsp; You need to apply at least this voltage for the FET to switch.&nbsp;</p>
+<p>
+	Second, find out if you can use the multimeter to test a FET transistor.&nbsp; It probably will not work.&nbsp; Is there another way?</p>
+<p>
+	Third, build the &quot;fet switch&quot; example below. Notice, what happens when you connect the gate to 9 volt, and what happens when you connect it to 0 volt, i.e. the minus pole of the battery.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7iMgCwjr4qW9kUNvxDFsowcIDmkvmGQCEhKMIAe4AOyUw2FYQXhsSboYCyAewAuFgE7MANqLCdTisQiE6x0ZC-TK2GAkxJAkwQya6mIk6GKYPC7x3G4gJABqzABuYpoqUoR54K6qlJyUZJRV0AgihSoubjolkHVFUgoCfK0AZuDEuQ3u9TwNNVCwhCJgAyNcg8LsncXc843CQA"><img alt="" src="images/FET_as_switch_motor.png" style="margin-left: 10px; margin-right: 10px; width: 195px; height: 154px;" /></a><br />
+					FET as switch motor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Finally, try the following: using the circuit above, make sure the motor is turned of.&nbsp; Now rub your feet on the floor, and then touch the gate terminal of your FET.&nbsp; With some luck, the motor will turn, because the static electricity generated by your feet is high enough to turn on the FET.&nbsp; (Nowadays, FETs are usually protected against static electricity.&nbsp; If they weren&#39;t you would have just killed it...).</p>
+<p>
+	Question: What are the advantages of a bipolar transistor, and what are the advantages of a FET transistor?</p>
+<p>
+	.</p>
+<h2>
+	7. Multivibrators</h2>
+<p>
+	Equipment: Arduino box, multimeter, transistor BC546.</p>
+<p>
+	First, recall how capacitors work.&nbsp; When you charge them, and then discharge them, the voltage decreases slowly, following an exponential decay.&nbsp; Then build the circuit below.&nbsp; You will notice that when you close the switch, the LED goes on (use a yellow LED for best results).&nbsp; As you release the switch, you will notice that after some time, the LED gets dimmer slowly, until it goes off.&nbsp; Depending on the 220 Ohm resistor and the capacitance, this will take a different amount of time.&nbsp; This is the basis for the multivibrators.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWEAmM0EE4DMGAcB2ZLMSANjABYxkQFJbb6EBTAWjDACgB3EC0iiFz0spXEPqROAJxCjxlQfJSRx9EnB5yxKQtvFZkkzmFI1lw-eAqCaAE2YAzAIYBXADYAXVu+Z3wUIEwkFwA5laGIjpYokGcAEp8AhJ8lpaSfPQYQVDoMro0yAikcrFFJfTIRlrIepYWxrK1NJbN4KQZGpq8ykYGOsgUxgDGBSjFY5FBsPAYc-MLi9kwFARgGJSUOLgYVPi5cFwAzmOmlXrlgRCe0q7MNXpTylNSnqUll70T6iCs+NBYIZFChVCh4Ai4NTQVb4MAIXBgQHECgIURYcBwEAOFweTycIA"><img alt="" src="images/transistor_and_capacitor.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 178px;" /></a><br />
+					transistor and capacitor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Now we are ready for the real thing.&nbsp; Make sure you understand the difference between the different multivibrators.&nbsp; Although they sound and look almost the same, they have very different applications.&nbsp; Then build the astable and the bistable multivibrator. You can use the FETs instead of the bipolar transistor, they work as well.&nbsp; As for the astable, notice what happens when you change the values of the capacitors or the charging resistors (10kOhm). (Dont change the protective resistor or your LED will say bye-bye!)</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Challenges</h1>
+<h2>
+	Current-Voltage Characteristic LEDs</h2>
+<p>
+	Like with diodes, you can also measure the current-voltage characteristics for LEDs.&nbsp; Interesting enough, you will notice a dependence on the color of the LED.&nbsp; And even more interesting you can use this to measure Planck&#39;s constant [21].&nbsp; Explaining this effect is what got Albert Einstein his Nobel price.</p>
+<p>
+	.</p>
+<h2>
+	Current-Voltage Characteristic Transistors</h2>
+<p>
+	Transistor-Kennlinienfelder, Like diodes, transistors too have current-voltage characteristics.&nbsp; We will take a brief look at those in the labs [27,23,26].&nbsp; You can actually measure them yourself.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Research</h1>
+<h2>
+	Sheffer Stroke</h2>
+<p>
+	A few pages ago we mentioned that the NAND gate is very special [29].&nbsp; Mathematicians actually call it the Sheffer stroke [28].&nbsp; Why is it so special?&nbsp; It turns out that all other logic circuits, that is the NOT, the AND, the OR, even the XOR and the NOR can be build out of NANDs.&nbsp; This is totally unexpected.&nbsp; Interesting enough, the Sheffer stroke is what Mathematicians call funcionally complete [30].&nbsp; Knowing this and having heard about the Principia Mathematica [31], one may marvel at the simplicity of the creation.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Questions</h1>
+<ol>
+	<li>
+		How can you determine whether a diode is a silicon or germanium diode? What do you have to measure?<br />
+		&nbsp;</li>
+	<li>
+		Can an LED be used as a detector for light?
+		<ul>
+			<li>
+				yes</li>
+			<li>
+				no.<br />
+				&nbsp;</li>
+		</ul>
+	</li>
+	<li>
+		Suppose you are color blind. How could you find out the color of an LED by measuring something?<br />
+		&nbsp;</li>
+	<li>
+		Sketch a current-voltage characteristic curve for a diode.<br />
+		&nbsp;</li>
+	<li>
+		Does a bipolar transistor amplify current or voltage by default?<br />
+		&nbsp;</li>
+	<li>
+		Which one breaks more easily, a bipolar transistor or an FET?<br />
+		&nbsp;</li>
+	<li>
+		Please draw the diagram of a bipolar transistor and label base (B), collector (C) and emitter (E).<br />
+		&nbsp;</li>
+	<li>
+		Transistors are typically used in the common emitter or common collector configuration. Draw the schematic for one of the two.<br />
+		&nbsp;</li>
+	<li>
+		Identify which multivibrator is which.<br />
+		&nbsp;<br />
+		<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							<img alt="" src="images/astable_multivibrator.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 178px;" /><br />
+							&nbsp;</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							<img alt="" src="images/bistable_multivibrator.png" style="margin-left: 10px; margin-right: 10px; width: 254px; height: 178px;" /><br />
+							&nbsp;</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;</li>
+	<li>
+		Connect the component on the left side with its function on the right side:<br />
+		<br />
+		<table border="1" cellpadding="1" cellspacing="1" style="width: 500px">
+			<tbody>
+				<tr>
+					<td style="text-align: center;">
+						&nbsp; &nbsp; &nbsp;&nbsp; TMP36&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td>
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+					<td style="text-align: center;">
+						diode</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						BC546</td>
+					<td>
+						&nbsp;</td>
+					<td style="text-align: center;">
+						CPU</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						IRF520</td>
+					<td>
+						&nbsp;</td>
+					<td style="text-align: center;">
+						FET transistor</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						&nbsp;&nbsp; 1N4004&nbsp;&nbsp;</td>
+					<td>
+						&nbsp;</td>
+					<td style="text-align: center;">
+						bipolar transistor</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						741</td>
+					<td>
+						&nbsp;</td>
+					<td style="text-align: center;">
+						operational amplifier</td>
+				</tr>
+				<tr>
+					<td style="text-align: center;">
+						6502</td>
+					<td>
+						&nbsp;</td>
+					<td style="text-align: center;">
+						temperature sensor<span style="display: none;">&nbsp;</span></td>
+				</tr>
+			</tbody>
+		</table>
+	</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	References</h1>
+<p>
+	There are a few things that might be worthwhile your time.&nbsp; If you want to know more about how transistors work, you should read up on the p&ndash;n junction in the Wikipedia [2].&nbsp; If you want to watch a good Youtube video on how to design a transistor circuit, watch reference [32] by Ben Krasnow.&nbsp; The difference between bipolar transistors and field-effect transistors is really nicely depicted in video [12] by Jeff Feddersen on Vimeo.</p>
+<p>
+	Of more general interest is the video by Manu Prakash, Computing with fluids [33]. This reemphasises the importance of the NAND gate.</p>
+<p>
+	And because we have been talking about people in the previous chapters, you may want to read up on John Bardeen, one of the inventors of the transistor.&nbsp; And while at it, might be interested to find out who else won two Nobel Prices.&nbsp; While at it, find the family that one six Nobel Prices!</p>
+<p>
+	.</p>
+<p>
+	[1] Diode, https://en.wikipedia.org/wiki/Diode<br />
+	[2] p&ndash;n junction, https://en.wikipedia.org/wiki/P&ndash;n_junction<br />
+	[3] Datei:Kennlinie Diode 1N914.svg, <a href="https://de.wikipedia.org/wiki/Datei:Kennlinie_Diode_1N914.svg">de.wikipedia.org/wiki/Datei:Kennlinie_Diode_1N914.svg</a><br />
+	[4] Datasheet, https://en.wikipedia.org/wiki/Datasheet<br />
+	[5] Light-emitting diode, https://en.wikipedia.org/wiki/Light-emitting_diode<br />
+	[6] Zener diode, https://en.wikipedia.org/wiki/Zener_diode<br />
+	[7] Zener Diode Reference, <a href="https://web.archive.org/web/20090216233625/http://www.logwell.com/tech/components/zener.html">web.archive.org/web/20090216233625/http://www.logwell.com/tech/components/zener.html</a><br />
+	[8] Spannungsstabilisierung mit Z-Diode, <a href="https://www.elektronik-kompendium.de/sites/slt/1012151.htm">www.elektronik-kompendium.de/sites/slt/1012151.htm</a><br />
+	[9] Transistor, <a href="https://en.wikipedia.org/wiki/Transistor">en.wikipedia.org/wiki/Transistor</a><br />
+	[10] Grundschaltungen des Transistors, <a href="https://www.elektronik-kompendium.de/sites/slt/0203111.htm">www.elektronik-kompendium.de/sites/slt/0203111.htm</a><br />
+	[11] Field-effect transistor, <a href="https://en.wikipedia.org/wiki/Field-effect_transistor">en.wikipedia.org/wiki/Field-effect_transistor</a><br />
+	[12] Transistors - Darlingtons and MOSFETs, <a href="https://vimeo.com/107917397">vimeo.com/107917397</a><br />
+	[13] Multivibrator, <a href="https://en.wikipedia.org/wiki/Multivibrator">en.wikipedia.org/wiki/Multivibrator</a><br />
+	[14] Logic gate, https://en.wikipedia.org/wiki/Logic_gate<br />
+	[15] LED-Wechselblinker, <a href="https://www.elektronik-kompendium.de/sites/praxis/bausatz_led-wechselblinker.htm">https://www.elektronik-kompendium.de/sites/praxis/bausatz_led-wechselblinker.htm</a><br />
+	[16] Datasheet 1N4007, <a href="http://datasheet.octopart.com/1N4007-ON-Semiconductor-datasheet-642969.pdf">datasheet.octopart.com/1N4007-ON-Semiconductor-datasheet-642969.pdf</a><br />
+	[17] Ermittlung der Diodenkennlinie, <a href="https://www.elektronik-kompendium.de/sites/bau/0201113.htm">www.elektronik-kompendium.de/sites/bau/0201113.htm</a><br />
+	[18] Kennlinien von Leuchtdioden, <a href="https://www.leifiphysik.de/elektronik/halbleiterdiode/versuche/kennlinien-von-leuchtdioden">www.leifiphysik.de/elektronik/halbleiterdiode/versuche/kennlinien-von-leuchtdioden</a><br />
+	[19] LED introduction and important terminology, <a href="https://www.youtube.com/watch?v=7D7CSl_WF28">www.youtube.com/watch?v=7D7CSl_WF28</a><br />
+	[20] LED - Leuchtdioden, <a href="https://www.elektronik-kompendium.de/sites/bau/0201111.htm">www.elektronik-kompendium.de/sites/bau/0201111.htm</a><br />
+	[21] Classroom fundamentals: measuring the Planck constant, <a href="https://www.scienceinschool.org/2014/issue28/planck">www.scienceinschool.org/2014/issue28/planck</a><br />
+	[22] Level Shifting, <a href="https://itp.nyu.edu/physcomp/lessons/electronics/level-shifting/">itp.nyu.edu/physcomp/lessons/electronics/level-shifting/</a><br />
+	[23] BC546 - ON Semiconductor, <a href="https://www.onsemi.com/pub/Collateral/BC546-D.PDF">https://www.onsemi.com/pub/Collateral/BC546-D.PDF</a><br />
+	[24] TIP120, <a href="https://www.onsemi.com/products/discretes-drivers/darlington-transistors/tip120">https://www.onsemi.com/products/discretes-drivers/darlington-transistors/tip120</a><br />
+	[25] MOSFET IRF520, <a href="https://itp.nyu.edu/physcomp/lessons/electronics/transistors-relays-and-controlling-high-current-loads/">itp.nyu.edu/physcomp/lessons/electronics/transistors-relays-and-controlling-high-current-loads/</a><br />
+	[26] IRF520, <a href="https://www.vishay.com/docs/91017/91017.pdf">https://www.vishay.com/docs/91017/91017.pdf</a><br />
+	[27] Transistor-Kennlinienfelder, <a href="https://www.elektronik-kompendium.de/sites/bau/0203112.htm">www.elektronik-kompendium.de/sites/bau/0203112.htm</a><br />
+	[28] Sheffer stroke, <a href="https://en.wikipedia.org/wiki/Sheffer_stroke">https://en.wikipedia.org/wiki/Sheffer_stroke</a><br />
+	[29] NAND logic, <a href="https://en.wikipedia.org/wiki/NAND_logic">https://en.wikipedia.org/wiki/NAND_logic</a><br />
+	[30] Functional completeness, <a href="https://en.wikipedia.org/wiki/Functional_completeness">https://en.wikipedia.org/wiki/Functional_completeness</a><br />
+	[31] Principia Mathematica, <a href="https://en.wikipedia.org/wiki/Principia_Mathematica">https://en.wikipedia.org/wiki/Principia_Mathematica</a><br />
+	[32] Ben Krasnow, Applied Science, How to design a transistor circuit that controls low-power devices, <a href="https://www.youtube.com/watch?v=8DMZSxS-xVc">www.youtube.com/watch?v=8DMZSxS-xVc</a><br />
+	[33] NAND gate is universal, can simulate any other logic gate (Computing with fluids | Manu Prakash, <a href="https://www.youtube.com/watch?v=OhroLzvW-JI">https://www.youtube.com/watch?v=OhroLzvW-JI</a>)</p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

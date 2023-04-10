@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html" class="active">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><h1>
+	C. Simulator</h1>
+<p>
+	We will be using the Circuit Simulator, developed by Paul Falstad [1], who graciously put this incredible project under an open source license.&nbsp; The Simulator can be integrated in web pages, but there is also a desktop version available.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/CircuitSimulator.png" style="margin-left: 10px; margin-right: 10px; width: 360px; height: 248px; float: right;" />Overview</h2>
+<p>
+	Since it runs in a browser, no installation is neccessary.&nbsp; Using the <em>File</em> menu you can import and export circuit files.&nbsp; They are basically text files describing the circuit.&nbsp; Under the <em>Circuits</em> menu you will find quite an incredible number of example cicuits.&nbsp; Additional ones can be found on the website [2].&nbsp; The examples from the lectures are to be found in the file &quot;pc_003.zip&quot; on the Google drive.</p>
+<p>
+	Finally, if you want to modify existing circuits or create your own from scratch, you find all available electronic components in the <em>Draw</em> menu.&nbsp; You simply select which component you want to use, and click somewhere on the diagram to place it.&nbsp; You can then drag it around, change its size and direction and add it to the circuit as you like. By clicking on the &quot;Run/Stop&quot; button you can then start the simulation.</p>
+<p>
+	.</p>
+<h2>
+	<a href="http://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;startCircuitLink=http://127.0.0.1:9080../images/pc/switch_lamp.txt"><img alt="" src="images/switch_lamp.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 194px;float: right;" /></a>Get Started</h2>
+<p>
+	To get started, it is probably a good idea to start simple.&nbsp; For this draw a battery (&#39;v&#39;), then a resistor (&#39;r&#39;), a switch (&#39;s&#39;) and a lamp (), and connect the with wires (&#39;w&#39;).&nbsp; If you want a real lamp, instead of an LED, you find that under the Draw menu (Outputs and Labels &gt; Add Lamp).&nbsp; Now test your first circuit by turning the switch on and off.&nbsp;</p>
+<p>
+	,</p>
+<h2>
+	Circuit Diagrams</h2>
+<p>
+	Below are all the circuit diagrams that we will be needing:</p>
+<p>
+	<img alt="" src="images/all_circuit_diagrams.png" style="width: 636px; height: 452px;" /></p>
+<p>
+	.</p>
+<h2>
+	Of Interest</h2>
+<p>
+	As you will, the Circuit Simulator is pretty amazing.&nbsp; Towards to end of the class we will need the fact that it is possible to create and use subcircuits [3].&nbsp; Also, helpful might be the fact that one can import circuits through the URL:</p>
+<pre style="margin-left: 40px;">
+http://falstad.com/circuit/circuitjs.html?cct=
+$+1+0.000005+10.20027730826997+53+5+50%0Aw+304+64+304+128+0%0Ad+304+128+368+192+2+
+default%0Ad+304+256+368+192+2+default%0Ad+240+192+304+128+2+default%0Ad+240+192+304+256+2+
+default%0Aw+304+256+304+352+0%0Aw+368+192+416+192+0%0A207+304+64+304+16+4+
++in%5Cp%0A207+304+352+304+400+4++in-%0A207+416+192+480+192+4+
++out%5Cp%0A207+240+192+160+192+4++out-%0A</pre>
+<p>
+	.</p>
+<h2>
+	Other Simulators</h2>
+<p>
+	There are also other online circuit simulators.&nbsp; Some are free some are not, some are decent, some not:</p>
+<ul>
+	<li>
+		CircuitLab, https://www.circuitlab.com/</li>
+	<li>
+		PartSim, https://www.partsim.com/simulator/#1000</li>
+	<li>
+		TOP TEN ONLINE CIRCUIT SIMULATORS, www.electronics-lab.com/top-ten-online-circuit-simulators/</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	References</h2>
+<p>
+	[1] Circuit Simulator, <a href="http://falstad.com/circuit/">http://falstad.com/circuit/</a><br />
+	[2] Electronics Demonstrations, <a href="http://falstad.com/circuit-java/e-index.html">falstad.com/circuit-java/e-index.html</a><br />
+	[3] How to create subcircuits: <a href="http://falstad.com/circuit/subcircuits.html">http://falstad.com/circuit/subcircuits.html</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

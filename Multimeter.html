@@ -1,0 +1,144 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html" class="active">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><h1>
+	<img alt="" src="images/IMG_PC_1_Multimeter.png" style="margin-left: 10px; margin-right: 10px; width: 147px; height: 284px; float: right;" />B. Multimeter</h1>
+<p>
+	In our experiments we will need to measure resistance, capacitance, voltage, and current.&nbsp; We will be using a digital mutlimeter for this.&nbsp; Here we describe how to use a mutlimeter, and what setup is required for each of the different measurements.&nbsp; Mutlimeters come in all kinds of forms: analog and digital, cheap and expensive, but their usage is all very similar.&nbsp; If you know how to use one, you know how to use all of them.</p>
+<p>
+	.</p>
+<h2>
+	Digitial Multimeter</h2>
+<p>
+	If we look at any digital multimeter, two things are noticable immediately: the display with big digits and the round dial with all kinds of different settings.&nbsp; In addition there are two cables, one black and one red, with pointed ends, the multimeters test leads.&nbsp; Most multimeters have a fuse, that protects them in case they are used in the wrong way.&nbsp; Hence, when your multimeter doesn&#39;t seem to work anymore, don&#39;t throw it away: most of the time, all you need to do is replace the fuse, which costs only a couple of cents.</p>
+<p>
+	Also, most multimeters have only one way to connect the black cable, but there are several plugs for the red cable.&nbsp; You want to avoid the plugs that say &quot;A&quot; or &quot;mA&quot; (for ampere, that is current) on them, because those are the ones that cause trouble (more below).&nbsp; Hence, it is a good habbit, if not sure, to connect the plug that says volts or ohms.</p>
+<p>
+	Another thing to notice, especially with our multimeter, that by default it tries to measure AC.&nbsp; But we are only doing DC.&nbsp; So, if you measure the voltage of a 1.5 volt battery, and it does not read around 1.5 volts, but something more like 0, then it is not because your multmeter is broken, but because you have it in the AC setting.&nbsp; Simply switch it to the DC setting by pressing the DC/AC button.</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<table align="right" border="0" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7ipYQsiIYQCy9uUZgCcO4foLDJOwyi3YzKyabMmDIzQjN4CNewVx6UYkRRLBTDBrUvXGJ6fCKA"><img alt="" src="images/resistance.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 186px;" /></a><br />
+				measuring resistance</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	Resistance</h2>
+<p>
+	Measuring resistance is the easiest:&nbsp; first, you need to turn on the multimeter, most of the time by simply turning the dial.&nbsp; Second, you set the dial to the resistance setting, usually indicated by an Omega for Ohm.&nbsp; Here you start with the highest possible setting, usually some mega-ohm, like 100M.&nbsp; Then you simple take the two pointed leads and connect them to the resistor you want to measure.&nbsp; Make sure the resistor is not connected to anything else.&nbsp; This is very important.&nbsp;</p>
+<p>
+	<img alt="" src="images/IMG_PC_1_Resistance.png" style="width: 200px; height: 150px;" /></p>
+<p>
+	Let&#39;s say the resistor you want to measure is some kilo-ohms.&nbsp; Then if you measure it with the mega-ohm setting we selected first, it will read all zeros.&nbsp; Because compared to mega-ohms, kilo-ohms is basically nothing.&nbsp; So what you do then, you gradually adjust the dial, wait a little for the reading to stabilize, and continue this process until your reading starts to make sense.&nbsp; Now if you have something that has no resistance, either because it has none (like a wire or a superconductor), or because it has a short circuit, then continuing this process to the lowest setting of your device, it will always read zero.&nbsp; If it does that, then you know you have a short circuit.</p>
+<p>
+	.</p>
+<h2>
+	Short Circuit</h2>
+<p>
+	We can measure the resistance of just one component, like a resistor, or we can measure the resistance of a whole circuit.&nbsp; So before we connect the battery to our circuit, we can connect our multimeter instead of the battery.&nbsp; If the resistance we measure is zero, then our circuit contains a short.&nbsp; That means our circuit is a short circuit, and we should not connect the battery.&nbsp; Instead we should find the short, fix it, make sure it is fixed, by again measuring the resistance of the whole circuit.&nbsp; Only after being certain that we do not have a short, should we connect the battery!</p>
+<p>
+	.</p>
+<h2>
+	Capacitance</h2>
+<p>
+	Measuring capacitance is completely analoguous to resistance.&nbsp; You set your multimeter to the highest capacitance setting it has, usually indicated by a C for capacitance or something like nF for nano-Farad, or uF for micro-Farad.&nbsp; Again start with the highest setting.&nbsp; Then connect the capacitor to your multimeter.&nbsp;</p>
+<p>
+	A couple of remarks on measuring capacitance: first, not all multimeters can measure capacitance.&nbsp; Actually most of the cheaper ones, can not measure capacitance.&nbsp; Second, when measuring capacitance, you should do this only for the small capacitors that we have.&nbsp; Large capacitors (like the ones inside washing machines) are very dangerous.&nbsp; Quite often they might be still be charged, and a shock from a large capacitor, that was connected to 220 volts, and still holds some rest-charge, could be lethal!</p>
+<p>
+	.</p>
+<table align="right" border="0" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReAFDNlQgi6UWs0yHMat3XipuOFtsMd0AHO4RNehP52FuDiqrb2fkJRLoaeMcEJukA"><img alt="" src="images/voltage.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 186px;" /></a><br />
+				measuring voltage</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	Voltage</h2>
+<p>
+	Measuring voltage is a little more complicated:&nbsp; you measure voltage while your circuit is connected to the battery, that is on a &quot;live&quot; circuit.&nbsp; When measuring anything on a live circuit, one has to be quite careful not to accidentally cause a short circuit.&nbsp; So make sure you only touch the pieces you intend to touch!&nbsp; The diagram on the side depicts how you measure voltage.</p>
+<p>
+	<img alt="" src="images/IMG_PC_1_BatteriesSeries.png" style="width: 200px; height: 150px;" /></p>
+<p>
+	First, you select whether you want to measure DC or AC type voltage.&nbsp; We will only measure DC, hence select the DC setting.&nbsp; Second, pick the voltage setting that is slightly higher then your batteries voltage.&nbsp; So if you have a 9 volt battery, select the 10V or 20V setting on your multimeter.&nbsp; Finally, connect the black lead first, usually on the side of the resistor that is connected to the negative pole of the battery, and then connect the red lead to the other side of the resistor, usually the one that is connected to the positive pole of the battery.&nbsp; If you happen to switch the poles, you will get a negative reading for the voltage.&nbsp; That is fine.</p>
+<p>
+	.</p>
+<table align="right" border="0" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReAFDNlQgi6UWs0yHMat3XivQB2K44W2wx8OOZAA"><img alt="" src="images/current.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 186px;" /></a><br />
+				measuring current</td>
+		</tr>
+	</tbody>
+</table>
+<h2>
+	Current</h2>
+<p>
+	Measuring current is the most complicated, and should be done with care.&nbsp; Many multimeter (or better fuses) have not survived a wrong current measurement!&nbsp; The reason being, when measuring current, actually current is flowing through your multimeter, and to much current is just deadly for anything.&nbsp; But that is what fuses are for: in your multimeter, they protect the multimeter, in your house, they protect you.&nbsp;</p>
+<p>
+	For most multimeters, you will have to not only change the dial setting to measuring current (A), but you also have to reconnect the red (positive) lead to a different output terminal.&nbsp; Most multimeters actually have two different one: one for lots of current, like 10 amperes (10A), and one for smaller currents like milliamperes (mA).&nbsp; We only work with batteries, so the milliampere setting is what we want.&nbsp; Again, we start with the highest values our multimeter allows for, maybe something like 500mA.&nbsp; And we need to tell it, if we intend to measure DC or AC: we will only measure DC, hence select the DC setting.</p>
+<p>
+	Next we connect the multimeter to our circuit.&nbsp; If you look at the circuit for measuring current on the side, you will notice, that the multimeter is part of the circuit.&nbsp; So we kind of have to &quot;break&quot; our circuit: we need to find a spot where we can integrate our multimeter into the circuit.&nbsp; The easiest way to do this, simply remove one of the connecting wires, and replace it by the multimeter.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	Transistors</h2>
+<p>
+	Some modern digital multimeters actually allow for the checking of transistors and diodes.&nbsp; They can check if the transistor is still working, if it is a npn- or pnp-type, and usually can measure the transistors hFE value.&nbsp; For the details on how to do this, you should check your multimeters manual.</p>
+<p>
+	.</p>
+<h2>
+	Inductance</h2>
+<p>
+	Measuring inductance is exactly like measuring resistance or capacitance.&nbsp; However, only few multimeters can measure inductance.</p>
+<p>
+	.</p>
+<h2>
+	References</h2>
+<p>
+	[1] Multimeter, <a href="https://en.wikipedia.org/wiki/Multimeter">https://en.wikipedia.org/wiki/Multimeter</a><br />
+	[2] Multi-meters current, <a href="http://isaac.exploratorium.edu/~pauld/summer_institute/summer_day15current/meters_current.html">isaac.exploratorium.edu/~pauld/summer_institute/summer_day15current/meters_current.html</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

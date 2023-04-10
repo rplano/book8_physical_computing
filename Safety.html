@@ -1,0 +1,153 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html" class="active">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><h1>
+	Labs and Safety</h1>
+<p>
+	I am a strong&nbsp; believer in learning by doing.&nbsp; However, doing is sometimes a little more dangerous than not doing.&nbsp; That is why we have to talk about lab safety before we start.&nbsp; We are only dealing with batteries and some static electricity, nothing that you have not encountered before.&nbsp; But shortcircuiting a battery can cause a fire, or touching your precious iPhone or laptop, while statically charged, might be the end of it.&nbsp; That is why we need to be aware of lab safety.</p>
+<ul>
+	<li>
+		Static electricity, touch a large metallic object, like a water pipe, or a radiator.&nbsp; static discharge</li>
+	<li>
+		large capacitors are potentially dangerous</li>
+	<li>
+		periodically check batteries to make sure they are not hot</li>
+	<li>
+		always disconnect your circuits from the battery or power supply before you leave your workbench</li>
+	<li>
+		if you smell anything, remove the batteries and recheck your circuit</li>
+	<li>
+		don&#39;t connect power to a circuit until it is completely finished.&nbsp; double check your circuit before connecting it to a battery or power.</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	Safety</h2>
+<p>
+	Safety comes first.&nbsp; Some of the experiments can be dangerous or harmful, they are marked with the label &quot;Instructor&quot;.&nbsp; Those are potentially harmful experiments, that should only be done by your instructor or under the direct supervision of your instructor.&nbsp; Especially, people with a heart condition, should be extremely careful.&nbsp; Please let your instructor know if you have or suspect a heart condition.&nbsp;</p>
+<p>
+	We will only be working with 9 volt batteries, and those are completely safe, if used properly.&nbsp; Dangerous is anything that has to do with regular electric outlets of 110 or 220 volts: even currents as small as 50-100&thinsp;mA can trigger cardiac arrest [1].&nbsp; Also dangerous could be static electricity [3].&nbsp; So again, any of those experiments marked with &quot;Instructor&quot; should be done by your instructor.&nbsp; If through your actions you put others or yourself in danger, disciplinary measures will be administrated.&nbsp; Never perform any unauthorized experiment.</p>
+<p>
+	Although a 9V battery may seem pretty harmless, if used in the wrong way, it can cause a fire.&nbsp; Hence, always follow these simple rules:</p>
+<ul>
+	<li>
+		if it starts smelling, disconnect the battery!</li>
+	<li>
+		if it starts smoking, disconnect the battery!</li>
+	<li>
+		if the battery gets hot, disconnect the battery!</li>
+	<li>
+		never leave electric circuits unattended, always make sure you disconnect the battery, before leaving the table or the room.</li>
+</ul>
+<p>
+	In addition being harmful to people, electricity can also be harmful to equipment.&nbsp; We expect you to perform all experiments in a serious and professional manner.&nbsp; Some of the equipment is rather sensitive.&nbsp; You are expected to treat all the equipment provided with care.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	Preparations</h2>
+<p>
+	In the labs you will work in teams of two students.&nbsp; You will perform experiments and write down the results of these experiments in your laboratory notebook.&nbsp; Labs will require preparations beforehand, usually given as an assignment.&nbsp; In case you have not done the preparation, you are not permitted to perform the lab.&nbsp; Your instructor will check that you made the neccessary preparations before you are allowed to perform any of the experiments.&nbsp; At the end of the labs, your instructor will wittness and sign your entries, like it would be done in a real industrial laboratory.&nbsp; Your laboratory notebook is the only proof that you performed the labs, hence do not loose it.</p>
+<p>
+	Before attempting to perform any of the experiments in this lab, you need to have done the following preparations beforehand:</p>
+<ul>
+	<li>
+		You should know what to do in case of an emergency [2].</li>
+	<li>
+		You should know about the dangers of static electricity to people and equipment.&nbsp; (Look for &quot;dangers of electrostatics&quot; on Google.)</li>
+	<li>
+		You should know what a short-circuit is, and why it is dangerous.</li>
+</ul>
+<p>
+	In addition you should familiarize yourself with the laboratory notebook how to set it up, how to use it, and why it is important.&nbsp; For this please read [4,5].</p>
+<p>
+	.</p>
+<h2>
+	Laboratory Notebook</h2>
+<p>
+	You are expected to keep notes of all the experiments you perform in your laboratory notebook.&nbsp; To see examples on how this is done properly, you should read reference [4].&nbsp; We want to follow reference [7] for the outline of our experiments, which means, all experiments should include:</p>
+<ol>
+	<li>
+		<strong>Title:</strong>&nbsp; The title should be short and descriptive.</li>
+	<li>
+		<strong>Hypothesis:</strong>&nbsp; Briefly describe the intended experiment and what you expect the outcome to be.</li>
+	<li>
+		<strong>Materials:</strong>&nbsp; List the materials needed to perform this experiment.</li>
+	<li>
+		<strong>Procedure:</strong>&nbsp; In the procedure you describe the experiment in a step by step fashion.&nbsp; This should be brief, but contain enough information, such that somebody else, with your knowledge, can repeat the experiment and verify it.</li>
+	<li>
+		<strong>Observations &amp; Results:</strong>&nbsp; What did you observe and what were the results of the experiment.&nbsp; Not all experiments work perfectly, sometimes they don&#39;t work at all.&nbsp; Truthfully describe your observations.</li>
+	<li>
+		<strong>Conclusion:</strong>&nbsp; You started out with a hypothesis, in the conclusion section you either verify or falsify your hypothesis.&nbsp; In the scientific method [8], both are equally important.</li>
+</ol>
+<p>
+	In case you are interested to learn how laboratory notebooks are used in industry, we refer you to references [5,6].</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Further Reading</h1>
+<p>
+	You first <em>must</em> read reference [1] on &quot;Electrical cardiac injuries&quot;.&nbsp; Even currents as small as 50 to 100&thinsp;mA can trigger cardiac arrest, also take a look at table 1 in this reference.&nbsp; It also is required that you read reference [2] on what to do in case of an emergency.&nbsp; If you care about your equipment, like your smartphone and your laptop, then reading the article on &quot;Static electricity and people&quot; [3] might be very enlightening.&nbsp; For German readers the question why the Wikipedia has no German article for the scientific method [8] should be interesting to ponder about.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Questions</h1>
+<p>
+	Before you are allowed to perform any of the experiments, your lab instructor will make sure that you have read references [1] and [2], and will ask you questions about it.&nbsp; In case you can not anwer any of those questions correctly, you will not be permitted to take part in the labs.</p>
+<ol>
+	<li>
+		What should you do when smoke appears?<br />
+		&nbsp;</li>
+	<li>
+		What do you do if you suspect somebody is connected to 220 volts?</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	References</h1>
+<p>
+	[1] Electrical cardiac injuries: current concepts and management, Victor Waldmann, Kumar Narayanan, Nicolas Combes, Daniel Jost, Xavier Jouven, Eloi Marijon, European Heart Journal, Volume 39, Issue 16, 21 April 2018, Pages 1459&ndash;1465, <a href="https://academic.oup.com/eurheartj/article/39/16/1459/3746021">https://academic.oup.com/eurheartj/article/39/16/1459/3746021</a><br />
+	[2] Emergency Response Chapter 3 - Electrical Safety, <a href="https://www.allaboutcircuits.com/textbook/direct-current/chpt-3/emergency-response/">www.allaboutcircuits.com/textbook/direct-current/chpt-3/emergency-response/</a><br />
+	[3] Static electricity and people, Niels Jonassen, <a href="https://incompliancemag.com/article/static-electricity-and-people/">https://incompliancemag.com/article/static-electricity-and-people/</a><br />
+	[4] Instructions for Using Your Laboratory Notebook, IW Hunter and BJ Hughey, <a href="http://web.mit.edu/me-ugoffice/communication/labnotebooks.pdf">web.mit.edu/me-ugoffice/communication/labnotebooks.pdf</a><br />
+	[5] How to Start&ndash;and Keep&ndash;a Laboratory Notebook, <a href="http://www.iphandbook.org/handbook/ch08/p02/">www.iphandbook.org/handbook/ch08/p02/</a><br />
+	[6] Guidelines for Keeping a Laboratory Record, David R. Caprette, <a href="http://abacus.bates.edu/~ganderso/biology/resources/Lab_notebook_guidelines_DR_Caprette.pdf">abacus.bates.edu/~ganderso/biology/resources/Lab_notebook_guidelines_DR_Caprette.pdf</a><br />
+	[7] How to record an experiment, <a href="https://elementalscience.com/blogs/news/how-to-record-an-experiment">elementalscience.com/blogs/news/how-to-record-an-experiment</a><br />
+	[8] Scientific method, <a href="https://en.wikipedia.org/wiki/Scientific_method">https://en.wikipedia.org/wiki/Scientific_method</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

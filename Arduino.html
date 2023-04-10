@@ -1,0 +1,732 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html" class="active">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><p>
+	<img alt="" src="images/BK8_PC_arduino.png" style="display: block; margin-left: auto; margin-right: auto; width: 288px; height: 134px;" /></p>
+<h1>
+	Arduino</h1>
+<p>
+	After these introductory chapters, we are now ready to do some physical computing [1].&nbsp; We will use an Arduino board and connect it with the different electronic components we learned about in the previous chapters.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Arduino_BreadBoard2.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 76px; float: right;" />Hardware</h2>
+<p>
+	The first Arduino was introduced in 2005.&nbsp; Since then it has become extremely popular with hobbyists all over the world.&nbsp; The main reason being its ease of use, price and support.&nbsp; The simplest one is the Arduino Uno.&nbsp; We will be using the Arduino MKR1000 [2], which has a few very nice additional features.&nbsp; Besides those, there are many other Arduinos available.</p>
+<p>
+	.</p>
+<h2>
+	MKR1000 Board Specifications</h2>
+<p>
+	The MKR1000 has the following features:</p>
+<ul>
+	<li>
+		regular USB (5V) can act as power supply (VIN)</li>
+	<li>
+		operating voltage is 3.3V</li>
+	<li>
+		it has 8 digital I/O pins</li>
+	<li>
+		it has 12 PWM pins (0,1,2,3,4,5,6,7,8,10,A3 or 18,A4 or 19)</li>
+	<li>
+		it has 7 analog input pins (ADC 8/10/12 bit)</li>
+	<li>
+		it has one analog output pin (DAC 10 bit)</li>
+	<li>
+		the build in LED is at pin 6</li>
+	<li>
+		it supports Wi-Fi</li>
+</ul>
+<p>
+	Its CPU is a 32-bit ARM CPU running at 48 MHz.&nbsp; It has 32 KB of SRAM and 256 KB of flash memory.</p>
+<p>
+	To keep our Arduino healthy, we need to be aware of two things: the voltage applied to any pins should always be less than 3.3V and the current we draw from any of the I/O pins must be less than 7 mA. If we keep these limits than our Arduino will be fine.&nbsp; If not, it will be dead.</p>
+<p>
+	A very good reference into the foundations of Arduino hardware and software is reference [4].&nbsp; It is a very good idea to printout reference [3], the pinout of the MKR1000.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/Arduino_IDE.png" style="margin-left: 10px; margin-right: 10px; width: 330px; float: right; height: 403px;" />Software and IDE</h2>
+<p>
+	To program the Arduino, we need a computer.&nbsp; That can be a Windows PC, Mac or Linux computer.&nbsp; All the computer needs is a USB port. Arduino comes with software to program it, the Arduino IDE [3].&nbsp; It is very easy to install and use.&nbsp; Basically, the Arduino uses the C programming language, but to us it will almost look like Java.</p>
+<p>
+	Any Arduino program starts in the <em>setup()</em> method.&nbsp; This method is called only once, at the start of the program. &nbsp;</p>
+<pre style="margin-left: 40px;">
+void <span style="color:#0000ff;">setup()</span> {
+&nbsp; // executed only once at start
+}
+
+void <span style="color:#0000ff;">loop()</span> {
+&nbsp; // executed repeatedly
+}</pre>
+<p>
+	After the setup, the <em>loop()</em> method is called.&nbsp; It is called again and again, until you turn of the Arduino or upload a new program.</p>
+<p>
+	Before you can run your programs, you need to compile them.&nbsp; This is done either through the menu (Sketch-&gt;Verify/Compile), a shortcut (Ctrl-R) or a button.&nbsp; If the compiler is happy with your code, you can upload it to your Arduino.&nbsp; This can be done through the menu (Sketch-&gt;Upload), a shortcut (Ctrl-U) or a button.&nbsp; Once a program is uploaded to the Arduino, it will start executing immediately.&nbsp; You can only run one program at a time.&nbsp;</p>
+<p>
+	The IDE comes with really many examples, you can find them under File-&gt;Examples.</p>
+<p>
+	.</p>
+<h2>
+	Serial</h2>
+<p>
+	The Arduino board can send messages to our PC via the serial port.&nbsp; With serial port we mean the USB port.&nbsp; For this you need to setup a serial connection in the setup() method,</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; <span style="color:#0000ff;">Serial.begin(9600);</span>
+}
+void loop() {
+  <span style="color:#0000ff;">Serial.println(&quot;Hello from your Arduino&quot;);
+</span>&nbsp; delay(1000);
+}
+</pre>
+<p>
+	And then use the Serial.println() method to print to the <em>Serial Monitor</em>.&nbsp; The Serial Monitor (Ctrl-Shift-M) is part of the IDE.&nbsp; It shows us the messages that come from the Arduino board.</p>
+<p>
+	The communication is two way, meaning we can also send messages from the Serial Monitor to the Arduino. Again, we need to setup a serial connection in the setup() method,</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+}
+
+void loop() {
+&nbsp; if (<span style="color:#0000ff;">Serial.available() &gt; 0</span>) {
+&nbsp;&nbsp;&nbsp; char c = <span style="color:#0000ff;">Serial.read()</span>;
+&nbsp;&nbsp;&nbsp; Serial.println(c);
+  }
+}</pre>
+<p>
+	Then in the loop() method, we wait for incoming characters.&nbsp; If one is available, then we can read it.&nbsp; We can only read one character at a time.&nbsp; Strings are quite different in C as compared to Java [5].</p>
+<p>
+	.</p>
+<h2>
+	Digital I/O</h2>
+<p>
+	Our Arduino has a whole bunch of digital pins (0,1,2,3,4,5,6,7,8,10)&nbsp; We can write to and read from them.&nbsp; First, we must specify, if we want to use a pin as input or output pin.&nbsp; We do this in the setup using the pinMode() method.&nbsp; We specify the pin (here it is pin 6) and whether to use it as INPUT or OUTPUT:</p>
+<pre style="margin-left: 40px;">
+int ledPin = 6;
+
+void setup() {
+&nbsp; <span style="color:#0000ff;">pinMode(ledPin, OUTPUT);</span>
+}
+
+void loop() {
+&nbsp; <span style="color:#0000ff;">digitalWrite(ledPin, HIGH);</span>
+&nbsp; delay(1500);
+&nbsp; digitalWrite(ledPin, LOW);
+&nbsp; delay(500);
+}</pre>
+<p>
+	Once we specified that, we can use the digitalWrite() method to write to that pin.&nbsp; A digital pin can have two states, either LOW, which is 0 volts, or HIGH, which for our Arduino is 3.3 volts.&nbsp; Interesting enough, there is an internal LED connected to pin 6, so when running the above program that LED should blink.</p>
+<p>
+	Reading works completely analoguous. You must declare the pin as INPUT pin using the pinMode() method,</p>
+<pre style="margin-left: 40px;">
+int ledPin = 6;
+int inPin = 0;
+
+void setup() {
+&nbsp; pinMode(ledPin, OUTPUT);
+&nbsp; pinMode(inPin, INPUT);
+}
+
+void loop() {
+&nbsp; int val = <span style="color:#0000ff;">digitalRead(inPin)</span>;
+&nbsp; digitalWrite(ledPin, val);
+}</pre>
+<p>
+	and then use the digitalRead() method to read from that pin.</p>
+<p>
+	.</p>
+<h2>
+	Analog I/O</h2>
+<p>
+	In addition to digital I/O, there is also analog I/O.&nbsp; All Arduinos can read analog voltages using the <em>analogRead()</em> method.&nbsp; Again, we first need to say that we want to use a pin as INPUT or OUPUT.&nbsp; Then we need to specifiy the resolution of the converter, using the <em>analogReadResolution()</em> method. Here 8 stands for 8-bit, resulting in values between 0 and 255.&nbsp; We can also use 10-bit or 12-bit resolutions.</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; <span style="color:#0000ff;">pinMode(A1, INPUT);</span>
+&nbsp; <span style="color:#0000ff;">analogReadResolution(8)</span>;
+}
+
+void loop() {
+&nbsp; Serial.println( <span style="color:#0000ff;">analogRead(A1)</span> );
+&nbsp; delay(2);
+}
+</pre>
+<p>
+	You can see the readings either in the Serial Monitor, or if it is numbers, then you can also use the Serial Plotter (Ctrl-Shift-L), to visualize the data in a graph.&nbsp; Arduino uses an analog to digital converter, also called ADC, to do the conversion from input voltages to digital numbers.&nbsp; Our Arduino has seven analog input pins (A0-A6).&nbsp; The two millisecond delay gives the ADC a little time.&nbsp; It is not the fastest.</p>
+<p>
+	Some Arduinos also have analog output pins.&nbsp; Our Arduino (MKR1000) has one, the DAC0 pin.&nbsp; On that pin we can create arbitrary output voltages, between 0 and 3.3 volts in our case.&nbsp; To do this, it uses a digital to analog converter, called DAC.&nbsp; It is on pin A0 for the MKR1000.&nbsp; We do need to specify its resolution, which for the MKR1000 can only be 8-bit or 10-bit.&nbsp; However, for some strange reason, we should not set the pin as output pin, but rather not specify it at all.</p>
+<pre style="margin-left: 40px;">
+int val = 0;
+
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(A1, INPUT);
+&nbsp; analogReadResolution(8);
+&nbsp; <span style="color:#ff0000;">// do not do this: </span><span style="color:#0000ff;">pinMode(A0, OUTPUT);
+&nbsp; analogWriteResolution(8)</span>;
+}
+
+void loop() {
+&nbsp; val += 1;
+&nbsp; val %= 256;
+&nbsp; <span style="color:#0000ff;">analogWrite(A0, val);</span>
+&nbsp; Serial.println(analogRead(A1));
+&nbsp; delay(2);
+}
+</pre>
+<p>
+	This means, we can actually use our Arduino to generate arbitrary wave forms, i.e. become a function generator.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_PC_pwm.png" style="margin-left: 10px; margin-right: 10px; width: 344px; float: right; height: 291px;" />PWM</h2>
+<p>
+	Another form of analog output is Pulse Width Modulation (PWM).&nbsp; In PWM we do not modulate the voltage.&nbsp; The voltage is either 0 or 3.3 volts.&nbsp; But we generate a square wave, where we modulate the width of the pulse.&nbsp; If you average that, it then looks almost like an analog voltage.&nbsp; PWM is available on all Arduinos, even if they do not have a DAC.&nbsp;</p>
+<pre style="margin-left: 40px;">
+int val = 0;
+
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; <span style="color:#0000ff;">pinMode(A2, OUTPUT);</span>
+}
+
+void loop() {
+&nbsp; val += 1;
+&nbsp; val %= 256;
+&nbsp; <span style="color:#0000ff;">analogWrite(A2, val);</span>
+&nbsp; delay(2);
+}
+</pre>
+<p>
+	The value can be any value between 0 and 255.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Review</h1>
+<p>
+	In this chapter we introduced the Arduino physical computing platform.&nbsp; Among the many different kinds of Arduinos, we focused on the MKR1000, mostly because it comes in such a&nbsp; beautiful box.&nbsp; We had a brief introduction to the Arduino IDE and how to write simple Arduino software scetches with it.&nbsp; In the ensuing examples we saw how to communicate between Arduino and PC, how to use the digital and analog inputs and outputs, and what PWM stands for.&nbsp; We have now enough knowledge under our belts to become really dangerous!</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Labs</h1>
+<p>
+	Today we will use our Arduino for the first time.&nbsp; We learn how to connect it to our laptop, install the required software, upload and execute programs on the Arduino, and how to connnect different electronic components such as diodes, LEDs and transistors to it.&nbsp; Many of the examples here are inspired from Programming in Arduino [3].</p>
+<p>
+	Before you can start with any of the experiments in this chapter, you need to install the Arduino IDE first, see the appendix for details.</p>
+<p>
+	.</p>
+<h3>
+	Preparations</h3>
+<p>
+	Before attempting to perform any of the experiments in this lab, you need to have done the following preparations beforehand.&nbsp; You have to be able to</p>
+<ul>
+	<li>
+		bring your laptop, and ideally have installed the Arduino IDE on it [6],</li>
+	<li>
+		you have read the Arduino MKR1000 FAQ [7],</li>
+	<li>
+		know about static electricity, and</li>
+	<li>
+		why you should not connect the Arduino directly to your laptop, but always connect it using a USB hub.</li>
+</ul>
+<p>
+	.</p>
+<h3>
+	Note to Instructors</h3>
+<p>
+	Equipment: Arduino box, bipolar transistor BC547.</p>
+<p>
+	Exp. 11: High likelihood that Arduino is dead after this experiment.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Arduino.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 126px; float: right;" />Before you Start</h2>
+<p>
+	Equipment: Arduino box.</p>
+<p>
+	Although quite robust, the Arduino has to be handeled carefully.&nbsp; Try to avoid any static electricty.&nbsp; When not needed, put the Arduino back on its conductive foam and inside its anti-static bag.&nbsp; The image on the side shows the Arduino on its conductive foam (black).</p>
+<p>
+	Before using the Arduino, remove the conductive foam that protects the pins and place it on the breadboard.&nbsp; Do this very carefully, and make sure not to bend any of its legs.&nbsp; If you have difficulty, ask your instructor to help you.</p>
+<p>
+	Connect the Arduino through the USB hub with your computer.&nbsp; There has been irrepairable damage to laptops, so to avoid that use a hub.</p>
+<p>
+	The Arduino is powered through the USB hub.&nbsp; So before building circuits, disconnect your Arduino from the USB hub.&nbsp; Before connecting it, please let an instructor check your circuit.&nbsp;</p>
+<p>
+	Make sure you understand the different voltages on the Arduino board, Vin, 5V and VCC:</p>
+<ul>
+	<li>
+		<strong>Vin:</strong> This pin can be used to power the board with a 5 volts source.&nbsp; <strong>WE WILL NOT USE THIS.</strong></li>
+	<li>
+		<strong>5V:</strong> This pin outputs 5 volts powered from the USB connector. <strong>WE SHOULD NEVER USE THIS.</strong></li>
+	<li>
+		<strong>VCC:</strong> This pin outputs 3.3V through the on-board voltage regulator.</li>
+</ul>
+<p>
+	You should always use <strong>VCC</strong>, i.e., the 3.3 volts.&nbsp; Connecting any of the pins to 5 volts (or more) will destroy your Ardunio.&nbsp; Not a good thing.</p>
+<p>
+	.</p>
+<h3>
+	<img alt="" src="images/Arduino_IDE_BoardSelection.png" style="margin-left: 10px; margin-right: 10px; width: 384px; height: 230px; float: right;" />Preparing the IDE</h3>
+<p>
+	Equipment: Laptop, Arduino box.</p>
+<p>
+	After installation of the IDE, you need to select the proper Arduino board.&nbsp; There are many Arduinos, we are using the MKR1000.&nbsp; So under Tools-&gt;Board select the proper board.&nbsp;</p>
+<p>
+	Also make sure you selected the correct serial or USB port your Arduino is connected to.&nbsp; On Mac and Linux everything should work out of the box.&nbsp; On Windows you most likely have to install a driver, follow the instructions in [9].</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYYEInUiGB9FnwgR4dAAZjI+HIAC4MOR0Hg5KiJ2CsLjKX3+7DYDQGNAsADuaYDagYfjUaDUHoL2E6WZAJbUmezLCAA"><img alt="" src="images/arduino_blink.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 162px; float: right;" /></a>1. Blink</h2>
+<p>
+	Getting the LED &quot;L&quot; to blink is actually quite easy:&nbsp; simply type the following code into the Arduino Software (or load the &quot;Blink&quot; scetch from File&gt;Examples&gt;Basics).&nbsp; Verify it (Ctrl-R) and Upload it (Ctrl-U) to the Arduino board.&nbsp; The LED should start blinking [10].</p>
+<pre style="margin-left: 40px;">
+int ledPin = 6;
+
+void setup() {
+&nbsp; <span style="color:#0000ff;">pinMode(ledPin, OUTPUT);</span>
+}
+
+void loop() {
+&nbsp; <span style="color:#0000ff;">digitalWrite(ledPin, HIGH);</span>
+&nbsp; delay(1500);
+&nbsp; digitalWrite(ledPin, LOW);
+&nbsp; delay(500);
+}</pre>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/Arduino_SerialMonitor.png" style="margin-left: 10px; margin-right: 10px; width: 232px; height: 154px; float: right;" />2. Blink and Serial</h2>
+<p>
+	In this scetch we learn how the Arduino board can send messages to our PC via the USB serial port.&nbsp;</p>
+<pre style="margin-left: 40px;">
+int ledPin = 6;
+
+void setup() {
+&nbsp; <span style="color:#0000ff;">Serial.begin(9600);</span>
+&nbsp; pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+&nbsp; digitalWrite(ledPin, HIGH);
+&nbsp; <span style="color:#0000ff;">Serial.println(&quot;LED is ON&quot;);</span>
+&nbsp; delay(1500);
+&nbsp; digitalWrite(ledPin, LOW);
+&nbsp; Serial.println(&quot;LED is OFF&quot;);
+&nbsp; delay(500);
+}</pre>
+<p>
+	The LED should blink again, but if we look at the Serial Monitor (Ctrl-Shift-M), we see messages that come from the Arduino board.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/Arduino_SerialSend.png" style="margin-left: 10px; margin-right: 10px; width: 232px; height: 154px; float: right;" />3. Serial-2-Way</h2>
+<p>
+	We can also use the Serial Monitor to send commands or strings to the Arduino via the serial port.</p>
+<pre style="margin-left: 40px;">
+int ledPin = 6;
+
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(ledPin, OUTPUT);
+&nbsp; Serial.println(&quot;Greetings from your Arduino!&quot;);
+}
+
+void loop() {
+&nbsp; if (<span style="color:#0000ff;">Serial.available() &gt; 0</span>) {
+&nbsp;&nbsp;&nbsp; char incomingMessage = <span style="color:#0000ff;">Serial.read()</span>;
+&nbsp;&nbsp;&nbsp; if (incomingMessage == &#39;H&#39;) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(ledPin, HIGH);
+&nbsp;&nbsp;&nbsp; } else if (incomingMessage == &#39;L&#39;) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(ledPin, LOW);
+&nbsp;&nbsp;&nbsp; }
+&nbsp; }
+}</pre>
+<p>
+	Run the above program, open the Serial Monitor, type an &#39;H&#39; in the text field, and click on the &quot;Send&quot; button.&nbsp; The LED on the Arduino should turn on.&nbsp; If you send the &#39;L&#39; command, the LED should switch off.</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYXCUaDUVGw2A0PngHoA7t78CAGH41D6oCww36A5Ho8ok6GQCnYwYI+mU-7A6nAywJBmYxG82mcgAXLh8OgsIA"><img alt="" src="images/arduino_button.png" style="margin-left: 10px; margin-right: 10px; width: 182px; height: 162px; float: right;" /></a>4. Button and Tilt Switch</h2>
+<p>
+	To read the state of a button we use the digitalRead() method.&nbsp; We connect the button to the digital pin 2.</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+  pinMode(2, INPUT);
+}
+
+void loop() {
+  int switchState = digitalRead(2);
+  if (switchState == LOW) {
+&nbsp;   Serial.println(&quot;Button is OFF&quot;);
+  } else {
+&nbsp;   Serial.println(&quot;Button is ON&quot;);
+  }
+&nbsp; delay(500);
+}</pre>
+<p>
+	The program checks the value of the digital pin 2, and prints the state of the button to the Serial Monitor (Ctrl-Shift-M).</p>
+<p>
+	Instead of the button, you may also use the tilt switch that comes with the Arduino box.</p>
+<p>
+	You can also modify the program such that the LED on the board goes on, if the button is pressed and off otherwise [11,12].</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYAHMQAwUCgAr4NL7-eBiCYqB6AO4+v0BQgBYMBsDhljRxONBNgDTxqCpn1+NSBn1Z8DyqPF7OZyVlli+BOx8DJmP4dQ+ZDwKAG+x0CQCCQAFxkQgAxnQ876W2A-Jn5VOAh6gA"><img alt="" src="images/arduino_potentiometer.png" style="margin-left: 10px; margin-right: 10px; width: 182px; height: 186px; float: right;" /></a>5. Potentiometer</h2>
+<p>
+	Next, let us read analog input from the analog pin A1.&nbsp; For this we need to connect a potentiometer to the Arduino in the way shown in the figure to the right.</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(A1, INPUT);
+&nbsp; analogReadResolution(8);
+}
+
+void loop() {
+&nbsp; Serial.println(analogRead(A1));
+&nbsp; delay(2);
+}</pre>
+<p>
+	To visualize the data being read, we can use the Serial Plotter (Ctrl-Shift-L).&nbsp; The method <em>analogRead()</em> converts the voltage applied to pin A1 to a value between 0 and 1023 [14,15].</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYXBADBQKACYD8AR9frcJh88A97AAMp57EprIEpjkPDG42GdPY6BIBBIAC4iLjwr44qaiuDC0XesCykB+NRMMAmQj+kCprVlj0Ac29voCmGlvYseDUVA9AHceyG65P-YGoCwJ8GAtOZVRp+OZ+A5+LJXONwxm7X69Wj-PF9PfBoZeB5fuTyuT5f50A"><img alt="" src="images/arduino_ldr.png" style="margin-left: 10px; margin-right: 10px; width: 182px; height: 203px; float: right;" /></a>6. LDR</h2>
+<p>
+	A photo sensor or light dependend resistors (LDR) will change its resistance depending on the amount of incident light.&nbsp;</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(A1, INPUT);
+}
+
+void loop() {
+&nbsp;int sensorValue = analogRead(A1);
+&nbsp;delay(5);
+&nbsp;Serial.print(&quot;Raw Sensor Value \t .&quot;);
+&nbsp;Serial.print(sensorValue);
+}</pre>
+<p>
+	Here we also see, how to output sensor values to the Serial Monitor in a nicely looking way [16,17].</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYAHcQAw0Go8GK-eB5R7vb78KoxVLI1AvT6g74NOLJSG40w-AE-GoZSAs7Gw3nEz6wCmNKHixo8zmix72IUALIABWwZZ0-WUTO0Jh8IEy2XMECGABc2zlGyIh-CvlMVDMpqK4GT2XhiAv4Ou4HOJPY6BIBBIhzIhABjOjC0XFkMVnySkAN5uS+fwXHL1cb98and7g9H09p6PYNK0YBvmxYZsoQHgXm5YMCBgG6N2cZUPBBgRjBeZBqhagegAHsWCAqAw2ABAwOA+tiAQoAE94tmmebYC25GdIxHpAA"><img alt="" src="images/arduino_tmp36.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 235px; float: right;" /></a>7. Temperature</h2>
+<p>
+	We can use the analog input together with out temperature sensor to measure temperature [18,19].</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(A1, INPUT);
+}
+
+void loop() {
+&nbsp; int sensorVal = analogRead(A1);
+&nbsp; delay(5);
+&nbsp; Serial.print(&quot;Raw Sensor Value: &quot;);
+&nbsp; Serial.print(sensorVal);
+
+&nbsp; // convert raw ADC value to voltage
+&nbsp; float voltage = (sensorVal / 1024.0) * 3.3;
+&nbsp; Serial.print(&quot;, Volts: &quot;);
+&nbsp; Serial.print(voltage);
+
+&nbsp; // sensor changes 10 mV per degree C
+&nbsp; // the datasheet says
+&nbsp; // temp = ((voltage - 500mV) times 100)
+&nbsp; Serial.print(&quot;, Degrees C: &quot;);
+&nbsp; float temperature = (voltage - 0.5) * 100;
+&nbsp; Serial.println(temperature);
+}</pre>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYAHdlJF8CAGH41Gg1B6uD6LHg1NhOoQQxY0CwwIROpFI+Hg4EeHQAGYyPhyAAuDDkdB4OSoFdgrG9DAzuAC4qSkACHprdeb-rrsagXvD2G7tb9-ZDLCAA"><img alt="" src="images/arduino_pwm.png" style="margin-left: 10px; margin-right: 10px; width: 190px; height: 178px; float: right;" /></a>8. PWM</h2>
+<p>
+	We can use Pulse Width Modulation (PWM) to change the brightness of an LED.&nbsp;</p>
+<pre style="margin-left: 40px;">
+const int greenLEDPin = 2;
+int greenValue = 0;
+
+void setup() {
+&nbsp; pinMode(greenLEDPin, OUTPUT);
+}
+
+void loop() {
+&nbsp; greenValue++;
+&nbsp; greenValue %= 256;
+&nbsp; analogWrite(greenLEDPin, greenValue);
+&nbsp; delay(20);
+}</pre>
+<p>
+	The green LED should get brighter until its brightness goes down to zero.&nbsp; The period should be about 5 seconds [13].</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYAHd1BZ8CAGH41Gg1B7vQxg8pIAFxUko1Avf6I7ho0nCCGE2AkmnE37sNmPex8gAHOgyADWdC4SkigUy2RUHgAkkIcuZ7HQJAIJAAXERcC6mx7N-gAY17-fug5xUzwrJmuOFop9EcDvrUEGLpYrVc5IamNoX3szymzx5QxPjAA9-euMAEwH4VL5-BYAgAFAR0ABeIimACE+C-L9KxYIA"><img alt="" src="images/arduino_piezo.png" style="margin-left: 10px; margin-right: 10px; width: 247px; height: 178px; float: right;" /></a>9. Melody</h2>
+<p>
+	To see an example where we use the digital pin as output, look at the built-In axamples 02.Digital &gt; toneMelody.&nbsp; You first need to connect an 8-ohm speaker to GND and digital pin 2.</p>
+<pre style="margin-left: 40px;">
+<span style="color:#0000ff;">#include &quot;pitches.h&quot;</span>
+
+const int tonePin = 2;
+
+int melody[] = {
+&nbsp; NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+};
+
+// note durations: 4 = quarter note, 8 = eighth note, etc.:
+int noteDurations[] = {
+&nbsp; 4, 8, 8, 4, 4, 4, 4, 4
+};
+
+void setup() {
+&nbsp; // iterate over the notes of the melody:
+&nbsp; for (int thisNote = 0; thisNote &lt; 8; thisNote++) {
+
+&nbsp;&nbsp;&nbsp; // to calculate the note duration, take one second divided by the note type.
+&nbsp;&nbsp;&nbsp; //e.g. quarter note = 1000 / 4, eighth note = 1000/8, etc.
+&nbsp;&nbsp;&nbsp; int noteDuration = 1000 / noteDurations[thisNote];
+&nbsp;&nbsp;&nbsp; tone(tonePin, melody[thisNote], noteDuration);
+
+&nbsp;&nbsp;&nbsp; // to distinguish the notes, set a minimum time between them.
+&nbsp;&nbsp;&nbsp; // the note&#39;s duration + 30% seems to work well:
+&nbsp;&nbsp;&nbsp; int pauseBetweenNotes = noteDuration * 1.30;
+&nbsp;&nbsp;&nbsp; delay(pauseBetweenNotes);
+&nbsp;&nbsp;&nbsp; // stop the tone playing:
+&nbsp;&nbsp;&nbsp; noTone(tonePin);
+&nbsp; }
+}
+
+void loop() {
+&nbsp; // no need to repeat the melody.
+}</pre>
+<p>
+	This example also teaches how to use arrays with the Arduino.&nbsp; Try adding a capacitor between the D2 output of the Arduino and the input of the speaker [20-22].</p>
+<p>
+	.</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVCYGA0zBMTEIPglOW4-GE4mk8kUMwpOK59IkHIF7K1nJ1jLW-LZRlx4EtGp81rtmptVod9ttzrdkBYAHd1BZ8CAGH41Gg1B7vQxg8pIAFxUko1Avf6I7ho0nCCGE2AkmnE37sNnQz682pMxZifGAB5ucAiqpGPwBAIoAL5OhcABuIjYIBb7ZESk6Oky2RU5gAkkIcpFmgBjafUDz2OgSAQSAAuIi4FxO01m4-40-Xm-u1Lws08AhEPDoF1PutmhS4MiEy7XG63U1vKnJfgwcFZMymANoHrQgwD8QhsF-BA8ClMBGB1FBCSvAAzGQ+DkVd-0JJhoGYYgbGIQgMGISAEAwBBsBQFBGDAU9ALAWBaKbNNDAQYg2MIPxsBoujpjgYVRR9XwkmsYhrG7VsOy1H84C1DVCGgPB4HgLjSMgEIaMQzUtJQtCMLkwDGRQUgTOIPBiS0hi2OI0zgSifCMGohhb1FTldPQ1cM0leUA2LeUPSAA"><img alt="" src="images/arduino_servo.png" style="margin-left: 10px; margin-right: 10px; width: 222px; height: 178px; float: right;" /></a>10. ServoMotor</h2>
+<p>
+	As an example for an actuator, let us consider the ServoMotor example.&nbsp; You need to connect the servo in the way indicated to the right.&nbsp; The orange cable (yellow in the diagram) should be connected to digital pin 2.&nbsp; The brown cable should be connected to GND, the red cable to +3.3V.&nbsp;</p>
+<p>
+	Executing the following code, will result in the servo turning slowly form 0 to 180 degrees.</p>
+<pre style="margin-left: 40px;">
+<span style="color:#0000ff;">#include &lt;Servo.h&gt;</span>
+
+<span style="color:#0000ff;">Servo myServo;</span>
+
+void setup() {
+&nbsp; <span style="color:#0000ff;">myServo.attach(2);</span> // attach servo to pin 2
+&nbsp; Serial.begin(9600);
+}
+
+void loop() {
+&nbsp; for (int angle = 0; angle &lt; 180; angle++) {
+&nbsp;&nbsp;&nbsp; Serial.println(angle);
+&nbsp;&nbsp;&nbsp;<span style="color:#0000ff;"> myServo.write(angle);</span>
+&nbsp;&nbsp;&nbsp; delay(15);
+&nbsp; }
+}</pre>
+<p>
+	If you open the Serial Monitor, you can see the current angle the servo is set to.</p>
+<p>
+	This example also teaches how to import libraries and how to use an object [23].</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Challenges</h1>
+<p>
+	&nbsp;</p>
+<h2>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKGhAEEAnAEwFcAlgDsA9gH0AzgFsAhgBs5UENhB5whCgDVlSlRyookEFJ2PGQJjibDEdlgEoBRAGIXyBkABEqYcgBYLLwgwJCQTTxMUFQ1wsNtycI1sCHIVAHEAOU9wHRV7AGUAFXAVALyADRBbJBVCyuYQJJBNAGEW6hMVTWEQcgh0rhE+IR5HOSkAHQkwCa57GQE5McmJbFn5xeWphFm0weHR8amMXf2Rrem1rj2h86Ppmeuzw5XiU9uXqcx3g4vDH7uKxQjxuv3uNgBn2mJyeHwuIUhfyuoMBXzesLBK2SUCmkAmuPxEj8eO2hJJEnJMB2FLJhOJhOw0DWBJZFOg1LxNK5nJ5BO5fN5FJYfjAVAYaDUxA0TGI1kIPk4vEEokksgU4FxOK59IkHIF7K1nJ1jLW-LZRk1MwpGutVp8lodtsd9qdrpdkBYAHNwH4yoQ1GBfco8AEqB6AO5VGL4H0BCVQFiRvxqbDYDTJ5T+hMAF3UyjQIAz2ALCoYeCZkCIGBDUoQUsIDRgJBwwMohF9fkweA0oqoPDoADMZHw5NmWAA3WOZgNB+NhwtUWzzqmJwspyABKXKDcJpNqeNbucsHhR7eb6P7kD9ocjseKDPxos7hUwSAIZgSmzdvB4DBgFQRmu05TmmaiAYGcYxvG0FekoNgmAYMZhquPiyiADDFuAaEevY6GYcWYpPqGSjEso0AQMu7IsFweYEXhnQloWGBwCw2AziAzgUUoSBMM0IijjInp0CwQA"><img alt="" src="images/arduino_motor_bjt.png" style="margin-left: 10px; margin-right: 10px; width: 278px; height: 194px; float: right;" /></a>1. Motor</h2>
+<p>
+	Running a motor requires a little more current than our Arduino can deliver.&nbsp; We have to use a transistor.</p>
+<pre style="margin-left: 40px;">
+const int motorPin = 8;
+
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; pinMode(motorPin, OUTPUT);
+}
+
+void loop() {
+&nbsp; if (Serial.available() &gt; 0) {
+&nbsp;&nbsp;&nbsp; char incomingMessage = Serial.read();
+&nbsp;&nbsp;&nbsp; if (incomingMessage == &#39;H&#39;) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(motorPin, HIGH);
+&nbsp;&nbsp;&nbsp; } else if (incomingMessage == &#39;L&#39;) {
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; digitalWrite(motorPin, LOW);
+&nbsp;&nbsp;&nbsp; }
+&nbsp; }
+}</pre>
+<p>
+	<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7ipdpYQOyEhcQhNhxDp8QvmInD2YZN2zZR45FGYBzSf1XaxCfpUjN0PSiTW9+YYnohGTZ0WB5r53BG6jqAZuFtWooHoOlCwwgBuerqBgkYgACzm3kbQCMwATiCMaoI5epQJZsZZ+YH5upRYcCJM-HnyAg7sFRLu0mrGLcgJemVSwgA2ooLtLp3gYfCEhAYIJCToBthgJLzYPOoAJuA24K679dwgW7Q+AIYAroMALrV7owpN6nJ7484HxtAgAIIZW5cAJYAOwA9gB9ADOAFtzoNhpR0AIUOQAGpibxIn4eSb8H4QQgEoS-axkJF4gBKAFEAGKSbz8AAiVU2vSZEDASCQTP4hCRlhAjO5ZE2TLUmBAmyRAHEAHKMyZIpEUgDKABVwEjesqABogMhIJFqvVMEDikCogDClqooVRIMlipA0oyoMuwK2VMG0IAOpCwD6MhTzoDBl7fZD0IHg6Hw36EIGXW6PXHITxE673Z7vX6MBnk9mI0x81nUyQSymc5DeBXC37ZrXU4TG1XVi2i+mMknS62E13M5WI3z2-Xy-2C6mJZA-dOZz6-Ul55CE3PV5CYAn10vZ5DF370NAo2udxu51vz9OL2fLzfrzPmAksNlCDh9mpGGshElJn8ASCITCcLDAG65QGei7Lne65pGB54QQeUZXtBSAgVUM7gOhqEYaBWG4Zh+E4QRaHrswFLZAkyhJJQ9A9GI2C9PE34HpyKRhOkLQUYkcD6moVEvDxegWFxDjoMoYDKDS9jeEgjAWqCtznBotDMEAA"><img alt="" src="images/arduino_motor_fet.png" style="margin-left: 10px; margin-right: 10px; width: 310px; height: 210px; float: right;" /></a>You can use the Serial Monitor to control the motor.</p>
+<p>
+	<strong>NOTE: BE VERY CAREFUL WHEN BUILDING THIS CIRCUIT.&nbsp; IT IS VERY LIKELY THAT YOUR ARDUINO WILL BE DEAD IF YOU GET SOMETHING WRONG!</strong></p>
+<p>
+	We can also use a FET.&nbsp; The tricky part here is, that for the FET to switch, it needs a little more than 4 volts.&nbsp; But our Arduino only gives 3.3 volts.&nbsp; So what do we do?&nbsp; One solution is to use another bipolar transistor [26], but that is kind of stupid, because then we can drive the motor with the bipolar, no need for the FET.</p>
+<p>
+	But we can use a voltage divider!&nbsp; If you look at the schematic to the right, then we use the 4.7kOhm and 1kOhm resistors as a voltage divider,&nbsp; We then connect the middle of that divider to the ground (GND) pin of the Arduino.&nbsp; That has the effect, that the 1.6 volts of the voltage divider is added to the 3.3 volts of the Arduino pin, hence shifting us above the 4 volts needed to switch the FET [24-28].&nbsp;</p>
+<p>
+	Idea: may want to add a diode and/or a capacitor?</p>
+<p>
+	.</p>
+<h2>
+	2. Function Generator</h2>
+<p>
+	Using the analog output pin A0 and the DAC, we can write a little function generator that might come in handy when investigating AC voltages and currents.</p>
+<pre style="margin-left: 40px;">
+const int step = 10;
+int outputValue = 0;
+
+void setup() {
+&nbsp; Serial.begin(9600);
+&nbsp; // do not do this: pinMode(A0, OUTPUT);
+&nbsp; analogWriteResolution(8);
+}
+
+void loop() {
+&nbsp; outputValue += step;
+&nbsp; outputValue %= 256;
+&nbsp; analogWrite(A0, outputValue);
+
+&nbsp; Serial.print(&quot;X: &quot;); Serial.print(outputValue); Serial.print(&quot;&nbsp; &quot;);
+&nbsp; Serial.println(&quot;uT&quot;);
+
+&nbsp; delay(10);&nbsp; // 256 ms = 1/4 Hz
+}
+</pre>
+<p>
+	Use a real oscilloscope, connect it to GND and pin A0 to see the output.&nbsp; Change the frequency and the waveform generated.</p>
+<p>
+	We can also generate sound this way, we just need to make sure it generates frequencies in the audible spectrum.&nbsp; And we may need to amplify them with a transistor and a 9 volt battery.&nbsp; And use speakers of a smartphone headset [29-30].</p>
+<p>
+	.</p>
+<h2>
+	3. Software Oscilloscope</h2>
+<p>
+	Experiment 5, the potentiometer can also be used as a software oscilloscope.&nbsp; Try to estimate its time resolution.&nbsp; Use one Arduino as a function generator, and another as a software oscilloscope.</p>
+<p>
+	.</p>
+<h2>
+	4. Pressure Sensor</h2>
+<p>
+	Just to get you thinking, take a look at reference [31].&nbsp; It basically describes how to turn the antistatic foam that protects your Arduino from static electricity into a pressure sensor [32,33].</p>
+<p>
+	.</p>
+<h2>
+	5. LCD Display</h2>
+<p>
+	If you are interested in using the LCD display that comes with the Arduino box, check out reference [34].</p>
+<p>
+	.</p>
+<h2>
+	6. Other Projects</h2>
+<p>
+	Now you basically know how the Arduino works.&nbsp; There are many cool projects you can do now [35].&nbsp; However, you should be aware of the fact, that most projects on the internet assume your Arduino uses 5 volts.&nbsp; Since ours does not, you should first learn about level shifting [36].&nbsp; Also, there are many sensor kits, with easy to use sensors, check out references [37-39].&nbsp; And once in a while there are other projects you find on the internet [40].</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Questions</h1>
+<ol>
+	<li>
+		What does a digital-to-analog converter (DAC) do?<br />
+		&nbsp;</li>
+	<li>
+		Normally the input pins of an Arduino can be connected to 5 volts. Applies this also for the MKR1000, the Arduino we used?</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	References</h1>
+<p>
+	You should read a little about the history of the Arduino, it is quite interesting, especially considering the revolution (IoT) it has caused.</p>
+<p>
+	[1] What Is Physical Computing?, <a href="https://itp.nyu.edu/physcomp/">https://itp.nyu.edu/physcomp/</a><br />
+	[2] Arduino MKR1000, <a href="https://store.arduino.cc/arduino-mkr1000-wifi-with-headers-mounted">https://store.arduino.cc/arduino-mkr1000-wifi-with-headers-mounted</a><br />
+	[3] MKR1000 Pinout, <a href="https://www.arduino.cc/en/uploads/Main/MKR1000_pinout.png">https://www.arduino.cc/en/uploads/Main/MKR1000_pinout.png</a><br />
+	[4] Foundations, <a href="https://www.arduino.cc/en/Tutorial/Foundations">https://www.arduino.cc/en/Tutorial/Foundations</a><br />
+	[5] string, <a href="https://www.arduino.cc/reference/tr/language/variables/data-types/string/">https://www.arduino.cc/reference/tr/language/variables/data-types/string/</a><br />
+	[6] Download the Arduino IDE, <a href="https://www.arduino.cc/en/main/software">https://www.arduino.cc/en/main/software</a><br />
+	[7] FAQ - READ THIS, thread in the MKR1000 section of the Arduino forum: <a href="https://forum.arduino.cc/index.php?topic=449441.0">https://forum.arduino.cc/index.php?topic=449441.0</a><br />
+	[8] Programming in Arduino, <a href="https://programminginarduino.wordpress.com/author/programminginarduino/">https://programminginarduino.wordpress.com/author/programminginarduino/</a><br />
+	[9] Getting started with the Arduino MKR1000, <a href="https://www.arduino.cc/en/Guide/MKR1000">https://www.arduino.cc/en/Guide/MKR1000</a><br />
+	[10] Blink, <a href="https://www.arduino.cc/en/Tutorial/Blink">https://www.arduino.cc/en/Tutorial/Blink</a><br />
+	[11] Project 02: Spaceship Interface, <a href="https://programminginarduino.wordpress.com/2016/02/29/project-2/">https://programminginarduino.wordpress.com/2016/02/29/project-2/</a><br />
+	[12] Project 08: Digital Hourglass, <a href="https://programminginarduino.wordpress.com/2016/03/03/project-08-digital-hourglass/">https://programminginarduino.wordpress.com/2016/03/03/project-08-digital-hourglass/</a><br />
+	[13] Project 04: Mixing color lamp, <a href="https://programminginarduino.wordpress.com/2016/03/01/project-04/">https://programminginarduino.wordpress.com/2016/03/01/project-04/</a><br />
+	[14] AD Wandler, <a href="https://www.arduino.cc/en/Tutorial/ReadAnalogVoltage">https://www.arduino.cc/en/Tutorial/ReadAnalogVoltage</a><br />
+	[15] Serial Plotter tool, <a href="http://randomnerdtutorials.com/arduino-serial-plotter-new-tool/">http://randomnerdtutorials.com/arduino-serial-plotter-new-tool/</a><br />
+	[16] Project 04: Mixing color lamp, <a href="https://programminginarduino.wordpress.com/2016/03/01/project-04/">https://programminginarduino.wordpress.com/2016/03/01/project-04/</a><br />
+	[17] Project 06: Light Theremin, <a href="https://programminginarduino.wordpress.com/2016/03/02/project-06/">https://programminginarduino.wordpress.com/2016/03/02/project-06/</a><br />
+	[18] Project 03: Love-o-meter, <a href="https://programminginarduino.wordpress.com/2016/02/29/projecte-3/">https://programminginarduino.wordpress.com/2016/02/29/projecte-3/</a><br />
+	[19] Using a Temp Sensor, <a href="https://learn.adafruit.com/tmp36-temperature-sensor/using-a-temp-sensor">https://learn.adafruit.com/tmp36-temperature-sensor/using-a-temp-sensor</a><br />
+	[20] Play a Melody using the tone() function, <a href="https://www.arduino.cc/en/Tutorial/toneMelody">https://www.arduino.cc/en/Tutorial/toneMelody</a><br />
+	[21] Project 06: Light Theremin, <a href="https://programminginarduino.wordpress.com/2016/03/02/project-06/">https://programminginarduino.wordpress.com/2016/03/02/project-06/</a><br />
+	[22] Project 07: Piano (musical keyboard), <a href="https://programminginarduino.wordpress.com/2016/03/02/project-07/">https://programminginarduino.wordpress.com/2016/03/02/project-07/</a><br />
+	[23] Project 05: Mood Cue, <a href="https://programminginarduino.wordpress.com/2016/03/01/project-05/">https://programminginarduino.wordpress.com/2016/03/01/project-05/</a><br />
+	[24] Project 09: Motorized Pinwheel, <a href="https://programminginarduino.wordpress.com/2016/03/04/project-10-2/">https://programminginarduino.wordpress.com/2016/03/04/project-10-2/</a><br />
+	[25] Driving motors: Darlingtons and MOSFETs, <a href="https://vimeo.com/107917397">https://vimeo.com/107917397</a><br />
+	[26] Big Loads with MKR1000, https://create.arduino.cc/projecthub/Arduino_Genuino/big-loads-with-mkr1000-eee4cc<br />
+	[27] Project 10: Zoetrope, <a href="https://programminginarduino.wordpress.com/2016/03/05/project-11/">https://programminginarduino.wordpress.com/2016/03/05/project-11/</a><br />
+	[28] Robot Brains, <a href="https://www.instructables.com/lesson/Robot-Brains/">https://www.instructables.com/lesson/Robot-Brains/</a><br />
+	[29] Capacitance Meter and RC Time Constants, <a href="https://www.arduino.cc/en/Tutorial/CapacitanceMeter">https://www.arduino.cc/en/Tutorial/CapacitanceMeter</a><br />
+	[30] DIY Waveform Generator using Arduino​, <a href="https://circuitdigest.com/microcontroller-projects/arduino-waveform-generator">https://circuitdigest.com/microcontroller-projects/arduino-waveform-generator</a><br />
+	[31] Pressure sensor with antistatic foam, <a href="http://wiki.lvl1.org/Pressure_sensor_with_antistatic_foam">wiki.lvl1.org/Pressure_sensor_with_antistatic_foam</a><br />
+	[32] Force Sensor (FSR), <a href="http://iainmccurdy.org/diy/forcesensorfoam/forcesensorfoam.html">iainmccurdy.org/diy/forcesensorfoam/forcesensorfoam.html</a><br />
+	[33] Force Sensitive Resistor Hookup Guide, <a href="https://learn.sparkfun.com/tutorials/force-sensitive-resistor-hookup-guide">https://learn.sparkfun.com/tutorials/force-sensitive-resistor-hookup-guide</a><br />
+	[34] Project 11: Crystal Ball, <a href="https://programminginarduino.wordpress.com/2016/03/05/project-12/">https://programminginarduino.wordpress.com/2016/03/05/project-12/</a><br />
+	[35] Programming in Arduino, <a href="https://programminginarduino.wordpress.com/author/programminginarduino/">https://programminginarduino.wordpress.com/author/programminginarduino/</a><br />
+	[36] Level Shifting, <a href="https://itp.nyu.edu/physcomp/lessons/electronics/level-shifting/">https://itp.nyu.edu/physcomp/lessons/electronics/level-shifting/</a><br />
+	[37] StarterKit_BasicKit/, <a href="https://github.com/arduino/Arduino/tree/master/build/shared/examples/10.StarterKit_BasicKit">https://github.com/arduino/Arduino/tree/master/build/shared/examples/10.StarterKit_BasicKit</a><br />
+	[38] 001310302-an-01-en-ARDUINO_MEGA2560_R3_STARTER_KIT.pdf<br />
+	[39] More sensors are described in 001359118-an-01-de-KURZ_ALLNET_4DUINO_SENSOR_KIT_37_IN_1.pdf<br />
+	[40] Feinstaubsensor, <a href="https://luftdaten.info/feinstaubsensor-bauen/">https://luftdaten.info/feinstaubsensor-bauen/</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

@@ -1,0 +1,398 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html" class="active">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><script type="text/javascript" async="" 
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<p>
+	<img alt="" src="images/BK8_PC_lemon.png" style="display: block; margin-left: auto; margin-right: auto; width: 255px; height: 145px;" /></p>
+<h1>
+	Introduction</h1>
+<p>
+	Physical Computing [1] is all around us.&nbsp; Our smartphones, our cars, our washing machines, all are examples of physical computing.&nbsp; Even our toaster has become <em>smart</em> these days.&nbsp; Smart meaning controlled by a microcontroller [2], and physical computing meaning some electronic components controlled by a microcontroller.&nbsp; If these electronic components are electric motors, magnets or other actuators, then the electronic becomes physical, meaning something moves [3].&nbsp; But physical also means measuring things like temperature, sound, and light.&nbsp; We want to learn about all these, about electronics, about electronic components, and about microcontrollers.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="Hubert-François Gravelot: Die Elektrisierte, um 1750. Public Domain" src="images/PC_Elektrisiermaschine.jpg" style="margin-left: 10px; margin-right: 10px; width: 176px; height: 300px; float: right;" />A Brief History of Electricity</h2>
+<p>
+	Electricity was known to humans for a long time [4].&nbsp; The first one&#39;s were the ancient Egyptians, already in 2750 BCE they were writing about shocks from electric fish.&nbsp; The ancient Arabs were the first to make the connection between electric fish and lightning.&nbsp; Ancient Mediterranean cultures knew that rubbing amber with a cat&#39;s fur can attract small objects such as feathers.</p>
+<p>
+	Then in the 17th century things started to get interesting. In 1663 Otto von Guericke invented the <em>friction machine</em>, which produced static electricity [5].&nbsp; About eighty years later, in 1745, Ewald Georg von Kleist, and independently Pieter van Musschenbroek, invented what is now called the <em>Leyden jar</em>, which could store static electricity [6].&nbsp; Another fifty years later, in 1791, Luigi Galvani connected metal cable to the nerves and muscles of a frog, and was startled when they moved [7].&nbsp; Alessandro Volta repeated Galvani&#39;s experiments, and by refining them invented the <em>Voltaic pile</em> [8].&nbsp; This was the first battery providing constant current.&nbsp; And the rest is history as they say [9].</p>
+<p>
+	.</p>
+<h2>
+	What is Electricity?</h2>
+<p>
+	From this brief history lesson we learn, that electricity has fascinated people for thousands of years.&nbsp; Over those years people tried to get an understanding, and they came up with analogies, but also new concepts and ideas.&nbsp; The most important ones are <em>charge</em>, <em>current</em> and <em>voltage</em>.&nbsp; First people identified <em>charges</em>.&nbsp; There are two kinds: negative and positive [10].&nbsp; Electrons, for instance carry negative charge, and protons carry positive charge.&nbsp; Then people realized that these charges can move.&nbsp; And that is what we call a <em>current</em>: a current is moving charges, like water currents are moving water.&nbsp; If there are no charges moving, then there is no current.&nbsp; And finally, what makes these charges move?&nbsp; That is what <em>voltage</em> is.&nbsp; Only if there is a voltage then charges will move.&nbsp; That is similar to water will move only downhill, if it is flat, water will not move.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Train1.png" style="margin-left: 10px; margin-right: 10px; width: 300px; height: 151px; float: right;" />Simple Analogy</h2>
+<p>
+	If you want an analogy, then think of a toy wooden railroad track.&nbsp; The little cars are like the charges.&nbsp; If you put a car on a track, and the track is flat, the car will just sit there.&nbsp; No current flowing.&nbsp; But if the track is inclined, then the little cars will move down the track.&nbsp; Hence we have a current.&nbsp; And the height, is the potential, in this case the gravitational potential, in the case of electrons the electric potential.&nbsp; And another name for electric potential is voltage.&nbsp; By the way, the track for our cars, is like a piece of cooper wire for the charges.</p>
+<p>
+	With analogies we always have to be a little carful.&nbsp; Although it is true, that having more cars, is equivalent to having a higher current.&nbsp; But if in our train example, we make the slope steeper, then the cars will move faster.&nbsp; Well, for electrons there is no faster.&nbsp; They always move pretty much with the same speed (about half the speed of light).&nbsp; Therefore analogies are helpful, but one needs to know their limits.&nbsp; For most of what we do, the railroad track analogy will work fine.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_PC_conductors.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 212px; float: right;" />Conductors of Electricity</h2>
+<p>
+	One more thing we need to talk about, and that is <em>conductors</em> [11].&nbsp; Like in classical music, there are good conductors and bad conductors.&nbsp; Usually metals are good conductors, whereas glass, ceramics, wood, and plastic are bad conductors of electricity.&nbsp; Bad conductors are also called <em>insulators</em>.&nbsp; Also air, tends to be a poor conductor.&nbsp; For water it depends: destilled water is not a good conductor, but add some salt and it becomes a decent conductor.&nbsp;</p>
+<p>
+	There is one more type of conductor, the <em>semi-conductor</em> [12].&nbsp; Silicon and germanium are semi-conductors.&nbsp; As their name suggests, they are kind of in between conductors and insulators.</p>
+<p>
+	How can we distinguish conductors from semi-conductors? Well, there is an interesting temperature dependence of the conductivity: the conductivity of conductors reduces as temperature increases, whereas for semi-conductors it is the opposite way.&nbsp; This may seem pretty useless, but if you look at what the difference the invention of the transistor made, you might think differently about this seemingly useless property [].</p>
+<p>
+	There is also something called super-conductors, but it is forbidden to talk about those [13].</p>
+<p>
+	[Image source: https://www.electronics-tutorials.ws/diode/diode_1.html]\\</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Review</h1>
+<p>
+	We took a very brief look at the history of electricity, we learned about charge, current and voltage, and we learned about conductors.&nbsp; We saw that there are analogies, but also noticed, that we have to be a little careful with analogies.&nbsp; In the next section, the labs, we will repeat some of those historic experiments with simple household items.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Labs</h1>
+<p>
+	Before we start with our first lab section, we need to talk about safety.&nbsp; In case you haven&#39;t you <em>must</em> read the chapter on Labs and Safety before proceeding.&nbsp; You will have to sign a statement stating that you obey by the rules set forth therein.</p>
+<p>
+	In the labs you will work in teams of two students.&nbsp; You will perform experiments and write down the results of these experiments in your laboratory notebook.&nbsp; At the end of the labs, your instructor will sign and wittness your entries.&nbsp; Laboratory notebooks are used in industrial labs as a primary record of research.&nbsp; It can have an essential role in protecting any intellectual property that comes from the research [17].</p>
+<p>
+	.</p>
+<h3>
+	Preparations</h3>
+<p>
+	Labs will require preparations beforehand, usually given as an assignment.&nbsp; In case you have not done the preparation, you are not permitted to perform the lab.</p>
+<p>
+	Before attempting to perform any of the experiments in this lab, you need to have done the following preparations beforehand:</p>
+<ul>
+	<li>
+		You should know what to do in case of an emergency [14].</li>
+	<li>
+		You should know about the dangers of static electricity to people and equipment.&nbsp; (Look for &quot;dangers of electrostatics&quot; on Google.)</li>
+	<li>
+		You should know what a short-circuit is, and why it is dangerous.</li>
+</ul>
+<p>
+	In addition you should familiarize yourself with the laboratory notebook how to set it up, how to use it, and why it is important.&nbsp; For this please read [15,16].</p>
+<p>
+	.</p>
+<h3>
+	Note to Instructors</h3>
+<p>
+	Equipment needed for the labs in this chapter: alligator clips, aluminum foil, balloons, batteries (1.5V and 9V), coil, copper wire, electroscope, graphite, hot water, ice cubes, iron nails, Leyden jar, lighter, multimeter, potato/lemon, saran wrap, silicon, small iron nail or needle, small magnet, small solar cell, thread, PVC pipe, towel, blue LED, resistor, anti-slug copper strip.</p>
+<p>
+	.</p>
+<h2>
+	Experiments</h2>
+<p>
+	In this lab we will learn some of the physical principles behind electric components.&nbsp; We actually build a whole bunch ourselves: we learn how to make our own resistor (graphite), capacitor (alu+saran), and inductor (wire+nail).&nbsp; We also learn how to use a multimeter to measure volt, ampere, resistance, capacitance, and inductance.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Balloon2.jpg" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 123px; float: right;" />1. Balloons</h2>
+<p>
+	Equipment: childrens balloons, t-shirt.</p>
+<p>
+	One of the simplest demonstration of static electricity is with childrens balloons.&nbsp; Simply rub the balloon on a synthetic cloth, like a t-shirt for instance, and then hold it to the wall.&nbsp; The balloon should stick to the wall for a little while.&nbsp; If you heave feathers, small styrofoam pieces or small pieces of paper, they should be attrackted to the balloon.&nbsp;</p>
+<p>
+	Question: Why is that?</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_PVC1.jpg" style="margin-left: 10px; margin-right: 10px; width: 200px; float: right; height: 170px;" />2. PVC Pipe (Instructor)</h2>
+<p>
+	Equipment: PVC pipe, towel.</p>
+<p>
+	<strong>IMPORTANT</strong>: No computers, smart phones, smart watches or any other electronic devices should be near static electricity!</p>
+<p>
+	Since most of us do not have cat fur and/or amber at our disposal, nowadays we use towels and PVC pipes instead.&nbsp; Basically the same idea as with the balloon, but a little more effective is the PVC pipe.&nbsp; You need a PVC pipe and a towel.&nbsp; Rub the PVC pipe with the towel for a few times.&nbsp; Some techniques are more efficient than others.&nbsp; You will notice that small pieces of paper get attracted or repelled by the PVC pipe.&nbsp; You can also try to touch the balloon with the charged PVC pipe.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Electroscope8.png" style="margin-left: 10px; margin-right: 10px; width: 103px; height: 200px; float: right;" /><img alt="" src="images/IMG_PC_1_Electroscope5.png" style="margin-left: 10px; margin-right: 10px; width: 103px; height: 201px; float: right;" />3. Electroscope (Instructor)</h2>
+<p>
+	Equipment: electroscope, balloons, PVC pipe, battery, towel.</p>
+<p>
+	<strong>IMPORTANT</strong>: No computers, smart phones, smart watches or any other electronic devices should be near static electricity!</p>
+<p>
+	We can use a simple electroscope to measure static electricity.&nbsp; Use a balloon to generate static electricity.&nbsp; Use a towel and a PVC pipe to generate static electricity.&nbsp; Try to connect a battery to the electroscope.&nbsp; Which of the three methods creates the most static electricity?</p>
+<p>
+	In our first two experiments we saw how to create static electricity.&nbsp; But how do we measure electricity [18]?&nbsp; Well, you can use little pieces of paper and see if they get attracted.&nbsp; Or you could touch the electric fish, or touch the PVC pipe and get an electric shock, not recommended.&nbsp; That is at the minimum unpleasant, and depending on the voltage even dangerous.&nbsp; You could also use frog legs, if you happen to have them handy.&nbsp;</p>
+<p>
+	Alternatively, we can use an electroscope.&nbsp; With simple household items, we can actually build our own.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Leyden1.png" style="margin-left: 10px; margin-right: 10px; width: 100px; height: 200px; float: right;" />4. Leyden Jar</h2>
+<p>
+	Equipment: electroscope, Leyden jar.</p>
+<p>
+	A Leyden jar [6] is basically a capacitor.&nbsp; Like the electroscope, it is really easy to build our own Leyden jar.&nbsp; Once build, we can use the mutlimeter to measure the capacitance of our Leyden jar.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	5. Ground (Instructor)</h2>
+<p>
+	Equipment: electroscope, Leyden jar, anti-slug copper strip.</p>
+<p>
+	It is time to learn about what electrical engineers refer to as &quot;ground&quot; [24].&nbsp; You may want to watch video [19] to learn a little more about ground.&nbsp; If you repeat the above experiments with the PVC pipe, the Leyden jar and later the capacitor, with one of the ends being connected to ground, you will notice that all the effects are significantly stronger.</p>
+<p>
+	I hope it is clear, that Mehdi Sadaghdar, also known on YouTube as ElectroBOOM, is an electrical engineer.&nbsp; That means he knows what he is doing.&nbsp; You should not attempt to repeat any of his experiments!&nbsp; Still they are very entertaining and instructional.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_BatteriesSeries.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />6. Measuring Voltage</h2>
+<p>
+	Equipment: multimeter, two 1.5V batteries.</p>
+<p>
+	Another way to measure electricty is with a voltmeter, or in our case a multimeter.&nbsp; To get started we want to measure the voltages of batteries.&nbsp; First, just measure the voltages individually, then connect them in series, that means the plus of one 1.5V battery connected to the minus of the other 1.5V battery.&nbsp; You can look at reference [20] if you need additional help.</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Lemon1.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />7. Homemade Battery</h2>
+<p>
+	Equipment: multimeter, potato/lemon, aluminum foil, copper wire, alligator clips, iron nail.</p>
+<p>
+	First, take aluminum and connect it to the multimeter using alligator clips. Then moisten your fingers, touch the aluminum and the other lead of the multimeter, and measure the voltage. Try this with different metals like iron or copper. [21]</p>
+<p>
+	Second, stick a piece of copper wire and an iron nail into a potato or lemon.&nbsp; Measure the voltage using the multimeter.&nbsp; Again use different metals, and for each combination measure the voltage difference.&nbsp; Does it make a difference if you use a potato or a lemon?</p>
+<p>
+	Questions:</p>
+<ol>
+	<li>
+		What other ways are there to create electricity?</li>
+	<li>
+		How do you know if a battery is full or empty?</li>
+	<li>
+		Assume you want to create a battery with a voltage of 1.1 volts.&nbsp; Which metals would you use? [22]</li>
+</ol>
+<p>
+	Another interesting experiment is the Aluminum Air Battery [23] you can try at home, if you like.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Resistance.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />8. Resistance</h2>
+<p>
+	Equipment: multimeter, two hands.</p>
+<p>
+	Set your multimeter to measure resistance (Ohm).&nbsp; Then hold the two leads between your fingers, and see what resistance your body has.&nbsp; Now moisten your fingers and repeat the experiment.&nbsp; You should notice that the resistance is less now.&nbsp;</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Graphite.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />9. Conductance</h2>
+<p>
+	Equipment: multimeter, copper wire, coil, graphite, alligator clips.</p>
+<p>
+	Use your multimeter to measure resistance.&nbsp; First, start with a piece of copper wire.&nbsp; Take a short piece and measure it.&nbsp; Then use the coil and measure its resistance.&nbsp; According to Amazon, it is 280 meters long (all eight or only one wire?).&nbsp;</p>
+<p>
+	Second, use graphite pencil leads.&nbsp; Take the following measurements:</p>
+<ul>
+	<li>
+		full length pencil leads 0.5mm</li>
+	<li>
+		full length pencil leads 0.7mm</li>
+	<li>
+		half length pencil leads 0.5mm</li>
+	<li>
+		two half length pencil leads 0.5mm connected in series</li>
+	<li>
+		two half length pencil leads 0.5mm connected in parallel</li>
+</ul>
+<p>
+	Record their respective conductance.&nbsp; Conductance is the inverse of resistivity.&nbsp;</p>
+<p>
+	Question: What are the units of conductance?&nbsp; How could you estimate the length of the above wire via its resistance?</p>
+<p>
+	.</p>
+<h2>
+	10. Resistor</h2>
+<p>
+	Equipment: multimeter, graphite, alligator clips.</p>
+<p>
+	Make your own resistor out of graphite pencil leads.&nbsp; First, measure the resistance of the graphite in ohm.&nbsp; Then make your own resistor that has the resistance of exactly 4 ohms.&nbsp;</p>
+<p>
+	This is basically how a carbon film resistor works.</p>
+<p>
+	Question: Could you also create a variable resistor?</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Burrito3.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 132px; float: right;" />11. Capacitor</h2>
+<p>
+	Equipment: multimeter, aluminum foil, saran wrap, blue LED, alligator clips, 9V battery.</p>
+<p>
+	Another way to build a capacitor is with aluminum foil and saran wrap.&nbsp; Make a sandwhich, starting with a layer of saran wrap, followed by aluminum foil, another layer of saran wrap, and another layer of aluminum foil.&nbsp; Have two thin pieces of additional aluminum foil stick out perpendicular for contacts to the two different layers of aluminum foil.&nbsp; Roll the whole thing up like a burrito.&nbsp;</p>
+<ol>
+	<li>
+		Use the multlimeter to measure capacitance of your &quot;burrito&quot;.</li>
+	<li>
+		Charge your &quot;burrito&quot; with the 9V battery. Use the multlimeter to measure voltage.</li>
+</ol>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_Magnet2.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />12. Coil</h2>
+<p>
+	Equipment: multimeter, coil, iron nails.</p>
+<p>
+	A current flowing through a coil will generate a magnetic field.&nbsp; Use the multimeter to measure the inductance of the coil in henry.&nbsp; Now place some iron nails in the inside of the coil and measure the inductance again.&nbsp; The coil consists of eight wires.&nbsp; Instead of using just one wire, use two and then three wires, in series.&nbsp; Each time measure the inductance.&nbsp;</p>
+<p>
+	.</p>
+<p>
+	<img alt="" src="images/IMG_PC_1_Magnet1.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 150px; float: right;" />Question: How does the inductance depend on the number of turns? Is it like \(N^0\), \(N^1\), or \(N^2\)?</p>
+<p>
+	.</p>
+<h2>
+	13. Homemade Ammeter (Instructor)</h2>
+<p>
+	Equipment: coil, iron nails, thread, small iron nail or needle, small magnet.</p>
+<p>
+	Use the coil and add some nails in the inside.&nbsp; Connect to 9V battery only <strong>briefly</strong>!&nbsp; Measure the magnetic field with your smartphone (in case your phone has a magnetic sensor).&nbsp; Build your own ammeter by suspending a nail or a magnet from a tripod just in front of the coil.&nbsp; The nail should move, when the coil is connected to the battery.&nbsp; The more current the more it will move.&nbsp; This is basically how an analog ammeter works.</p>
+<p>
+	Next, use the multimeter to measure the ampere flowing through the coil (should be about 1 ampere).&nbsp;</p>
+<p>
+	Questions:</p>
+<ol>
+	<li>
+		If your battery is rated 800mAh, how long will it take to drain your battery (assuming 1 ampere of current is drawn)?</li>
+	<li>
+		Why do we add nails to the coil?</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	Challenges</h1>
+<p>
+	.</p>
+<h2>
+	1. Conductor vs Semi-Conductor (Instructor)</h2>
+<p>
+	Equipment: multimeter, copper wire, graphite, silicon, hot water, ice cubes, lighter.</p>
+<p>
+	There are conductors, semi-conductors and insulators.&nbsp; There is an interesting temperature dependence for the different materials, which we can measure.&nbsp;</p>
+<p>
+	First, we look at a conductor, graphite (pencil lead).&nbsp; Measure its resistance using a multimeter.&nbsp; Next, use a lighter or a candle to heat it up a little, while still measuring the resistance.&nbsp; Notice that the resistance changes.&nbsp; (You could also use any metal wire, just the effect is smaller).</p>
+<p>
+	Next, use silicon, a semi-conductor.&nbsp; Put it in hot, clean water and measure the resistance.&nbsp; Then add ice cubes to the water and observe what happens to the resistance.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Questions</h1>
+<ol>
+	<li>
+		Name three ways to generate electricity.<br />
+		&nbsp;</li>
+	<li>
+		The galvanic cell corresponds to a
+		<ul>
+			<li>
+				capacitor</li>
+			<li>
+				resistor</li>
+			<li>
+				transistor</li>
+			<li>
+				battery.<br />
+				&nbsp;</li>
+		</ul>
+	</li>
+	<li>
+		Which one has the higher resistance?
+		<ul>
+			<li>
+				pencil lead of 0.7 mm thickness</li>
+			<li>
+				pencil lead of 0.5 mm thickness.<br />
+				&nbsp;</li>
+		</ul>
+	</li>
+	<li>
+		Give an example each for a conductor, a semiconductor and an insulator.<br />
+		&nbsp;</li>
+	<li>
+		Describe how you can build your own capacitor out of aluminum foil and saran wrap.</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	References</h1>
+<p>
+	If you never heard about any of the things we talked about today, it may make sense to read the Wikipedia articles [1-5].&nbsp; The textbook &quot;Lessons in Electric Circuits&quot; has a decent introduction into static electricity.&nbsp; You may want to read chapter 1 [7].&nbsp; There is also the German &quot;Elektronik Kompendium&quot; website and book, and you may want to read the first four chapters under the &quot;Elektrotechnische Physik&quot; heading (&quot;Atome, Elektronen und Ionen&quot;, &quot;Elektrische Ladung&quot;, &quot;Elektrische Spannung&quot;, &quot;Elektrischer Strom / Elektrische Stromstärke&quot;) [8].&nbsp; Finally, there is the &quot;Electronics&quot; Wikibook [9].&nbsp; It is o.k., but very brief.</p>
+<p>
+	.</p>
+<p>
+	[1] Physical computing, <a href="https://en.wikipedia.org/wiki/Physical_computing">https://en.wikipedia.org/wiki/Physical_computing</a><br />
+	[2] Microcontroller, <a href="https://en.wikipedia.org/wiki/Microcontroller">https://en.wikipedia.org/wiki/Microcontroller</a><br />
+	[3] Actuator, <a href="https://en.wikipedia.org/wiki/Actuator">https://en.wikipedia.org/wiki/Actuator</a><br />
+	[4] Electricity history, <a href="https://en.wikipedia.org/wiki/Electricity#History">https://en.wikipedia.org/wiki/Electricity#History</a><br />
+	[5] Electrostatic Generator, <a href="https://en.wikipedia.org/wiki/Electrostatic_generator#History">https://en.wikipedia.org/wiki/Electrostatic_generator#History</a><br />
+	[6] Leyden jar, <a href="https://en.wikipedia.org/wiki/Leyden_jar">https://en.wikipedia.org/wiki/Leyden_jar</a><br />
+	[7] Luigi Galvani, <a href="https://en.wikipedia.org/wiki/Luigi_Galvani#Galvani_vs._Volta">https://en.wikipedia.org/wiki/Luigi_Galvani#Galvani_vs._Volta</a><br />
+	[8] Voltaic pile, <a href="https://en.wikipedia.org/wiki/Luigi_Galvani#Galvani_vs._Volta">https://en.wikipedia.org/wiki/Luigi_Galvani#Galvani_vs._Volta</a><br />
+	[9] Zap, Crackle and Pop: The Story of Electricity, <a href="https://www.youtube.com/watch?v=Ch6jti8i6u4">https://www.youtube.com/watch?v=Ch6jti8i6u4</a><br />
+	[10] Discovery of two kinds of charges, <a href="https://en.wikipedia.org/wiki/Electron#Discovery_of_two_kinds_of_charges">https://en.wikipedia.org/wiki/Electron#Discovery_of_two_kinds_of_charges</a><br />
+	[11] Electrical conductor, <a href="https://en.wikipedia.org/wiki/Electrical_conductor">https://en.wikipedia.org/wiki/Electrical_conductor</a><br />
+	[12] Semiconductor, <a href="https://en.wikipedia.org/wiki/Semiconductor">https://en.wikipedia.org/wiki/Semiconductor</a><br />
+	[13] Superconductivity, <a href="https://en.wikipedia.org/wiki/Superconductivity">https://en.wikipedia.org/wiki/Superconductivity</a><br />
+	[14] Emergency Response Chapter 3 - Electrical Safety, <a href="https://www.allaboutcircuits.com/textbook/direct-current/chpt-3/emergency-response/">www.allaboutcircuits.com/textbook/direct-current/chpt-3/emergency-response/</a><br />
+	[15] Instructions for Using Your Laboratory Notebook, IW Hunter and BJ Hughey, <a href="http://web.mit.edu/me-ugoffice/communication/labnotebooks.pdf">web.mit.edu/me-ugoffice/communication/labnotebooks.pdf</a><br />
+	[16] How to Start&ndash;and Keep&ndash;a Laboratory Notebook, <a href="http://www.iphandbook.org/handbook/ch08/p02/">www.iphandbook.org/handbook/ch08/p02/</a><br />
+	[17] Lab notebook, <a href="https://en.wikipedia.org/wiki/Lab_notebook">https://en.wikipedia.org/wiki/Lab_notebook</a><br />
+	[18] How to Measure Static Electricity, <a href="https://www.wikihow.com/Measure-Static-Electricity">www.wikihow.com/Measure-Static-Electricity</a><br />
+	[19] Make a SUPER HIGH VOLTAGE Capacitor, <a href="https://www.youtube.com/watch?v=xjW-isgOijs">www.youtube.com/watch?v=xjW-isgOijs</a><br />
+	[20] Measuring voltage, <a href="http://isaac.exploratorium.edu/~pauld/summer_institute/summer_day15current/voltage.html">isaac.exploratorium.edu/~pauld/summer_institute/summer_day15current/voltage.html</a><br />
+	[21] Hand Battery, <a href="https://www.exploratorium.edu/snacks/hand-battery">www.exploratorium.edu/snacks/hand-battery</a><br />
+	[22] Standard Electrode Potentials, <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/Chemical/electrode.html#c1">hyperphysics.phy-astr.gsu.edu/hbase/Chemical/electrode.html#c1</a><br />
+	[23] Aluminum Air Battery, <a href="http://isaac.exploratorium.edu/~pauld/activities/AlAirBattery/alairbattery.html">isaac.exploratorium.edu/~pauld/activities/AlAirBattery/alairbattery.html</a><br />
+	[24] Ground (electricity), <a href="https://en.wikipedia.org/wiki/Ground_(electricity)">https://en.wikipedia.org/wiki/Ground_(electricity)</a><br />
+	[25] Hubert-François Gravelot: Die Elektrisierte, Wikipedia, the original uploader was Rainer Zenz at German Wikipedia. / Public domain, <a href="https://commons.wikimedia.org/wiki/File:Elektrisiermaschine.jpg">https://commons.wikimedia.org/wiki/File:Elektrisiermaschine.jpg</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

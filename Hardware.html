@@ -1,0 +1,378 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html" class="active">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><h1>
+	A. Hardware</h1>
+<p>
+	We use the Arduino MKR IoT Bundle [1], mostly because it comes in such a beautiful box.&nbsp; In case you are not familiar with the different electronic components, I took some photos for you:</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px">
+	<tbody>
+		<tr>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Battery15V.png" style="width: 100px; height: 44px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Battery</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Button2.png" style="height: 97px; width: 100px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Switch</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_TiltSwitch.png" style="width: 56px; height: 80px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Tilt Sensor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_BreadBoard.png" style="height: 69px; width: 100px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Bread Board</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Resistor2.png" style="width: 100px; height: 44px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Resistor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Potentiometers1.png" style="width: 69px; height: 100px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Potentiometer</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Capacitors10.png" style="width: 90px; height: 100px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Capacitor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Inductor2.png" style="width: 100px; height: 40px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Inductor</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Diode3.png" style="width: 100px; height: 61px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Diode</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_LED_blue2.png" style="height: 100px; width: 43px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				LED</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Zener.png" style="width: 100px; height: 45px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Zener</td>
+			<td style="text-align: center;">
+				&nbsp;</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Bipolar.png" style="height: 100px; width: 49px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Bipolar Transistor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_FET.png" style="width: 52px; height: 90px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				FET</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_TMP.png" style="height: 100px; width: 45px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Temperture Sensor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Fototransistor.png" style="height: 100px; width: 32px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Photoresistor</td>
+		</tr>
+		<tr>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_SolarCell.png" style="width: 100px; height: 44px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Solar Cell</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Buzzer2.png" style="width: 78px; height: 80px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Piezo Buzzer</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Motor.png" style="width: 100px; height: 73px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Motor</td>
+			<td style="text-align: center;">
+				<table align="center" border="0" cellpadding="0" cellspacing="0" style="width: 100px; height: 100px">
+					<tbody>
+						<tr>
+							<td style="text-align: center;">
+								<img alt="" src="images/IMG_PC_1_Servo.png" style="width: 100px; height: 96px;" /></td>
+						</tr>
+					</tbody>
+				</table>
+				Servo Motor</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<p>
+	In addition, we add a few components to the kits:</p>
+<ul>
+	<li>
+		9 volt battery</li>
+	<li>
+		copper wire, iron nails</li>
+	<li>
+		alligator clips</li>
+	<li>
+		graphite pencil lead, 2x0.5 and 1x0.7mm (must be real graphite, kind of hard to get)</li>
+	<li>
+		jumper cable</li>
+	<li>
+		potentiometers (the ones in the box are not good)</li>
+	<li>
+		Zener diode</li>
+	<li>
+		Inductor</li>
+	<li>
+		BC547 (the box includes 2 FETs, but they only switch with 4 volts, but the Arduino use 3.3 volts)</li>
+	<li>
+		Hub (to protect your laptop)</li>
+</ul>
+<p>
+	You will also need a multimeter, ideally one that can measure capacitance and inductance.&nbsp; It should have a replaceable fuse, because there is a high likelihood, that it gets blown at least once per semester.</p>
+<p>
+	The instructor also needs in addition:</p>
+<ul>
+	<li>
+		balloons</li>
+	<li>
+		PVC pipe and towel</li>
+	<li>
+		electroscope</li>
+	<li>
+		Leyden jar</li>
+	<li>
+		saran wrap and aluminum foil</li>
+	<li>
+		lemon</li>
+	<li>
+		coil and nails</li>
+	<li>
+		a piece of real silicon</li>
+	<li>
+		a small solar cell</li>
+</ul>
+<p>
+	Hope I did not forget anything.</p>
+<p>
+	.</p>
+<h2>
+	Arduino MKR IoT Bundle</h2>
+<p>
+	Currently the &quot;Arduino MKR IoT Bundle&quot; [1] is currently sold out.&nbsp; In case that stays that way (likely because of the FET issue), here is a list of the ingredients of that bundle:</p>
+<ul>
+	<li>
+		1 Arduino MKR1000 board, with header soldered.</li>
+	<li>
+		1 micro USB cable,</li>
+	<li>
+		1 400-point breadboard,</li>
+	<li>
+		70 solid-core jumper wires,</li>
+	<li>
+		1 9V battery snap,</li>
+	<li>
+		1 stranded jumper wire</li>
+	<li>
+		1 stranded jumper wire,</li>
+	<li>
+		6 phototransistors,</li>
+	<li>
+		3 potentiometers (10 kilohm),</li>
+	<li>
+		10 pushbuttons,</li>
+	<li>
+		1 temperature sensor (TMP36),</li>
+	<li>
+		1 tilt sensor,</li>
+	<li>
+		1 alphanumeric LCD (16 x 2 characters),</li>
+	<li>
+		1 bright white,</li>
+	<li>
+		34 LEDs (6 ldr bright white, 1 RGB, 8 red, 8 green, 8 yellow, 3 blue),</li>
+	<li>
+		1 small DC motor (6/9V),</li>
+	<li>
+		1 small servo motor,</li>
+	<li>
+		1 piezo capsule (PKM17EPP-4001-B0),</li>
+	<li>
+		1 H-bridge motor driver (L293D),</li>
+	<li>
+		1 octocouplers (4NE5),</li>
+	<li>
+		2 MOSFET transistors (IRF520),</li>
+	<li>
+		5 capacitors (100uF),</li>
+	<li>
+		5 diodes (1N4007),</li>
+	<li>
+		3 transparent gels (R,G,B)</li>
+	<li>
+		1 male pin strip (40 x 1),</li>
+	<li>
+		20 resistors (220 ohm),</li>
+	<li>
+		5 resistors (560 ohm),</li>
+	<li>
+		5 resistors (1 kilohm),</li>
+	<li>
+		5 resistors (4.7 kilohm),</li>
+	<li>
+		20 resistors (10 kilohm),</li>
+	<li>
+		5 resistors (1 megohm),</li>
+	<li>
+		5 resistors (10 megohm)</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	References</h2>
+<p>
+	[1] Arduino MKR IoT Bundle, <a href="https://store.arduino.cc/arduino-mkr-iot-bundle">https://store.arduino.cc/arduino-mkr-iot-bundle</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

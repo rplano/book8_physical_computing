@@ -1,0 +1,167 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html" class="active">Formulas</a></li>
+	</ul>
+<div class="content"><script type="text/javascript" async="" 
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<h1>
+	F. Formulas</h1>
+<p>
+	It is helpful to briefly review some formulas from school.&nbsp; First, it get&#39;s us into the formula mode of thinking, and second, it might help us to get a better feeling for the eletrical units.</p>
+<p>
+	.</p>
+<h2>
+	Mechanics and Gravity</h2>
+<p>
+	As a starter, let&#39;s remember what we learned in school about mechanics and gravity.</p>
+<h3>
+	Force</h3>
+<p>
+	According to Newton, force (F) is defined as mass (m) times acceleration (a):</p>
+<p>
+	$$F = {m \cdot a}.$$</p>
+<p>
+	Now when we talk about gravitation, then the acceleration, a, becomes the Earth&#39;s acceleration, which we call g and Newton formula becomes</p>
+<p>
+	$$F = {m \cdot g},$$</p>
+<p>
+	where the g is the famous 9.81 [\(m / s^2\)]. The force is measured in Newtons, [N], and mass is measured in [kg].</p>
+<h3>
+	Energy</h3>
+<p>
+	Energy, or to be more precise, potential energy in a gravitational field, is defined as</p>
+<p>
+	$$W = {F \cdot x} = {m \cdot g \cdot x}.$$</p>
+<p>
+	Here, W stands for work, and x is the distance that we move something in a gravitational field.&nbsp; The higher we lift something, there more energy is needed.&nbsp; Energy or work is measured in Joule [J] and distance is measured in meters [m].</p>
+<h3>
+	Power</h3>
+<p>
+	Finally, there is something called power (P) and that is defined as work per unit time, i.e.,</p>
+<p>
+	$$P = {W \over t}.$$</p>
+<p>
+	Power is measured in Watts [W] or in the old units horsepower.&nbsp; It is pretty useless, unless when you buy a car or a battery, then you want to know.</p>
+<p>
+	.</p>
+<h2>
+	Electrostatics</h2>
+<p>
+	After remembering these basic formulas from mechanics, we can see the equivalence in the electrical world.&nbsp;</p>
+<h3>
+	Force</h3>
+<p>
+	In gravitation, we talked about a gravitational field (g), and a particle of mass (m) will experience a force (F) by its effect.&nbsp; Similarly, a charge (q) will experience a force (F) in an electric field (E)</p>
+<p>
+	$$F = {q \cdot E}.$$</p>
+<p>
+	Now, force is still measured in Newton [N], but charge is measured in Coulomb [C], and the electic field has units of volt per meter [V/m].</p>
+<h3>
+	Energy</h3>
+<p>
+	Energy is still defined as force times distance,</p>
+<p>
+	$$W = {F \cdot x} = {q \cdot E \cdot x}.$$</p>
+<p>
+	This is electric potential energy, i.e., if we want to move a charge q in an electric field of strength E by a distance x, then the above equation gives us the energy needed to do that.</p>
+<h3>
+	Analogy</h3>
+<p>
+	What you hopefully noticed was that there is an analogy between gravitation and electicity.&nbsp; In gravitation we talk about a mass m, in electicity we talk about a charge q.&nbsp; In gravitation there is a gravitational field, g, and in electicity there is an electric field, E.&nbsp; Gravitational fields exert a force on masses, and electric fields exert forces on charges.&nbsp; And to move a mass in a gravitational field costs energy, and to move a charge in an electric field, also costs energy.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	Voltage, Current and Resistance</h2>
+<p>
+	Life would have been easy, if the story ended here. But turns out, when we deal with electric circuits, it is very hard to measure an electric field, and even harder to measure a charge.&nbsp; But it is really easy to measure voltage and current.&nbsp; That is why the story continues, because we want to measure stuff.</p>
+<h3>
+	Voltage</h3>
+<p>
+	The voltage is defined as work done divided by the amount of charge being moved,</p>
+<p>
+	$$V = {W \over q}.$$</p>
+<p>
+	Voltage is measured in volts [V] and as above, work in Joule [J] and charge in Coulomb [C].</p>
+<p>
+	As you see, voltage is like the electric potential energy (W) per charge (q).&nbsp; This is why voltage is sometimes also called the electric potential.&nbsp; So voltage has to do with energy.</p>
+<h3>
+	Current</h3>
+<p>
+	The current is defined as amount of charge being moved over a given period of time,</p>
+<p>
+	$$I = {q \over t}.$$</p>
+<p>
+	Current is measured in ampere [A], charge is still measured in Coulomb [C], and time is measure in seconds [s].</p>
+<p>
+	Think of a little piece of wire, and imagine all the little electrons in there as they move.&nbsp; You count the number of electrons that move in a short piece of this wire over the time period of one second.&nbsp; That is current.</p>
+<h3>
+	Power</h3>
+<p>
+	Remember that power (P) was defined as work per unit time, i.e.,</p>
+<p>
+	$$P = {W \over t},$$</p>
+<p>
+	and using the definitions for voltage and current above, you might see after some math-gymnastics that</p>
+<p>
+	$$P = {V \cdot I}.$$</p>
+<p>
+	Power is still measured in Watt [W], voltage in volts [V] and current in ampere [A].</p>
+<h3>
+	Resistance</h3>
+<p>
+	Now there is one last thing missing and that is electrical resistance (R).&nbsp; It is defined as voltage divided by current,</p>
+<p>
+	$$R = {V \over I}.$$</p>
+<p>
+	Resistance is measured in Ohm [\(\Omega\)], voltage in volts [V] and current in ampere [A].&nbsp;</p>
+<p>
+	As an interesting side note, there is no real mechanical equivalent to the idea of electrical resistance.&nbsp; It&#39;s something new.&nbsp; It&#39;s Ohm&#39;s law.</p>
+<p>
+	.</p>
+<h2>
+	Covariant Maxwell Equations</h2>
+<p>
+	The simplest form of the Maxwell equations is the general relativistic form, it is two equations:</p>
+<p>
+	$$F_{\alpha \beta; \gamma} + F_{\beta \gamma; \alpha} + F_{\gamma \alpha; \beta} = 0.$$</p>
+<p>
+	and</p>
+<p>
+	$$F^{\alpha \beta}_{\quad;\beta} = J^{\alpha}.$$</p>
+<p>
+	So, if you remember these two equations, you don&#39;t need to remember any of the other formulas.&nbsp; See, physics is easy.&nbsp; It is the math that is hard.</p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

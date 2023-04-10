@@ -1,0 +1,864 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html" class="active">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><script type="text/javascript" async="" 
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<p>
+	<img alt="" src="images/BK8_PC_breadboard.png" style="display: block; margin-left: auto; margin-right: auto; width: 251px; height: 159px;" /></p>
+<h1>
+	Electric Circuits and Electronic Components</h1>
+<p>
+	In this chapter we learn about simple electric circuits and simple electronic components.&nbsp; We get to know batteries, switches, resistors, capacitors and inductors.&nbsp; And we will hear about Ohms law and Kirchhoffs circuit laws.&nbsp; Towards the end we will also see logic gates for the first, but not the last time.&nbsp; We also need to learn how to use the circuit simulator.</p>
+<p>
+	.</p>
+<h2>
+	Electronic Components</h2>
+<p>
+	In the labs of the last chapters we met and made our first electronic components: resistors, capacitors and coils.&nbsp; In general, one distinguishes between:</p>
+<ul>
+	<li>
+		active components: such as&nbsp;batteries, transistors and diodes,</li>
+	<li>
+		passive components: as there are resistors, capacitors and coils, among many others, and</li>
+	<li>
+		electromechanical components: switches, motors, or fuses, for instance.</li>
+</ul>
+<p>
+	In this chapter we will learn mostly about passive components. In what follows, we get to know all kinds of electronic components [1], what they do and how they work, and how to connect them together to all kinds of different circuits.</p>
+<p>
+	.</p>
+<h2>
+	AC/DC</h2>
+<p>
+	The Wikipedia says &quot;AC/DC are an Australian rock band formed in Sydney in 1973 by Scottish-born brothers Malcolm and Angus Young.&quot; [2]. &nbsp; You may never have heard of AC/DC (probably a good thing), but you will hear a lot about DC in this class, and a little about AC.&nbsp; DC stands for <em>direct current</em>, the type of current that comes out of batteries.&nbsp; AC stands for <em>alternating current</em>, the type that comes out of the electrical outlets in your walls.&nbsp; DC is a lot simpler and somewhat less dangerous than AC.&nbsp; For now, we will only deal with DC.</p>
+<p>
+	.</p>
+<h2>
+	Electric Circuits</h2>
+<p>
+	According to the thesaurus, the word <em>circuit</em> is a synonym for circle or cycle [3].&nbsp; In electronics it referes to a bunch of electronic components, such as batteries, switches and lamps connected together&nbsp; with wires, such that they form a cycle, i.e., there are no loose ends.&nbsp;</p>
+<p>
+	As an example, consider what happens when you turn on your light at home.&nbsp; We can represent this in a circuit diagram, which would look something like the following:</p>
+<table border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIYZJUIIu25YuVxY8c3ELo+WKjDjD7kQcwDOSkEI96ulCADMAQwAbV1pmACd5L0NPR3BmIA"><img alt="" src="images/switch_lamp.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 194px;" /></a><br />
+					battery, switch and lamp</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	In a circuit diagram we represent each circuit by its circuit symbol, and wires are depicted as lines connecting those symbols.&nbsp; Usually, there is a circuit where the electricity comes from: here it is a battery, at home it is AC coming from the electric outlet.&nbsp; Then there is a light bulb and a switch.&nbsp; Each has its diagram.&nbsp; They are all connected by wires.&nbsp; And once you close the switch, the light goes on.</p>
+<p>
+	Something we should be aware of is how crossings of wires are depicted in our diagrams.&nbsp; The subtle difference is the dot in the center of the diagram below.&nbsp; It means that in the diagram to the left the wires are not connected, whereas on the right they are.</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_cd_wires_no_crossing.png" style="margin-left: 10px; margin-right: 10px; width: 107px; height: 108px;" /><br />
+					wires not crossing</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/BK8_cd_wires_crossing.png" style="margin-left: 10px; margin-right: 10px; width: 107px; height: 108px;" /><br />
+					wires crossing</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	We can simulate the behavior of electric circuits in a simulator, before we attempt to build the real thing.&nbsp; This is usually a good idea, just to make sure it is working.&nbsp; We will learn about the simulator in the labs.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_battery.png" style="margin-left: 10px; margin-right: 10px; width: 108px; height: 64px; float: right;" />Battery</h2>
+<p>
+	Let&#39;s first start with the battery.&nbsp; There is all different kinds, with all kinds of voltages.&nbsp; But they all have two things in common: they produce DC, and they have a plus and a minus pole.</p>
+<p>
+	Now let&#39;s briefly talk about them electrons.&nbsp; They are negatively charged, and they are all located at the minus pole of the battery.&nbsp; That is why it is minus.&nbsp; Now there is lots of electrons there (really lots).&nbsp; And electrons don&#39;t like each other very much, that is why they repell each other.&nbsp; And if they have a chance to get away, they will.&nbsp; So, if we happen to take a piece of wire and connect the minus pole of the battery to the plus pole, all those electrons will just start running.&nbsp; And since there are so many of them, it gets hot.&nbsp; We call this a &quot;short circuit&quot;.&nbsp; Generally, short circuits are bad, so usually we want to slow the electrons down a little.&nbsp; That&#39;s why we need resistors. &nbsp;</p>
+<p>
+	But before talking about resistors, lets talk a little more about batteries. Basically, most batteries are voltaic cells (named after Alessandro Volta).&nbsp; The most common one&#39;s have 1.5 volts, but there is also the 9 volt kind, that we will be using a lot.&nbsp; In the examples here, we will use 5 volt batteries.&nbsp; You can&#39;t buy those, but you can take three 1.5 volt batteries, connect them in series and you get 4.5 volts, close enough.</p>
+<p>
+	What did I mean, when I just said &quot;we connect them in series&quot;?&nbsp; Well, if we have two (or more) batteries, then we can connect them in several different ways, and the two important one&#39;s are to connect them &quot;in series&quot; and &quot;in parallel&quot;:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnRfKGbtvSi1kmjIQqOuFVVnbdNcHQA"><img alt="" src="images/battery_resistor.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /></a><br />
+					single battery</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh12CUJRhAFhrDKMBMwDufEMhEpKiqLPk9+ySprXtO4QfNWSQYqqanMATsoVKw27r0os5jlUsLnVhdR+cubx1ePyA"><img alt="" src="images/batteries_series.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /></a><br />
+					batteries in series</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOpACwddk-SpV40oEmAmYB3ASCEpKiyG26Fu+dQuESxVEVGjSATkp3meulnLDJl-QvsWFZlrU8roPbu161+3HxQbugaipwWqmaRVpbBIrCQLGZhmlyB3lyJcCxAA"><img alt="" src="images/batteries_parallel.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 186px;" /></a><br />
+					batteries in parallel</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	When we connect batteries</p>
+<ul>
+	<li>
+		in series, the voltage doubles,</li>
+	<li>
+		in parallel, the voltage stays the same.</li>
+</ul>
+<p>
+	Notice, how the plus pole and minus pole of the batteries are connected.&nbsp; It is not a good idea, to connect them in any other way.</p>
+<p>
+	&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	Short Circuit</h2>
+<p>
+	Short circuiting [4] a battery is very dangerous!&nbsp; It can cause a fire or even an explosion!&nbsp; That is why we need to know about short circuits and how to recognize them.&nbsp; A short circuit is whenever you directly connect the plus pole and minus pole of a battery:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<img alt="" src="images/battery_short_circuit.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /><br />
+					short circuit</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Although a 9V battery may seem pretty harmless, if used in the wrong way, it can cause a fire, or in extreme cases they even might explode.&nbsp; Just search for &quot;lithium ion explosion&quot; on Youtube, and you will know what I am talking about.</p>
+<p>
+	There are several steps to make sure you do not have a short circuit:</p>
+<ol>
+	<li>
+		double check your setup before connecting the battery,</li>
+	<li>
+		have somebody else double check your setup (four-eyes principle [5]),</li>
+	<li>
+		run your setup in a simulator, most simulators check for short circuits,</li>
+	<li>
+		use an ohm-meter in place of the battery, before connecting the battery.&nbsp; If the ohm-meter reads zero ohms, you have a short circuit, and you should not connect the battery.</li>
+</ol>
+<p>
+	Despite taking all these precautionary measures, it might still happen that you have a short circuit.&nbsp; How do you know that you have a short circuit?&nbsp; Any of the following are signs that you have a short circuit:</p>
+<ul>
+	<li>
+		if it starts smelling,</li>
+	<li>
+		if it starts smoking,</li>
+	<li>
+		if it gets hot.</li>
+</ul>
+<p>
+	Any one of those is a sign that you have a short circuit!&nbsp; In case that happens:</p>
+<p>
+	<strong>Disconnect the battery!</strong></p>
+<p>
+	This is also, why you should never leave an electric circuit unattended.&nbsp; Even for a short toilett break, disconnect the battery!&nbsp; Never leave an electric circuit unattended!</p>
+<p>
+	.</p>
+<h2>
+	Direction of Current</h2>
+<p>
+	Historically, people were thinking that the carriers of charge were positively charged.&nbsp; They did not know that electrons were negatively charged.&nbsp; So for them, the current was flowing from the plus pole of the battery to the minus pole.&nbsp; Only after J. J. Thomson discovered the electron, did we know [6].&nbsp; But nobody ever had the guts to change that convention, and hence we are still stuck with this stupid convention.&nbsp; Although we know now it is the electrons that are the charge carriers, and it is the electrons that do the moving, and they really move from the minus pole to the plus pole, the convention still is to say that the current flows from plus to minus.&nbsp; Sorry.&nbsp; Interesting enough it makes no difference.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_resistor.png" style="margin-left: 10px; margin-right: 10px; width: 108px; height: 46px; float: right;" />Resistor</h2>
+<p>
+	Resistors restrict the flow of current.&nbsp; To much current, like to much alcohol, is not good.&nbsp; That&#39;s why we need resistors.&nbsp; Resistance is measured in <em>Ohms</em>.&nbsp; Right, that is the Georg-Simon guy our university is named after.</p>
+<p>
+	For resistors, there is an interesting relation between current and voltage, which is called Ohm&#39;s law [7]:</p>
+<p>
+	$$I = {V \over R}.$$</p>
+<p>
+	It says that if you have a voltage of 1 volt [V] and a resistance of 1 Ohm [\(\Omega\)], then a current of 1 ampere [A] is flowing.&nbsp; If you increase the resistance, the current goes down, if you decrease resistance, current goes up.&nbsp; If the resistance is zero, you have a problem: we call this a &quot;short circuit&quot;.</p>
+<p>
+	Like with batteries, once we have more than one resistor, we can place them in series or in parallel:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnRfKGbtvSi1kmjIQqOuFVVnbdNcHQA"><img alt="" src="images/battery_resistor.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /></a><br />
+					single resistor</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReBKFDOyi1malQwqPk3VV7r1vaX+wwqdhjwi4Z8TVyMg5iA"><img alt="" src="images/resistors_series.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 186px;" /></a><br />
+					resistors in series</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnRfKGbtvSi1mFCQhekg2hhVVaE67r3k9kmjIF75VvLW5PaxCuFQN-BX8dc2YgA"><img alt="" src="images/resistors_parallel.png" style="margin-left: 10px; margin-right: 10px; height: 186px; width: 174px;" /></a><br />
+					resistors in parallel</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Resistors have two very important applications:</p>
+<ul>
+	<li>
+		Protector, i.e. resistors limit the current flowing through components, hence protecting them, an LED for instance.</li>
+	<li>
+		Voltage divider: i.e., resistors can be used to divide a voltage, which is to say, allow us to create an arbitrary voltage between zero and the voltage of the battery.</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_potentiometer.png" style="margin-left: 10px; margin-right: 10px; width: 108px; height: 76px; float: right;" />Variable Resistor</h2>
+<p>
+	Normal resistors are constant, meaning their resistance does not change.&nbsp; However, there are also resistors whose resistance changes. The simplest one being the potentiometer, sometimes also called trimmer.&nbsp; You can change its resistance by either moving a lever (old style, several hundred years ago) or turn a knob (new style, only a hundred years old):</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-EEJSVFkWfJ58wyShqhqty4YQQCj+7d14hjXXYWZgA7MIMKXF9PnDeYYEpnhAoL4AJVoAZwBLcIAXAEMAOwBjWn1HLkIcaxNrLPsgA"><img alt="" src="images/potentiometer.png" style="margin-left: 10px; margin-right: 10px; width: 150px; height: 194px;" /></a><br />
+					potentiometer</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	There are also variable resistors that change their resistance depending on temperature, and others that change their resistance depending on light intensity.&nbsp; Others change their resistivity when stretched, others when shouted at, called microphone.</p>
+<p>
+	.</p>
+<h2>
+	Kirchhoff&#39;s Circuit Laws</h2>
+<p>
+	Some people like to play computer games, other people like to do sudokus, others do cross-word puzzles.&nbsp; Electrical engineers, however, love to calculate what the voltages and currents are at different locations in a given electrical circuit.</p>
+<p>
+	Since you decided to become an engineer (it was not my decision, mind you!), you got to change habits (no more computer games), meaning you got to learn about them Kirchhoff Laws [8].&nbsp; Lucky for you, there is only two of them.</p>
+<p>
+	We start with the second one, Kirchhoffs Voltage Law: All voltages in a closed circuit add up to zero.&nbsp; The tricky part in the second law is the sign of the voltage.&nbsp; Basically, the direction of the current, gives the sign of the voltage.&nbsp; Except for batteries, there it is reverse.&nbsp; So basically we look for loops, and for every component we have, we write down a voltage.&nbsp; In the example below, that is for the battery, v0, for the first resistor, v1, and for the second resistor, v2.&nbsp; Since those three components form a loop, these voltages have to add up to zero.&nbsp; And since v0 is a battery, it gets a minus sign.&nbsp; Easy.</p>
+<p>
+	<img alt="" src="images/BK8_Kirchhhoffs_second.png" style="width: 301px; height: 272px;" /></p>
+<p>
+	The other Kirchhoff law, the first one, is also called the Current Law: All the currents coming in and out of a <em>node</em> add up to zero.&nbsp; A node is where a bunch of wires come together.&nbsp; And usually currents going into a node get a plus sign, and currents going out, get a minus sign.&nbsp; In the diagram below there are two nodes. We just worry about the upper one (in this case the lower one gives the same result).&nbsp; As you can see, there is i0 coming into the node, and i1 and i2 are coming out of the node.&nbsp; So, they all must add up to zero, but i0 gets a plus sign, and i1 and i2 each get a minus sign.</p>
+<p>
+	<img alt="" src="images/BK8_Kirchhhoffs_first.png" style="width: 309px; height: 315px;" /></p>
+<p>
+	In addition, you see that in this last example, there are also two loops.&nbsp; So from Kirchhoff&#39;s second law we get two more equations.&nbsp; And turns out, if you are good at math-gymnastics, that is enough to calculate all the voltages and currents in this circuit.&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	Conservation Laws</h2>
+<p>
+	Now once in a while it is good idea to stop for a moment, and appreciate the philosophical deepness of certain statements.&nbsp; We will do this a couple of times in these lectures, this one being the first time.&nbsp; We call this enlightenment, and at least in my opinion, we still live in the age of enlightenment [9], one of the few great contributions of Europe to the World (although most of the world does not know about it).</p>
+<p>
+	Kirchhoffs first law, is nothing but the conservation of charge.&nbsp; Kirchhoffs second law, is simply conservation of energy put in another form.&nbsp; So both of them are conservation laws.&nbsp; Where do conservation laws come from?&nbsp; Well, since we mentioned Georg-Simon Ohms name, let us also mention another persons name, of local origin: Emmy Noether [10].&nbsp; Emmy Noether proved that:</p>
+<p style="margin-left: 40px;">
+	&quot;If a system has a continuous symmetry property, then there are corresponding quantities whose values are conserved in time.&quot;</p>
+<p>
+	American physicists Leon M. Lederman and Christopher T. Hill argue in their book Symmetry and the Beautiful Universe [11] that Noether&#39;s theorem is &quot;certainly one of the most important mathematical theorems ever proved in guiding the development of modern physics, possibly on a par with the Pythagorean theorem&quot;.&nbsp; Albert Einstein described her as the most important woman in the history of mathematics [12].</p>
+<p>
+	Just to emphazise this a little more: there is not a single physical theory that is not a consequence of Noether&#39;s theorem.&nbsp; All of modern physics, that is QED, QCD, electroweak theory and Einstein&#39;s theory of gravity is a consequence of Emmy Noether&#39;s theorem!&nbsp; If that does not impress you, nothing will.</p>
+<p>
+	.</p>
+<h2>
+	Measurement</h2>
+<p>
+	So how do we know that the Kirchhoff laws actually are correct?&nbsp; Well, we check, meaning we measure.&nbsp; For measuring DC we usually use a multimeter device, that can measure voltage, current and resistance.&nbsp; For now we do not need to understand the internal workings of a multimeter, but we need to be aware that depending on what we want to measure, we have to use the multimeter in slightly different ways:</p>
+<ul>
+	<li>
+		Resistance: when measuring resistance, the component is <em>not connected</em> to the battery, and we simply connect it to the multimeter.</li>
+	<li>
+		Voltage: we measure voltage accross a component, while it is connected to the battery.</li>
+	<li>
+		Current: we measure current that goes through a component by inserting the multimeter in front or after the component, also while it is connected to the battery.</li>
+</ul>
+<p>
+	And the multimeter has to be set to the respective settings, sometimes you also have to use different terminals, depending on the IQ of your multimeter.&nbsp; Most multimeters are stupid, so you have to be smart.&nbsp; Below are the diagrams depicting the different ways these measurements are done:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReAFDNlQgi6UWs0yHMat3XipuOFtsMd0AHO4RNehP52FuDiqrb2fkJRLoaeMcEJukA"><img alt="" src="images/voltage.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 186px;" /></a><br />
+					measuring voltage</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReAFDNlQgi6UWs0yHMat3XivQB2K44W2wx8OOZAA"><img alt="" src="images/current.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 186px;" /></a><br />
+					measuring current</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQA7ipYQsiIYQCy9uUZgCcO4foLDJOwyi3YzKyabMmDIzQjN4CNewVx6UYkRRLBTDBrUvXGJ6fCKA"><img alt="" src="images/resistance.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 186px;" /></a><br />
+					measuring resistance</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	When measuring current, you have to be careful not to break the multimeter.&nbsp; Please use the four-eye principle before trying to measure current.&nbsp; On average, about half of the multimeters in our labs get &quot;fried&quot;, because students have not been careful when trying to measure current!</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_ammeter.png" style="margin-left: 10px; margin-right: 10px; width: 106px; height: 46px; float: right;" />Voltmeter</h2>
+<p>
+	We learned how to measure charge (electroscope) and how to measure current (ammeter = coil + needle).&nbsp; But how do we measure voltage?&nbsp; From what we just learned, the way we measure voltage is by connecting the voltmeter parallel to the component we want to measure.&nbsp; Now if we remember Ohm&#39;s law,</p>
+<p>
+	$$I = {V \over R}.$$</p>
+<p>
+	we can calculate the voltage, if we know the resistance R and the current I.&nbsp; So we build our voltmeter out of our ammeter and a known resistor (1 kOhm, for instance).&nbsp; Then instead of measuring voltage, we measure current, and multiply by the resistance (times 1000) to get the voltage.&nbsp; Pretty smart, or?</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMuTy5hkldVGYAnReAFDNlQgi6UWs0yHMat3XipuOFtsMd2uzFu4SF7b0NPQICjIRV0AHYzcND-ExJCcHF9RPBkjKCreGYgA"><img alt="" src="images/voltmeter.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 186px;" /></a><br />
+					voltmeter</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_capacitor.png" style="margin-left: 10px; margin-right: 10px; width: 108px; height: 46px; float: right;" />Capacitor</h2>
+<p>
+	There are two more components we need to talk about and that is capacitors and inductors. A capacitor is basically two metal plates seperated by air or some insulator.&nbsp; The Leyden jar is a capacitor and our burrito is a capacitor.&nbsp; By themselves capacitors are pretty useless, except for energy storage.&nbsp; But together with other components, and especially when dealing with AC, they become really useful.</p>
+<p>
+	Like resistors, capacitors can be placed in series and in parallel:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMxfKGFR6kIVVhklHl02HeugMZqF+010pZKA6MiYB2V5FcViA7K7uwkCwATnJGauESgSwA9tzajpAkZITQSDDwSf4IyITpOvHozEA"><img alt="" src="images/battery_capacitor.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /></a><br />
+					single capacitor</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHc+IQSkoLIMxfKGFR6kIVVhklHl02HeugMZqF+ymBKFhWSoWgCSAdhICE2bD0Rg7uhQsJAsljbg9mpGjnA6rh5ePn7EPgIQMHAsAE5ysZGxEqEsspF2DiZRlcwA9tzalKIkZFnoJJDIhEhZ8B7ICF09Og3ozEA"><img alt="" src="images/capacitors_series.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 186px;" /></a><br />
+					capacitors in series</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOpACwddk-SpV40oEmAmYB3ASCEpKiyLJCFC-RTy39Cajf3T5ufbif0BjdZoV7bxrpSyjoJEsQDskMF8-JCAKQYOBZrMGRlfgjKHQkXEF43D2xvX1T-QMJg2B9mACd5OJjTYShcljkSxUM7KAKiiwcTEQq1TnMuDrjVAHtuOtFId3LIdBJIINH4En8EKcpCAfRmIA"><img alt="" src="images/capacitors_parallel.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 186px;" /></a><br />
+					capacitors in parallel</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Capacitors have three very important applications:</p>
+<ul>
+	<li>
+		Energy store: a capacitor stores &quot;energy&quot; like a battery (in the electric field).</li>
+	<li>
+		Gate: a capacitor will not let DC pass, but it will let AC pass.</li>
+	<li>
+		Timer: since it takes some time for a capacitor to charge (or discharge), they are very often used for &quot;timing&quot;.</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_cd_inductor.png" style="margin-left: 10px; margin-right: 10px; width: 108px; height: 46px; float: right;" />Inductor</h2>
+<p>
+	When an electric current runs through a wire, it creates a magnetic field.&nbsp; Turns out that when you wind the wire up in a coil, the magnetic field gets stronger,&nbsp; the more turns the stronger the field (actually it goes like \(N^2\)).&nbsp; Such a coil is called <em>inductor</em> and has a couple of useful properties.&nbsp; We need to learn about inductors, because motors, relais and servos are inductors.&nbsp; As such they have the property to induce current into our circuits (hence the name).&nbsp; This inducing of current sounds pretty innocent, but not to our Arduinos: they tend to get killed by those induced currents.&nbsp; So to protect our Arduinos, we need to learn about inductors.</p>
+<p>
+	Inductors have four important applications:</p>
+<ul>
+	<li>
+		Energy store: an inductor can store energy (in the magnetic field).</li>
+	<li>
+		Magnet: an inductor always has a magnetic field, which can be used to lift or move things (electromagnet, motor, servo, relais).</li>
+	<li>
+		Multimeter: basically all analog multimeters use a coil to move their needle.</li>
+	<li>
+		Transformer: out of two inductors you can make a transformer, but only with AC.</li>
+</ul>
+<p>
+	And last but not least, almost all loudspeakers use coils.</p>
+<p>
+	.</p>
+<h2>
+	Kirchhoff and Ohm Revisited</h2>
+<p>
+	Kirchhoff&#39;s laws are conservation laws, and therefore they are always valid.&nbsp; Ohm&#39;s law on the other hand is only true for resistors.&nbsp; So if we are dealing with capacitors, inductors or any other electronic components other than resistors, then Kirchhoff&#39;s laws still hold true, but Ohm&#39;s law is not valid.&nbsp; To see this, let us consider the following circuit in detail:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOvh18gBYowgTWGUYCZgHcQhQkMHdIioYRlyF3XuhXau6gMabVJ-eNgQB0Erbv372KLEgsATikpKwySjy6ULLI+XmpaSpAanOYh5pEAznwg3r7JQhIgAGYAhgA28bTMHrH+ZqUSLixAA"><img alt="" src="images/kirchhoff_capacitor_resistor.png" style="margin-left: 10px; margin-right: 10px; width: 174px; height: 186px;" /></a><br />
+					Kirchhoff&#39;s laws</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	.</p>
+<h2>
+	Switch and Logic Gates</h2>
+<p>
+	Let&#39;s return to the switch for a moment: it seems to be the most trivial of all components.&nbsp; Which is kind of true.&nbsp; Still it has some nice surprises for us.&nbsp; We start simple, and take a look at the following two circuits:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIYZJUIIu25YuVxY8c3ELo+WKjDjD7kQcwDOSkEI96ulCADMAQwAbV1pmACd5L0NPR3BmIA"><img alt="" src="images/switch_lamp.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 194px;" /></a><br />
+					switch and lamp</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMwDOIQoWFCtOhavAgAZgEMANutqylIPdt3C1csMmWLHhqMwBO8vTdKPUoWMGwIIK0ELiiVETAAdjBCaETId0h0QWQEBETEviwqGDhnWEhBWyjCGLsQ5iA"><img alt="" src="images/switch_NOT_gate.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					NOT gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	The first is really trivial: you turn on the switch, the light goes on, you turn the switch off, the light goes off.&nbsp; But, in the second circuit it is the reverse.&nbsp; That&#39;s kind of cool.&nbsp; What we have is&nbsp; a logic NOT gate: if the switch is on, the light is off, and vice versa.&nbsp; We can write this down in what mathematicians call a truth table:</p>
+<table align="center" border="1" cellpadding="1" cellspacing="1" style="text-align: center; vertical-align: middle;width: 200px" summary="Truth table of NOT cicuit">
+	<tbody>
+		<tr>
+			<td>
+				<strong>Switch</strong></td>
+			<td>
+				<strong>Light</strong></td>
+		</tr>
+		<tr>
+			<td>
+				off</td>
+			<td>
+				on</td>
+		</tr>
+		<tr>
+			<td>
+				on</td>
+			<td>
+				off</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	It turns out that using switches, we can build all the logic gates mathematicians know about.&nbsp; Here are examples for the AND, the OR and the XOR gates:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIYZJUIIu25YuVxY8c3ELo+WKjDjD7kQcwDOSkEI+GREAGYAhgA2rrRu3joeelyU-sGhzABO8l4+XrHMQA"><img alt="" src="images/switch_AND_gate.png" style="margin-left: 10px; margin-right: 10px; width: 102px; height: 194px;" /></a><br />
+					AND gate</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-br3Ak+PPpGYBnFJSZ8wySoQRcdIAGYBDADYbamkIULDdDpw+MiIlm3bn7KQkp8geoATvKB-iAh4Mxg2BBgyu5cSSqKlOhwsPC5cIToeuIwcMIlkIKyQdHOyS7qfgbgYHp1LVBVjs7tac1qzOFRRqnJwxI5LIOjHl0p43AsQA"><img alt="" src="images/switch_OR_gate.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					OR gate</p>
+			</td>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-br3Ak+PPpFkpKQpX23qATvO1hkW4ZRZhsEMMpCEEXWysUWA7GELQ3kZG+RgPiTYkP7g4jBw5rCQghqEOOCe9okJ2FAagU7JWSnp6gDKOiDGdkxq4CAAZgCGADYAzrQihMxFzvaOxWkS1fVNLcxAA"><img alt="" src="images/switch_XOR_gate.png" style="margin-left: 10px; margin-right: 10px; height: 194px; width: 126px;" /></a><br />
+					XOR gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	And finally, there is one very special logic gate, the NAND gate:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiCciOgoR18gAsUEYJojKMBMwDu-brxSUefSMzDYIhQsLDJK24SpHo4seBbiF0fLFRhxhDyIOYBnJZ70GEXSSAAzAEMAGzdad09CX09jf2CwiIAneSFPNMoWOW8FPkNcqFkvfRB8nLVskrSc8uYgA"><img alt="" src="images/switch_NAND_gate.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 194px;" /></a><br />
+					NAND gate</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	There will be another philosophy comment on the NAND gate, but that will have to wait a little.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Review</h1>
+<p>
+	This chapter introduced as to electric circuits and electronic components such as batteries, resistors, all kinds of variable resistors, capacitors and inductors.&nbsp; We briefly heard about AC and DC, as well as the direction of current.&nbsp; We talked about short circuits and their potential dangers.&nbsp; We saw how to measure resistance, voltage and current, and got to know Ohm&#39;s and Kichhoff&#39;s laws.&nbsp; We now know that the difference is between putting things in series or in parallel.&nbsp; At the end we even met the logic gates.&nbsp; I would call this an intellectual tour de force.</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Labs</h1>
+<p>
+	In this lab we will learn about simple circuits and passive electronic components such as resistors, variable resistors, capacitors, and inductors.&nbsp; We will also use Ohm&#39;s law, and verify Kirchhoffs circuit laws.</p>
+<p>
+	.</p>
+<h3>
+	Preparations</h3>
+<p>
+	Before attempting to perform any of the experiments in this lab, you need to have done the following preparations beforehand:</p>
+<ul>
+	<li>
+		you must have read the article on short circuits [4],</li>
+	<li>
+		you must be able to identify plus and minus pole of a battery,</li>
+	<li>
+		you must know how to measure voltage vs current,</li>
+	<li>
+		you must know the color codes of resistors,</li>
+	<li>
+		you must know the difference between putting components in series and in parallel.</li>
+</ul>
+<p>
+	You should also draw all the needed circuit diagrams for the different experiments below, before you come to lab.&nbsp; If something is unclear, please ask one of the instructors before attempting the experiment!</p>
+<p>
+	.</p>
+<h3>
+	Note to Instructors</h3>
+<p>
+	Equipment needed for the labs in this chapter: Arduino box, alligator clips, multimeter, 9V battery, inductors.&nbsp; Mark the Arduino boxes with the students names, so that every group gets the same box again.</p>
+<p>
+	.</p>
+<h2>
+	0. Circuit Simulator</h2>
+<p>
+	Before you start with the experiments, make sure you make yourself familiar with the circuit simulator, appendix C.&nbsp; You should make sure that you try out the simulations of each experiment first.&nbsp; Because, if the simulation does not work, the real experiment will definitely not work!&nbsp;</p>
+<p>
+	.</p>
+<h2>
+	1. Resistor</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	Familiarize yourself with the color code of resistors [13].&nbsp; Important is the third ring, and the important colors are black (=0), brown (=1), red (=2), orange (=3), yellow (=4).&nbsp; Also notice red-red-red is 2.2 kOhm, also denoted as 2K2.&nbsp;</p>
+<p>
+	Take a couple of different resistors from the Arduino box, try to predict their resistance using the color code.&nbsp; Then use the multimeter to verify your prediction.</p>
+<p>
+	Question: what would you guess is the next color after yellow?</p>
+<p>
+	.</p>
+<h2>
+	2. Resistors in Series and in Parallel</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	When you put resistors in series, their values simply add up:</p>
+<p>
+	$$R_{total} = {R_1 + R_2}.$$</p>
+<p>
+	If you put them in parallel, their inverses add up:</p>
+<p>
+	$$\frac{1}{R_{total}} = \frac{1}{R_1} + \frac{1}{R_2}.$$</p>
+<p>
+	Verify this by putting two 10 kOhm resistors first in series and then in parallel.&nbsp; Use the multimeter to measure the total resistance.</p>
+<p>
+	.</p>
+<h2>
+	3. Protector</h2>
+<p>
+	Equipment: Arduino box, multimeter, 9V battery, LED.</p>
+<p>
+	One of the most important applications of the resistor is that of the protector.&nbsp; Let&#39;s consider an LED.&nbsp; The current going through an LED should be around 20 mA.&nbsp; If the current is much higher, the LED will die.&nbsp;</p>
+<p>
+	If you recall Ohm&#39;s law:</p>
+<p>
+	$$I = {V \over R},$$</p>
+<p>
+	we can find the required resistance for a given voltage and current:</p>
+<p>
+	$$R = {V \over I}.$$</p>
+<p>
+	We have a 9V battery, and the current flowing should be 20 mA.&nbsp; With this you can calculate the required resistance to protect the LED.&nbsp; Most of the time, you will not find exactly the right resistor.&nbsp; In that case, you pick the closest one, that is a little higher than the calculated one.&nbsp;</p>
+<p>
+	Build the circuit consisting of the battery and the resistor.&nbsp; Do not add the LED yet.&nbsp; Now measure that the current through that cicuit is less than 20 mA.&nbsp; Once you verified that, add the LED.&nbsp; (Make sure LED and resistor are in series!&nbsp; And, LEDs only work in one direction, its cathode should be connected to minus.)</p>
+<p>
+	.</p>
+<h2>
+	4. Voltage Divider</h2>
+<p>
+	NOTE: use resistors with high resistance, like the 1kOhm, 4.7kOhm and 10kOhm!</p>
+<p>
+	Equipment: Arduino box, multimeter, 9V battery.</p>
+<p>
+	Another important applications of resistors is that of the voltage divider.&nbsp; Assume, you need a voltage of something like 3 volts.&nbsp; How do you do that?&nbsp; You put two resistors in series and use Kirchhoff&#39;s law to calculate the value of the voltage in the middle.&nbsp; Draw a circuit with a 9 volt battery and the two resistors, and write down all the voltages.&nbsp;&nbsp; Then build the cicuit, and verify your calculation.&nbsp; Maybe use the 4.7 kOhm and the 10 kOhm for a first try.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/BK8_Kirchhhoffs_one_and_two.png" style="margin-left: 10px; margin-right: 10px; width: 155px; height: 221px; float: right;" />5. Kirchhoff&#39;s Circuit Laws</h2>
+<p>
+	Equipment: Arduino box, multimeter, 9V battery.</p>
+<p>
+	<strong>Important:</strong> Before attempting to do this experiment, make sure you understand how to measure current!&nbsp; If you are not certain, please ask your instructor.</p>
+<p>
+	In class we learned about Kirchhoff&#39;s circuit laws.&nbsp; We want to verify them be building the two cicuits to the right.&nbsp; Use two resistors of more than 1kOhm for \(R_1\) and \(R_2\), but make sure they are different.&nbsp; Then first calculate all the voltages and currents in these circuits.&nbsp; Finally, verify this, by measuring the voltages and currents with the multimeter.</p>
+<p>
+	.</p>
+<h2>
+	6. Potentiometer</h2>
+<p>
+	Equipment: Arduino box, multimeter, 9V battery.</p>
+<p>
+	The simplest variable resistor is the potentiometer.&nbsp; Basically, our simple graphite pencil lead resistor already was a variable resistor.&nbsp; They are very practical.&nbsp; A very common application is to use them as a continuous voltage divider.&nbsp; Build the circuit example from class, using a 9V battery, and show that you can create any voltage between 0 and 9 volts this way.</p>
+<p>
+	First, use multimeter in ohm setting, to see which pins you need to connect to where.</p>
+<p>
+	.</p>
+<h2>
+	7. Variable Resistors</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	There are also other variable resistors.&nbsp; In our Arduino box, there are two: one for light and one for temperature.</p>
+<p>
+	The light depending resistor (LDR) (also called photoresistor or phototransistors [14]) changes its resistance depending on the amount of light entering it.&nbsp; The one in our Arduino box looks like a transparent LED.&nbsp; Simply connect the two leads to our multimeter and measure resistance.&nbsp; You will notice that the resistance changes depending on the light entering the LDR.&nbsp; Also notice, that it makes a difference which way you connect the LDR.&nbsp; For now, we don&#39;t have to worry about this.</p>
+<p>
+	Our Arduino box also contains a temperature sensor, the TMP36 to be exact [15].&nbsp; The TMP36 looks like a transistor.&nbsp; We connect the two outer terminals to our multimeter and we measure resistance.&nbsp; You can warm up the TMP36 by holding it in your hands.&nbsp; You will notice how the resistance changes, depending on temperature.&nbsp; Again, it seems to make a difference which way you connect the TMP36.</p>
+<p>
+	.</p>
+<h2>
+	8. Capacitor</h2>
+<p>
+	Equipment: Arduino box, multimeter, 9V battery, blue LED.</p>
+<p>
+	First, take one of the electrolytic capacitor from the Arduino box and measure its capacitance with the multimeter.</p>
+<p>
+	Second, connect the big electrolytic capacitor (100 uF) with the 9V battery.&nbsp; Be careful about the polarity, i.e. connect the minus of the capacitor to the minus of the battery.&nbsp; Then connect the capacitor to one of the blue LEDs.&nbsp; If you connect it correctly, the LED should light up briefly. (Don&#39;t do this too often, or with a very strong capacitor, it might destroy your LEDs.)</p>
+<p>
+	Third, we want to put capacitors in series and in parallel.&nbsp; Theoretically, when two capacitors are put in series, their inverses add up:</p>
+<p>
+	$$\frac{1}{C_{total}} = \frac{1}{C_1} + \frac{1}{C_2}.$$</p>
+<p>
+	However, if they are put in parallel, their values simply add up:</p>
+<p>
+	$$C_{total} = {C_1 + C_2}.$$</p>
+<p>
+	This is very different from the way resistors behave.&nbsp; Verify this by putting two capacitors first in series and then in parallel.&nbsp; Use the multimeter to measure the total capacitance in each case [16,17].</p>
+<p>
+	Fourth, we want to measure the voltage over time.&nbsp; To do this, you measure the voltage a) while charging the capacitor and b) while discharging the capacitor.&nbsp; Make a measurement like once a second, write your observations down in a table, and then use the table to draw a graph using the graph paper provided.</p>
+<p>
+	.</p>
+<h2>
+	9. Generator</h2>
+<p>
+	Almost all electric motors can also be used as electric generators.&nbsp; Connect the motor to the multimeter, which should be set to measure volts.&nbsp; Depending on how fast your turn the motor, you may want to select the AC setting, however, if you turn your motor slowly, the DC setting should work fine.&nbsp; Turn the motor and notice that there is a voltage.&nbsp;</p>
+<p>
+	Because electric motors also are generators, they are potentially dangerous for our Arduino, because if they generate more then 3.3 volts, and very often they do, it will kill our Arduino, unless we know how to protect it (next chapter).</p>
+<p>
+	.</p>
+<h2>
+	10. Inductor</h2>
+<p>
+	Equipment: Arduino box, multimeter, inductor.&nbsp; Could also use motor for this!</p>
+<p>
+	For this experiment, you should use one of the inductors or the coil might also work.</p>
+<p>
+	First, take one of the inductors provided and measure its inductance with the multimeter.</p>
+<p>
+	Second, we should also be able to use inductors to store some energy.&nbsp; For this, build the following circuit:</p>
+<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+	<tbody>
+		<tr>
+			<td style="text-align: center; vertical-align: middle;">
+				<p>
+					<a href="https://falstad.com/circuit/circuitjs.html?whiteBackground=true&amp;ctz=CQAgjCAMB0l3BWcA2aYDMZIA5nrzgEzYCcICk55lCApgLRhgBQAbiACzYjoKGfdCOKCI6UylSdATMA7iEKEOC4cUGq5CpTz4Ls3Xv0KawAdmQrB2od0gnzOo9sNRmAG3AObniy8oRCaEIwQhJ0ElCSbAQwEg5TBjBlOwAnAUsfDJo4ZgBnEGxKFyTlP3AQADMAQzdc2k0uRwKi3Tt5EqazX1bmMGQnZW9FUt1+ABNaaoBXNwAXejdaMfLJKFgWIA"><img alt="" src="images/inductor_led.png" style="margin-left: 10px; margin-right: 10px; width: 190px; height: 122px;" /></a><br />
+					inductor</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	As long as you keep the switch closed, the current flows through the inductor, creating a magnetic field.&nbsp; The moment you release the switch, no more current is coming out of the battery.&nbsp; But now, the magnetic field creates a current, and that is why the LED should light up briefly.</p>
+<p>
+	Third, inductors too can be put in series and in parallel.&nbsp; Find out how the formulas go for inductors in series and in parallel, and verify them [18].</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Challenges</h1>
+<p>
+	.</p>
+<h2>
+	1. Challenge - Logic Gates</h2>
+<p>
+	Equipment: Arduino box, multimeter.</p>
+<p>
+	With the switches from the Arduino box, build some of the logic circuits we talked about in class:</p>
+<ul>
+	<li>
+		NOT</li>
+	<li>
+		AND</li>
+	<li>
+		OR</li>
+	<li>
+		XOR</li>
+	<li>
+		NAND</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/IMG_PC_1_SolarCell.png" style="margin-left: 10px; margin-right: 10px; width: 200px; height: 88px; float: right;" />2. Solar Cells</h2>
+<p>
+	Equipment: multimeter, small solar cell.</p>
+<p>
+	Measure the voltage and amperage of a small solar cell.&nbsp; Change the light, sun light would be ideal. Make different measurements with different light settings.&nbsp; Calculate the power production.&nbsp; How much power does a 100 watt incandescent light bulb use?&nbsp; A hair dryer?&nbsp; An electric car?&nbsp; For more details see reference [19].</p>
+<p>
+	Remember that power (P), which is measured in Watt [W], is simply voltage times current, i.e.,</p>
+<p>
+	$$P = {V \cdot I}.$$</p>
+<p>
+	On a clear day, the sun&#39;s energy reaching the Earth&#39;s surface is about 1000 Watts per square meter (W/m^2).&nbsp; How efficient is your solar cell?</p>
+<p>
+	.</p>
+<hr />
+<h1>
+	Questions</h1>
+<ol>
+	<li>
+		Is a resistance of 100 ohms a high resistance, or rather a small one?<br />
+		&nbsp;</li>
+	<li>
+		What is the color code of a 2.2 kOhm resistor?<br />
+		&nbsp;</li>
+	<li>
+		You can connect batteries in series or parallel. How high is the total voltage in one or the other case?<br />
+		&nbsp;</li>
+	<li>
+		We have worked with different variable resistors. Name three different types of variable resistors.<br />
+		&nbsp;</li>
+	<li>
+		What can go wrong when you try to measure current?<br />
+		&nbsp;</li>
+	<li>
+		How to measure current, how to measure voltage, and how to measure resistance? Sketch one circuit diagram each.<br />
+		&nbsp;</li>
+	<li>
+		Name the two Kirchhoff laws.<br />
+		&nbsp;</li>
+	<li>
+		Consider the following voltage divider. The battery supplies 9 volts, one resistor is 300 Ohm, the other 600 Ohm. What is the voltage in the middle, between the two resistors? Which law do you use to calculate this?<br />
+		&nbsp;<br />
+		<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							<img alt="" src="images/Q_Voltage_Divider.png" style="margin-left: 10px; margin-right: 10px; width: 142px; height: 178px;" /><br />
+							&nbsp;</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;</li>
+	<li>
+		Why should you use resistors with high resistances in a voltage divider?<br />
+		&nbsp;</li>
+	<li>
+		Consider the following circuit. It consists of a 7.5 volt battery, a resistor R1 of 100 Ohm and a resistor R2 of 300 Ohm. Calculate the currents I1 and I2 that flow through the resistors R1 and R2.<br />
+		&nbsp;<br />
+		<table align="center" border="0" cellpadding="10" cellspacing="10" style="width: 100%;">
+			<tbody>
+				<tr>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							<img alt="" src="images/Q_Kirchhoff.png" style="margin-left: 10px; margin-right: 10px; width: 157px; height: 114px;" /><br />
+							&nbsp;</p>
+					</td>
+					<td style="text-align: center; vertical-align: middle;">
+						<p>
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;</li>
+	<li>
+		Name two important applications of capacitors.<br />
+		&nbsp;</li>
+	<li>
+		First connect an electrolytic capacitor to a 9V battery. Then connect the capacitor to an LED. What happens?<br />
+		&nbsp;</li>
+	<li>
+		Most LEDs die when the current through them is more than 20mA (for humans it is a little more, but not much). You only have a 9V battery, but you also have a lot of resistors. What do you do to get some light without killing the LED?</li>
+</ol>
+<p>
+	.</p>
+<hr />
+<h1>
+	References</h1>
+<p>
+	We learned a lot in this chapter.&nbsp; Although we do not have the time to go into some of the historical details, it is still interesting to read about the people involved.&nbsp; So in case you are looking for some light reading, just read the Wikipedia articles about Ohm, Kirchhoff or Faraday.&nbsp; If you never heard about Emmy Noether, then you should read about her.&nbsp; And in case you happen to not take our warnings about exploding batteries seriously, search for &quot;lithium ion explosion&quot; on Youtube.</p>
+<p>
+	.</p>
+<p>
+	[1] Electronic component, <a href="https://en.wikipedia.org/wiki/Electronic_component">https://en.wikipedia.org/wiki/Electronic_component</a><br />
+	[2] AC/DC, <a href="https://en.wikipedia.org/wiki/AC/DC">https://en.wikipedia.org/wiki/AC/DC</a><br />
+	[3] Thesaurus.com, <a href="https://www.thesaurus.com/browse/circuit">https://www.thesaurus.com/browse/circuit</a><br />
+	[4] Short circuit, <a href="https://en.wikipedia.org/wiki/Short_circuit">https://en.wikipedia.org/wiki/Short_circuit</a><br />
+	[5] Four Eyes Principle, <a href="https://www.openriskmanual.org/wiki/Four_Eyes_Principle">https://www.openriskmanual.org/wiki/Four_Eyes_Principle</a><br />
+	[6] J. J. Thomson, Discovery of the electron, <a href="https://en.wikipedia.org/wiki/J._J._Thomson#Discovery_of_the_electron">https://en.wikipedia.org/wiki/J._J._Thomson#Discovery_of_the_electron</a><br />
+	[7] Ohm&#39;s law, <a href="https://en.wikipedia.org/wiki/Ohm%27s_law">https://en.wikipedia.org/wiki/Ohm%27s_law</a><br />
+	[8] Kirchhoffs Circuit Law, <a href="https://www.electronics-tutorials.ws/dccircuits/dcp_4.html">https://www.electronics-tutorials.ws/dccircuits/dcp_4.html</a><br />
+	[9] Age of Enlightenment, <a href="https://en.wikipedia.org/wiki/Age_of_Enlightenment">https://en.wikipedia.org/wiki/Age_of_Enlightenment</a><br />
+	[10] Emmy Noether, <a href="https://en.wikipedia.org/wiki/Emmy_Noether#cite_note-FOOTNOTELedermanHill200473-7">https://en.wikipedia.org/wiki/Emmy_Noether#cite_note-FOOTNOTELedermanHill200473-7</a><br />
+	[11] Lederman, Leon M.; Hill, Christopher T. (2004), Symmetry and the Beautiful Universe, Amherst, MA: Prometheus Books, ISBN 978-1-59102-242-8<br />
+	[12] History of Scientific Women, <a href="https://scientificwomen.net/women/noether-emmy-75">https://scientificwomen.net/women/noether-emmy-75</a><br />
+	[13] Electronic color code, <a href="https://en.wikipedia.org/wiki/Electronic_color_code#Resistor_color-coding">https://en.wikipedia.org/wiki/Electronic_color_code#Resistor_color-coding</a><br />
+	[14] Photoresistor, <a href="https://en.wikipedia.org/wiki/Photoresistor">en.wikipedia.org/wiki/Photoresistor</a><br />
+	[15] TMP36 Temperature Sensor, <a href="https://learn.adafruit.com/tmp36-temperature-sensor/overview">learn.adafruit.com/tmp36-temperature-sensor/overview</a><br />
+	[16] Kennzeichnung von Kondensatoren, <a href="https://www.elektronik-kompendium.de/sites/bau/1109061.htm">www.elektronik-kompendium.de/sites/bau/1109061.htm</a><br />
+	[17] How To Check Capacitor (Very easy), <a href="https://www.youtube.com/watch?v=4_jtub0lyJI">www.youtube.com/watch?v=4_jtub0lyJI</a><br />
+	[18] Introduction to the electronics inductor component explained and demonstrated with LED circuit, <a href="https://www.youtube.com/watch?v=kvHTgAQ8FcM">www.youtube.com/watch?v=kvHTgAQ8FcM</a><br />
+	[19] Solar Cells, <a href="http://isaac.exploratorium.edu/~pauld/activities/physics/solarcellf/solarcell.html">isaac.exploratorium.edu/~pauld/activities/physics/solarcellf/solarcell.html</a><br />
+	[20] Kennlinie einer Silizium-Solarzelle, <a href="https://www.leifiphysik.de/elektronik/halbleiterdiode/versuche/kennlinie-einer-silizium-solarzelle">www.leifiphysik.de/elektronik/halbleiterdiode/versuche/kennlinie-einer-silizium-solarzelle</a><br />
+	[21] Michael Faraday, <a href="https://en.wikipedia.org/wiki/Michael_Faraday">https://en.wikipedia.org/wiki/Michael_Faraday</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>

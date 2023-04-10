@@ -1,0 +1,166 @@
+<!DOCTYPE html><html lang="de"><head>
+  <title>Variations on a Theme: Physical Computing</title>
+  <meta name="title" content="Variations on a Theme: Physical Computing">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta charset="UTF-8">
+  <meta name="description" content="An Introduction to Physical Computing">
+  <meta name="keywords" content="Physical Computing, IoT, Arduino">
+  <meta name="author" content="Ralph P. Lano">
+  <meta name="robots" content="index,follow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="book.css">
+</head>
+<body><center>
+<div id="wrap">
+	<ul class="sidenav">
+	  <p><a href="index.html">Variations on a Theme</a><a href="index.html">Physical Computing</a></p>
+	  <li><a href="Safety.html">Safety</a></li>
+	  <li><a href="Introduction.html">Introduction</a></li>
+	  <li><a href="PassiveCmpts.html">Passive</a></li>
+	  <li><a href="ActiveCmpts.html">Active</a></li>
+	  <li><a href="Arduino.html">Arduino</a></li>
+	  <li><a href="Hardware.html">Hardware</a></li>
+	  <li><a href="Multimeter.html">Multimeter</a></li>
+	  <li><a href="Simulator.html">Simulator</a></li>
+	  <li><a href="ArduinoIDE.html" class="active">IDE</a></li>
+	  <li><a href="Definitions.html">Definitions</a></li>
+	  <li><a href="Formulas.html">Formulas</a></li>
+	</ul>
+<div class="content"><h1>
+	D. Arduino IDE</h1>
+<p>
+	Before we can use our Arduino, we need to install the Arduino IDE on our computer.</p>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/Arduino_IDE.png" style="margin-left: 10px; margin-right: 10px; width: 330px; height: 403px; float: right;" />Installation of Arduino Software</h2>
+<p>
+	Depending on your operating system, the installation may be slightly different.</p>
+<h3>
+	Linux</h3>
+<ul>
+	<li>
+		download IDE from Arduino website [1]</li>
+	<li>
+		unzip and install running ./install.sh</li>
+	<li>
+		connect Arduino board through USB</li>
+	<li>
+		you need to add your username to the tty and dialout groups:<br />
+		&nbsp; sudo usermod -a -G tty yourUserName<br />
+		&nbsp; sudo usermod -a -G dialout yourUserName</li>
+	<li>
+		logout and log back in, for changes to take effect</li>
+	<li>
+		start IDE, make sure to select your Arduino board under Tools&gt;Board</li>
+	<li>
+		select serial port under Tools&gt;Serial Port</li>
+	<li>
+		change language in File&gt;Preferences</li>
+	<li>
+		load the &quot;Blink&quot; scetch from File&gt;Examples&gt;Basics</li>
+	<li>
+		run your first scetch</li>
+</ul>
+<h3>
+	Mac [4]</h3>
+<ul>
+	<li>
+		download IDE from Arduino website [1]</li>
+	<li>
+		you may have to unzip the software</li>
+	<li>
+		to install it, copy the Arduino application in the Applications folder</li>
+	<li>
+		connect Arduino board through USB</li>
+	<li>
+		start IDE, make sure to select your Arduino board under Tools&gt;Board</li>
+	<li>
+		select serial port under Tools&gt;Serial Port</li>
+	<li>
+		change language in File&gt;Preferences</li>
+	<li>
+		load the &quot;Blink&quot; scetch from File&gt;Examples&gt;Basics</li>
+	<li>
+		run your first scetch</li>
+</ul>
+<h3>
+	Windows</h3>
+<ul>
+	<li>
+		download IDE from Arduino website [1]</li>
+	<li>
+		install software</li>
+	<li>
+		connect Arduino board through USB</li>
+	<li>
+		install drivers</li>
+	<li>
+		start IDE, make sure to select your Arduino board under Tools&gt;Board</li>
+	<li>
+		select serial port under Tools&gt;Serial Port</li>
+	<li>
+		change language in File&gt;Preferences</li>
+	<li>
+		load the &quot;Blink&quot; scetch from File&gt;Examples&gt;Basics</li>
+	<li>
+		run your first scetch</li>
+</ul>
+<h3>
+	Shortcuts</h3>
+<p>
+	The following shortcuts will become handy, when doing a lot of Arduino coding:</p>
+<ul>
+	<li>
+		Ctrl-S: Save</li>
+	<li>
+		Ctrl-R: Verify</li>
+	<li>
+		Ctrl-U: Upload</li>
+	<li>
+		Ctrl-T: Pretty Print</li>
+</ul>
+<p>
+	.</p>
+<h2>
+	<img alt="" src="images/MKR1000_pinout.png" style="margin-left: 10px; margin-right: 10px; width: 134px; height: 356px; float: right;" />Arduino Board</h2>
+<p>
+	The schematic on the side shows the layout of the Arduino Uno.&nbsp; We see the USB and power connector.&nbsp; Usually the Arduino gets its power through the USB port.&nbsp; In addition we see on the lower right two sets of pins: one for power and the other for analog inputs.&nbsp; On the top right we see two sets of pins for digital inputs and outputs.&nbsp; There are also a few LEDs: the power LED, the TX and RX (for communication) and the &quot;L&quot; LED, the one we will be using a lot.</p>
+<p>
+	.</p>
+<h2>
+	Test: Blink</h2>
+<p>
+	Getting the LED &quot;L&quot; to blink is actually quite easy:&nbsp; simply type the following code into the Arduino Software (or simply load the &quot;Blink&quot; scetch from File&gt;Examples&gt;Basics).&nbsp; Verify it (Ctrl-R) and Upload it (Ctrl-U) to the Arduino board.&nbsp; The LED should start blinking.</p>
+<pre style="margin-left: 40px;">
+void setup() {
+&nbsp; pinMode(6, OUTPUT);
+}
+
+void loop() {
+&nbsp; digitalWrite(6, HIGH);
+&nbsp; delay(1000);
+&nbsp; digitalWrite(6, LOW);
+&nbsp; delay(1000);
+}</pre>
+<p>
+	(see: https://www.arduino.cc/en/Tutorial/Blink)</p>
+<p>
+	.</p>
+<h2>
+	References</h2>
+<p>
+	[1] Download the Arduino IDE, <a href="https://www.arduino.cc/en/Main/Software">https://www.arduino.cc/en/Main/Software</a><br />
+	[2] Arduino Beginner&rsquo;s Course, <a href="http://runtimeprojects.com/2016/03/arduino-beginners-course-introduction-to-arduino/">http://runtimeprojects.com/2016/03/arduino-beginners-course-introduction-to-arduino/</a><br />
+	[3] ESP8266 Remote Controlled Sockets, <a href="http://randomnerdtutorials.com/esp8266-remote-controlled-sockets/">http://randomnerdtutorials.com/esp8266-remote-controlled-sockets/</a><br />
+	[4] Install the Arduino Software (IDE) on OS X, <a href="https://www.arduino.cc/en/Guide/MacOSX">https://www.arduino.cc/en/Guide/MacOSX</a></p>
+<p>
+	.</p>
+<p class="footer">
+Copyright &copy; 2016-2023 <a href="http://www.lano.de">Ralph P. Lano</a>.  All rights reserved.
+</p>
+</div>
+</center>
+</div>
+</body>
+</html>
